@@ -3,6 +3,7 @@ const { GqlBuilder } = require('@uz/gqlbuilder');
 
 const BaseModel = require('./BaseModel');
 const Collection = require('./Collection');
+const Definition = require('./Definition');
 const container = require('./container');
 
 const isValidDefinition = (definition) => {
@@ -36,6 +37,8 @@ function GraphMe() {
       // define collection type for each loaded model
       schema.Collection = function(...args) { return new Collection(schema, ...args); };
       schema.Collection.isCollection = true;
+      // proxy some function from schema to schema.Collection
+      schema.Collection.getSelection = schema.getSelection.bind(schema);
 
       container.register(name, schema);
       container.registerDeffinition(name, schema, definition);  
@@ -51,6 +54,7 @@ function GraphMe() {
 
     BaseModel,
     Collection,
+    Definition,
     GqlBuilder,
   }
   return instance;

@@ -19,6 +19,8 @@ const define = (instance) => {
           }
         },
         set(value) {
+          // mark model as dirty
+          instance.setState({ dirty: true });
           return instance.set(fieldName, value);
         }
       });
@@ -28,6 +30,7 @@ const define = (instance) => {
   // define nodes
   if(_.isFunction(modelDef.getNodes)) {
     const nodesMap = {};
+    // const nodesMap = instance.props;
     _.castArray(modelDef.getNodes() || []).map(item => {
       let [nodeName, NodeModel, using] = item;
       NodeModel = container.resolve(NodeModel);
@@ -35,37 +38,20 @@ const define = (instance) => {
       Object.defineProperty(instance, nodeName, {
         get() {
 
-          const applyObjectRelationship = (fromModel, toModel) => {
-            const mapping = _.get(using, 'column_mapping');
-            if(mapping) {
-              _.map(mapping, (fKey, lKey) => {
-                const lVal = fromModel.get(lKey);
-                toModel.set(fKey, lVal);
-                console.log('mapping', fKey, lKey, lVal);
-                fromModel.on('change', (val, key) => ((key === lKey) && toModel.set(val)));
-              });
-            }
-
-          }
-
-          const applyArrayRelationship = (fromModel, toModel) => {
-
-          };
-
           const resolveObjectRelationship = () => {
             // binding change from sourceKey to node forreignKey
             // resolve nodeData if possible
             if(instance.has(nodeName)) {
               const nodeData = instance.get(nodeName);
-              nodesMap[nodeName] = NodeModel.fromData(nodeData);
-              applyObjectRelationship(instance, nodesMap[nodeName]);
+              nodesMap[nodeName] = new NodeModel(nodeData, instance.getContext());
+              nodesMap[nodeName].getContext().set({ nodeName });
               return nodesMap[nodeName];
             } else {
               const rtn = new Promise(async (res) => {
-                await instance.sync([`${nodeName} {${instance.getKey()}}`]);
+                await instance.sync([`${nodeName} ${NodeModel.getSelection()}`]);
                 const nodeData = instance.get(nodeName);
-                nodesMap[nodeName] = NodeModel.fromData(nodeData);
-                applyObjectRelationship(instance, nodesMap[nodeName]);
+                nodesMap[nodeName] = new NodeModel(nodeData, instance.getContext());
+                nodesMap[nodeName].getContext().set({ nodeName });
                 res(nodesMap[nodeName]);
               });
               return rtn;  
@@ -77,30 +63,25 @@ const define = (instance) => {
             // resolve nodeData if possible
             if(instance.has(nodeName)) {
               const arrData = _.castArray(instance.get(nodeName));
-              const col = NodeModel();
-              const Model = col.getType();
-              arrData.forEach((nodeData) => {
-                const nodeInstance = Model.fromData(nodeData);
-                applyArrayRelationship(instance, nodeInstance);
-                col.push(nodeInstance);
-              });
+              const col = NodeModel(arrData, instance.getContext());
               nodesMap[nodeName] = col;
+              nodesMap[nodeName].getContext().set({ nodeName });
+
               return nodesMap[nodeName];
             } else {
-              const col = NodeModel();
+              const col = NodeModel([], instance.getContext());
               nodesMap[nodeName] = col;
-              const Model = col.getType();
+              nodesMap[nodeName].getContext().set({ nodeName });
 
               col.on('onSync', async () => {
                 let argsStr = col.getArgs();
-                argsStr = argsStr ? `(${argsStr})` : '';               
-                await instance.sync([`${nodeName}${argsStr} {${instance.getKey()}}`]);
+                argsStr = argsStr ? `(${argsStr})` : '';
+                await instance.sync([`${nodeName}${argsStr} ${NodeModel.getSelection()}`]);
                 const arrData = _.castArray(instance.get(nodeName));
-                // console.log('arrDataarrDataarrDataarrData', arrData);
+                // load the collection with new arrData
+                col.splice(0, col.length);
                 arrData.forEach((nodeData, index) => {
-                  const nodeInstance = Model.fromData(nodeData);
-                  applyArrayRelationship(instance, nodeInstance);
-                  col[index] = nodeInstance;
+                  col[index] = nodeData;
                 });
               });
               return nodesMap[nodeName];
@@ -113,18 +94,26 @@ const define = (instance) => {
             } else {
               return resolveObjectRelationship();
             }
-            
           }
           return nodesMap[nodeName];
         },
         set(value) {
-          if(value instanceof nodeDef) {
+          if(value instanceof NodeModel) {
           } else {
-            value = nodeDef.fromData(value);
+            if(NodeModel && NodeModel.isCollection) {
+              const col = NodeModel([], instance.getContext());
+              _.castArray(value || []).forEach((nodeData, index) => {
+                col[index] = nodeData;
+              });
+              value = col;
+              // instance.set(nodeName, col);
+            } else {
+              value = NodeModel.fromData(value, instance.getContext());
+              // sync data from value to parent node
+              instance.set(nodeName, value.get());
+            }
           }
           nodesMap[nodeName] = value;
-          // sync data from value to parent node
-          instance.set(nodeName, value.get());
           return nodesMap[nodeName];
         }
       });
