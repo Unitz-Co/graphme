@@ -1,0 +1,1736 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`direct nested instance property getter 1`] = `
+Object {
+  "args": Array [
+    "profile.display_name (direct)",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`direct nested instance property getter 2`] = `
+Object {
+  "args": Array [
+    "lastTran",
+    "session_last",
+  ],
+}
+`;
+
+exports[`direct nested instance property getter 3`] = `
+Object {
+  "args": Array [
+    "removedTrans",
+    Array [
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "bd1258af-2da4-498e-a992-5c47d7ea2151",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "2b32b292-30bd-4708-91d0-a5b536e95e67",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "f45e3305-6ad4-4294-8970-b878e6b5510b",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "6e6d2b2b-20c3-4f21-887c-b514c3ac5fd8",
+          "session_id": "session_last",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "92b7bfb3-5fcf-44b5-8879-afa4bd9bf414",
+          "session_id": "session_last",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+    ],
+  ],
+}
+`;
+
+exports[`direct nested instance property getter 4`] = `
+Object {
+  "args": Array [
+    "profile.display_name (direct)",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`direct nested model method applyByPath 1`] = `
+Object {
+  "args": Array [
+    "getClass",
+    [Function],
+  ],
+}
+`;
+
+exports[`direct nested model method call 1`] = `
+Object {
+  "args": Array [
+    "getClass",
+    [Function],
+  ],
+}
+`;
+
+exports[`direct nested model property setByPath 1`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (before)",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`direct nested model property setByPath 2`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (change)",
+    "newVal_1615370233252",
+    "newVal_1615370233252",
+  ],
+}
+`;
+
+exports[`direct nested model property setByPath 3`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (after)",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`direct nested model property setter 1`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (before)",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`direct nested model property setter 2`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (change)",
+    "newVal_1615370228210",
+    "newVal_1615370228210",
+  ],
+}
+`;
+
+exports[`direct nested model property setter 3`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (after)",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`indirect nested model property getter 1`] = `
+Object {
+  "args": Array [
+    "profile.display_name (indirect)",
+    undefined,
+  ],
+}
+`;
+
+exports[`nested collection getter 1`] = `
+Object {
+  "args": Array [
+    "transactions",
+    CollectionMixins [
+      undefined,
+    ],
+  ],
+}
+`;
+
+exports[`nested collection getter 2`] = `
+Object {
+  "args": Array [
+    "transactions",
+    CollectionMixins [
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "9fd256a1-ecfb-4458-a47d-77dd2ce6e01d",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "455e5e72-e0d5-4fa6-83a1-468c2d9322e3",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a0231195-4b75-4359-9006-74ba6e289ee9",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "60fa64b4-c652-4fb6-b33a-63df1d20a21b",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "06f1a27e-7f5a-4d16-9ab7-c79ab3a3e99f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "23a6ce73-eb10-4ece-a875-c3f3d0bc042e",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "56e52355-c117-471b-919a-d09dc7ca6aee",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a682e5e0-c852-4b91-a5a4-9e368a446dac",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b93c0877-b9e1-40d4-8cdd-427246a6e3ef",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "2a944866-4e4d-4c20-9dac-e45fa1a71de0",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "8320c910-5778-4a49-8489-35486be8773f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b00dd4ef-0fec-4105-bbc2-d20b1cdc76ec",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "79a01a8b-936f-4486-a487-3020508aac46",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "03140755-8149-4f7b-8bd1-c738173fc6dd",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "8fcecda4-6002-4276-8b46-14cacd92cbb2",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b1b3d528-f924-4808-88a1-19ab8c1dab4d",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "608e5528-d022-4a03-9c3e-4a5aa60ceafc",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "0a68e5b3-399e-4da6-8cf1-3b362b83a015",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a7cb173b-fce9-4366-a935-222d5d4f7e7f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "c39b43d6-a0a5-43be-84fe-3a0dc6a8c483",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "809f2b22-d719-4bf0-9ca4-2d8ef3114b17",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+    ],
+  ],
+}
+`;
+
+exports[`nested collection getter 3`] = `
+Object {
+  "args": Array [
+    "transactions",
+    CollectionMixins [
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "9fd256a1-ecfb-4458-a47d-77dd2ce6e01d",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "455e5e72-e0d5-4fa6-83a1-468c2d9322e3",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a0231195-4b75-4359-9006-74ba6e289ee9",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "60fa64b4-c652-4fb6-b33a-63df1d20a21b",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "06f1a27e-7f5a-4d16-9ab7-c79ab3a3e99f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "23a6ce73-eb10-4ece-a875-c3f3d0bc042e",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "56e52355-c117-471b-919a-d09dc7ca6aee",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a682e5e0-c852-4b91-a5a4-9e368a446dac",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b93c0877-b9e1-40d4-8cdd-427246a6e3ef",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "2a944866-4e4d-4c20-9dac-e45fa1a71de0",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "8320c910-5778-4a49-8489-35486be8773f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b00dd4ef-0fec-4105-bbc2-d20b1cdc76ec",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "79a01a8b-936f-4486-a487-3020508aac46",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "03140755-8149-4f7b-8bd1-c738173fc6dd",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "8fcecda4-6002-4276-8b46-14cacd92cbb2",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b1b3d528-f924-4808-88a1-19ab8c1dab4d",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "608e5528-d022-4a03-9c3e-4a5aa60ceafc",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "0a68e5b3-399e-4da6-8cf1-3b362b83a015",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a7cb173b-fce9-4366-a935-222d5d4f7e7f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "c39b43d6-a0a5-43be-84fe-3a0dc6a8c483",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "809f2b22-d719-4bf0-9ca4-2d8ef3114b17",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+    ],
+  ],
+}
+`;
+
+exports[`nested collection getter 4`] = `
+Object {
+  "args": Array [
+    "instances",
+    CollectionMixins [
+      AdvisorModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "profile": Promise {},
+        "props": Object {
+          "created_at": "2021-02-21T07:23:19.372269+00:00",
+          "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "syncProfile": [Function],
+        "transactions": CollectionMixins [],
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+    ],
+  ],
+}
+`;
+
+exports[`nested collection index access 1`] = `
+Object {
+  "args": Array [
+    "transactions",
+    TransactionModel {
+      "getArgs": [Function],
+      "getContext": [Function],
+      "getSelections": [Function],
+      "listeners": Object {},
+      "props": Object {
+        "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+        "id": "9fd256a1-ecfb-4458-a47d-77dd2ce6e01d",
+      },
+      "setArgs": [Function],
+      "setContext": [Function],
+      "setSelections": [Function],
+      "state": Object {},
+      "updateArgs": [Function],
+      "updateSelection": [Function],
+    },
+  ],
+}
+`;
+
+exports[`nested collection index access 2`] = `
+Object {
+  "args": Array [
+    "advisor_id",
+    "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+  ],
+}
+`;
+
+exports[`nested collection index access 3`] = `
+Object {
+  "args": Array [
+    "user_id",
+    "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+  ],
+}
+`;
+
+exports[`nested collection index access 4`] = `
+Object {
+  "args": Array [
+    "session_id",
+    "session_1",
+  ],
+}
+`;
+
+exports[`nested collection mutations 1`] = `
+Object {
+  "args": Array [
+    "user_id",
+    "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+  ],
+}
+`;
+
+exports[`nested collection mutations 2`] = `
+Object {
+  "args": Array [
+    "session_id",
+    "session_1",
+  ],
+}
+`;
+
+exports[`nested collection mutations 3`] = `
+Object {
+  "args": Array [
+    "len",
+    CollectionMixins [
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "9fd256a1-ecfb-4458-a47d-77dd2ce6e01d",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "455e5e72-e0d5-4fa6-83a1-468c2d9322e3",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a0231195-4b75-4359-9006-74ba6e289ee9",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "60fa64b4-c652-4fb6-b33a-63df1d20a21b",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "06f1a27e-7f5a-4d16-9ab7-c79ab3a3e99f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "23a6ce73-eb10-4ece-a875-c3f3d0bc042e",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "56e52355-c117-471b-919a-d09dc7ca6aee",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a682e5e0-c852-4b91-a5a4-9e368a446dac",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b93c0877-b9e1-40d4-8cdd-427246a6e3ef",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "2a944866-4e4d-4c20-9dac-e45fa1a71de0",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "8320c910-5778-4a49-8489-35486be8773f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b00dd4ef-0fec-4105-bbc2-d20b1cdc76ec",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "79a01a8b-936f-4486-a487-3020508aac46",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "03140755-8149-4f7b-8bd1-c738173fc6dd",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "8fcecda4-6002-4276-8b46-14cacd92cbb2",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b1b3d528-f924-4808-88a1-19ab8c1dab4d",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "608e5528-d022-4a03-9c3e-4a5aa60ceafc",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "0a68e5b3-399e-4da6-8cf1-3b362b83a015",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a7cb173b-fce9-4366-a935-222d5d4f7e7f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "c39b43d6-a0a5-43be-84fe-3a0dc6a8c483",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "809f2b22-d719-4bf0-9ca4-2d8ef3114b17",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b33ce1b0-0543-4ba0-a640-05f6ecd06ad5",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "18f76832-7266-4b7b-b366-cef748c14791",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b5ee27eb-17bb-4790-98c0-a4b5e80a53f9",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "17d34421-0b5b-4686-b61e-01fe9768e4d2",
+          "session_id": "session_last",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "29c1fd64-d972-496b-9e65-aba6854fe251",
+          "session_id": "session_last",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+    ],
+    26,
+  ],
+}
+`;
+
+exports[`nested collection mutations 4`] = `
+Object {
+  "args": Array [
+    "lastTran",
+    "session_last",
+  ],
+}
+`;
+
+exports[`nested collection mutations 5`] = `
+Object {
+  "args": Array [
+    "removedTrans",
+    Array [
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "8320c910-5778-4a49-8489-35486be8773f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b00dd4ef-0fec-4105-bbc2-d20b1cdc76ec",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "79a01a8b-936f-4486-a487-3020508aac46",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "03140755-8149-4f7b-8bd1-c738173fc6dd",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "8fcecda4-6002-4276-8b46-14cacd92cbb2",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b1b3d528-f924-4808-88a1-19ab8c1dab4d",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "608e5528-d022-4a03-9c3e-4a5aa60ceafc",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "0a68e5b3-399e-4da6-8cf1-3b362b83a015",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "a7cb173b-fce9-4366-a935-222d5d4f7e7f",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "c39b43d6-a0a5-43be-84fe-3a0dc6a8c483",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "809f2b22-d719-4bf0-9ca4-2d8ef3114b17",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b33ce1b0-0543-4ba0-a640-05f6ecd06ad5",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "18f76832-7266-4b7b-b366-cef748c14791",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "b5ee27eb-17bb-4790-98c0-a4b5e80a53f9",
+          "session_id": "session_1",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "17d34421-0b5b-4686-b61e-01fe9768e4d2",
+          "session_id": "session_last",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+      TransactionModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "advisor_id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "id": "29c1fd64-d972-496b-9e65-aba6854fe251",
+          "session_id": "session_last",
+          "user_id": "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+    ],
+  ],
+}
+`;

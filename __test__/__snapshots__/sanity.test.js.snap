@@ -1,0 +1,186 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`direct instance method applyByPath 1`] = `
+Object {
+  "args": Array [
+    "getClass",
+    [Function],
+  ],
+}
+`;
+
+exports[`direct instance method call 1`] = `
+Object {
+  "args": Array [
+    "getClass",
+    [Function],
+  ],
+}
+`;
+
+exports[`direct instance property getter 1`] = `
+Object {
+  "args": Array [
+    "is_active (before)",
+    Promise {},
+  ],
+}
+`;
+
+exports[`direct instance property getter 2`] = `
+Object {
+  "args": Array [
+    "is_active",
+    false,
+  ],
+}
+`;
+
+exports[`direct instance property getter 3`] = `
+Object {
+  "args": Array [
+    "is_active (before)",
+    Promise {},
+  ],
+}
+`;
+
+exports[`direct instance property getter 4`] = `
+Object {
+  "args": Array [
+    "is_active",
+    false,
+  ],
+}
+`;
+
+exports[`direct instance property setByPath 1`] = `
+Object {
+  "args": Array [
+    "is_active",
+    true,
+  ],
+}
+`;
+
+exports[`direct instance property setByPath 2`] = `
+Object {
+  "args": Array [
+    "is_active: (before)",
+    false,
+    true,
+  ],
+}
+`;
+
+exports[`direct instance property setByPath 3`] = `
+Object {
+  "args": Array [
+    "is_active",
+    false,
+  ],
+}
+`;
+
+exports[`direct instance property setByPath 4`] = `
+Object {
+  "args": Array [
+    "is_active: (after)",
+    false,
+  ],
+}
+`;
+
+exports[`direct instance property setter 1`] = `
+Object {
+  "args": Array [
+    "is_active",
+    true,
+  ],
+}
+`;
+
+exports[`direct instance property setter 2`] = `
+Object {
+  "args": Array [
+    "is_active: (before)",
+    false,
+    true,
+  ],
+}
+`;
+
+exports[`direct instance property setter 3`] = `
+Object {
+  "args": Array [
+    "is_active",
+    false,
+  ],
+}
+`;
+
+exports[`direct instance property setter 4`] = `
+Object {
+  "args": Array [
+    "is_active: (after)",
+    false,
+  ],
+}
+`;
+
+exports[`direct instance property subscription 1`] = `
+Object {
+  "args": Array [
+    "is_active",
+    false,
+  ],
+}
+`;
+
+exports[`init with fromData 1`] = `
+Object {
+  "args": Array [
+    "before sync",
+    AdvisorModel {
+      "getArgs": [Function],
+      "getContext": [Function],
+      "getSelections": [Function],
+      "listeners": Object {},
+      "props": Object {
+        "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+      },
+      "setArgs": [Function],
+      "setContext": [Function],
+      "setSelections": [Function],
+      "state": Object {},
+      "syncProfile": [Function],
+      "updateArgs": [Function],
+      "updateSelection": [Function],
+    },
+  ],
+}
+`;
+
+exports[`init with fromData 2`] = `
+Object {
+  "args": Array [
+    "instance",
+    AdvisorModel {
+      "getArgs": [Function],
+      "getContext": [Function],
+      "getSelections": [Function],
+      "listeners": Object {},
+      "props": Object {
+        "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+      },
+      "setArgs": [Function],
+      "setContext": [Function],
+      "setSelections": [Function],
+      "state": Object {},
+      "syncProfile": [Function],
+      "updateArgs": [Function],
+      "updateSelection": [Function],
+    },
+  ],
+}
+`;

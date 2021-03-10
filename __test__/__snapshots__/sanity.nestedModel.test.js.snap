@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`indirect nested model property getter 1`] = `
+Object {
+  "args": Array [
+    "profile",
+    AdvisorProfileModel {
+      "getArgs": [Function],
+      "getContext": [Function],
+      "getSelections": [Function],
+      "listeners": Object {},
+      "props": Object {
+        "id": "3c9a060e-82ef-41f7-a191-f1bbbdfa3c74",
+      },
+      "setArgs": [Function],
+      "setContext": [Function],
+      "setSelections": [Function],
+      "state": Object {},
+      "updateArgs": [Function],
+      "updateSelection": [Function],
+    },
+  ],
+}
+`;
+
+exports[`indirect nested model property getter 2`] = `
+Object {
+  "args": Array [
+    "profile.display_name (indirect)",
+    "new_displayName",
+  ],
+}
+`;

@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`model props subscription 1`] = `
+Object {
+  "args": Array [
+    "subscribe.is_active",
+    0,
+    true,
+  ],
+}
+`;
+
+exports[`model props subscription 2`] = `
+Object {
+  "args": Array [
+    "subscribe.is_active",
+    1,
+    false,
+  ],
+}
+`;
+
+exports[`model props subscription 3`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;
+
+exports[`nested model props subscription 1`] = `
+Object {
+  "args": Array [
+    "user_iduser_iduser_id",
+    "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+  ],
+}
+`;
+
+exports[`nested model props subscription 2`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;
+
+exports[`nested model props subscription 3`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;

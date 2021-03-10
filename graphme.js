@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const { GqlBuilder } = require('@uz/gqlbuilder');
+const { GqlBuilder } = require('@unitz/gqlbuilder');
 
 const BaseModel = require('./BaseModel');
 const Collection = require('./Collection');

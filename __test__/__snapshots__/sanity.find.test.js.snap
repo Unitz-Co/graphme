@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`init with find gql object 1`] = `
+Object {
+  "args": Array [
+    "advisor.0.profile.display_name",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`init with find gql object 2`] = `
+Object {
+  "args": Array [
+    "advisor list",
+    CollectionMixins [
+      AdvisorModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "is_active": false,
+          "profile": Object {
+            "id": "3c9a060e-82ef-41f7-a191-f1bbbdfa3c74",
+          },
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "syncProfile": [Function],
+        "transactions": CollectionMixins [],
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+    ],
+  ],
+}
+`;
+
+exports[`init with find gql object 3`] = `
+Object {
+  "args": Array [
+    "advs",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`init with find gql object 4`] = `
+Object {
+  "args": Array [
+    "transactions.length",
+    1,
+  ],
+}
+`;
+
+exports[`init with find gql string 1`] = `
+Object {
+  "args": Array [
+    "advisor.0.profile.display_name",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`init with find gql string 2`] = `
+Object {
+  "args": Array [
+    "advisor list",
+    CollectionMixins [
+      AdvisorModel {
+        "getArgs": [Function],
+        "getContext": [Function],
+        "getSelections": [Function],
+        "listeners": Object {},
+        "props": Object {
+          "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+          "is_active": false,
+          "profile": Object {
+            "id": "3c9a060e-82ef-41f7-a191-f1bbbdfa3c74",
+          },
+        },
+        "setArgs": [Function],
+        "setContext": [Function],
+        "setSelections": [Function],
+        "state": Object {},
+        "syncProfile": [Function],
+        "updateArgs": [Function],
+        "updateSelection": [Function],
+      },
+    ],
+  ],
+}
+`;
+
+exports[`init with find gql string 3`] = `
+Object {
+  "args": Array [
+    "advs",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`init with find gql string 4`] = `
+Object {
+  "args": Array [
+    "transactionstransactions",
+    1,
+  ],
+}
+`;

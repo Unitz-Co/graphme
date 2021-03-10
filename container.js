@@ -1,9 +1,9 @@
 const _ = require('lodash');
 
 function Container() {
-  models = {};
-  modelDefs = {};
-  modelConstDefs = new Map();
+  const models = {};
+  const modelDefs = {};
+  const modelConstDefs = new Map();
 
   const container = {
     register(name, schema) {
