@@ -66,6 +66,25 @@ class CollectionMixins {
       return this.setArgs(updater(this.getArgs()));
     }
 
+    // selection props
+    let _selections = '';
+
+    this.setSelections = (selections) => {
+      _selections = selections;
+      return this.target;
+    };
+  
+    this.getSelections = () => {
+      return _selections;
+    };
+
+    this.updateSelection = (updater) => {
+      if(!_.isFunction(updater)) {
+        throw Error('UpdateSelection requires updater function as the input');
+      }
+      return this.setSelections(updater(this.getSelections()));
+    }
+
     // create context chain
     let container = {
       context: new Context(ctx, { data: { type: 'Collection'} }),
@@ -83,6 +102,17 @@ class CollectionMixins {
     const newItem = this.castType(item);
     this.target.push(newItem);
     return newItem;
+  }
+
+  _updateCollectionData(data) {
+    const len = this.target.length;
+    const arrData = _.castArray(data || []);
+    arrData.map((item, index) => {
+      this[index] = item;
+    })
+    if(arrData.length < len) {
+      this.target.splice(arrData.length, len);
+    }
   }
 
   async save() {
@@ -111,9 +141,7 @@ class CollectionMixins {
     try {
       const [subsMan, ref] = hooks.useMemo.call(this, 'subsMan', () => {
         const subsMan = new SubscriptionMan(this);
-        this.on('change', _.debounce(() => {
-          subsMan.scan();
-        }));
+        this.on('change', _.debounce(() => subsMan.scan()));
 
         const ref = {
           fields: [],
@@ -131,20 +159,47 @@ class CollectionMixins {
           const nodeName = this.getContext().get('nodeName');
           let argsStr = this.getArgs();
           argsStr = argsStr ? `(${argsStr})` : '';
-          const selectionPath = `${nodeName}`;
 
           const subscription = instance.subscribe(`${nodeName}`);
 
           ref.currObs = subscription.subscribe((data) => {
-            const len = this.target.length;
-            const arrData = _.castArray(data || []);
-            arrData.map((item, index) => {
-              this[index] = item;
-            })
-            if(arrData.length < len) {
-              this.target.splice(arrData.length, len);
-            }
+            this._updateCollectionData(data);
           });
+        } else {
+
+          const client = NodeModel.getDefinition().getClient();
+          if(!client.subscribe) {
+            throw Error('Client does not support subscribe method');
+          }     
+          // no parent instance found, root collection query?
+          const select = NodeModel.getFindQuery(this.getArgs(), this.getSelections());
+          select.setOperation('subscription');
+
+          // merge query
+          const queryStr = select.toString();
+          const prevQuery = ref.currQuery;
+
+          const currQuery = queryStr;
+          const subscription = client.subscribe(currQuery);
+          const prevObs = ref.currObs;
+          if(!prevObs || (prevQuery !== currQuery)) {
+            ref.currObs = subscription.subscribe({
+              next: (res) => {
+                const selectionPath = select.selectionPath;
+                const { data } = res;
+                if(data) {
+                  const rtnData = _.get(data, selectionPath);
+                  this._updateCollectionData(rtnData);
+                }
+              }
+            });
+            ref.currQuery = currQuery;
+      
+            if(prevObs) {
+              // unsubscribe prev Op
+              prevObs.unsubscribe();
+            }  
+          }
         }
     
         return [subsMan, ref];
@@ -175,7 +230,7 @@ class CollectionMixins {
   }
 
   toArray() {
-    return this.target.map(item => item);
+    return this.target.map(item => ((item && item.toObject) ? item.toObject() : item) );
   }
 
 

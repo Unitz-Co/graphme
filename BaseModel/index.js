@@ -9,6 +9,7 @@ const SubscriptionMan = require('../SubscriptionMan');
 
 class StreamableAndQueriable extends Streamable {
   props = {};
+  nodes = {};
   state = {};
 
   constructor(props, ctx) {
@@ -33,14 +34,12 @@ class StreamableAndQueriable extends Streamable {
       for(let key of _.keys(args[0])) {
         const val = args[0][key];
 
-        let target = this.props
-
         const def = this.getDefinition();
         if(def && def.isNode(key)) {
-          target = this;
+          this.setNode(key, val);
         }
-
-        _.set(target, key, val);
+        _.set(this.props, key, val);
+        
         this.emit && this.emit('change', key, val);
 
       }
@@ -50,6 +49,10 @@ class StreamableAndQueriable extends Streamable {
     if(args.length === 2) {
       const [key, val] = args;
       // trigger change event
+      const def = this.getDefinition();
+      if(def && def.isNode(key)) {
+        this.setNode(key, val);
+      }
       _.set(this.props, key, val);
       this.emit && this.emit('change', key, val);
       return this;
@@ -57,7 +60,10 @@ class StreamableAndQueriable extends Streamable {
   }
 
   has(key) {
-    return _.has(this.props, key);
+    return (
+      _.has(this.props, key) ||
+      _.has(this.nodes, key)
+    );
   }
 
   get(...args) {
@@ -85,6 +91,38 @@ class StreamableAndQueriable extends Streamable {
       }
     });
     return rtn;
+  }
+
+  setNode(...args) {
+    if(args.length === 1 && _.isPlainObject(args[0])) {
+      for(let key of _.keys(args[0])) {
+        const val = args[0][key];
+        _.set(this.nodes, key, val);
+        this.emit && this.emit('change', key, val);
+
+      }
+      return this;
+    }
+
+    if(args.length === 2) {
+      const [key, val] = args;
+      // trigger change event
+      _.set(this.nodes, key, val);
+      this.emit && this.emit('change', key, val);
+      return this;
+    }
+  }
+
+  hasNode(key) {
+    return _.has(this.nodes, key);
+  }
+
+  getNode(...args) {
+    if(args.length === 0) {
+      return this.nodes;
+    }
+    const [key, def] = args;
+    return _.get(this.nodes, key, def);
   }
 
   setState(...args) {
@@ -180,8 +218,7 @@ class BaseModel extends StreamableAndQueriable {
   }
 
   static isModelClass = (Model) => {
-    const BaseModel = this;
-    return (Model && (Model.prototype instanceof BaseModel || B === BaseModel));
+    return (Model && (Model.prototype instanceof BaseModel || Model === BaseModel));
   }
 
   static fromData(data, ctx) {
@@ -340,6 +377,27 @@ class BaseModel extends StreamableAndQueriable {
 
   getClass() {
     return this.constructor.getClass();
+  }
+
+  toObject() {
+    const rtn = this.get() || {};
+    const def = this.getDefinition();
+    if(def && def.getNodes) {
+      const nodes = def.getNodes();
+      _.map(nodes, ([nodeName]) => {
+        if(this.hasNode(nodeName)) {
+          let nodeValue = this.getNode(nodeName);
+          if(nodeValue && nodeValue.toArray) {
+            nodeValue = nodeValue.toArray();
+          } else if(nodeValue instanceof BaseModel) {
+            nodeValue = nodeValue.toObject();
+          }
+          rtn[nodeName] = nodeValue;
+        }
+      })
+    }
+
+    return rtn;
   }
 
   /**
@@ -628,46 +686,57 @@ class BaseModel extends StreamableAndQueriable {
     }
   }
 
+  static getFindQuery(args, selections) {
+    if(!this.getDefinition().GQL_ACTIONS.FIND) {
+      throw Error('Find query is not defined for this model');
+    }
+    const query = this.getDefinition().getBaseQuery();
+    const queryName = this.getDefinition().GQL_ACTIONS.FIND;
+    query.update({
+      name: queryName,
+    });
+
+    const selectionPath = '';
+    _.castArray(args || []).map(item => {
+      if(_.isArray(item)) {
+        // sub selection args settings case, first index is the sub selection, second index is the args value
+        let [subSelection, val] = item;
+        if(!val) {
+          val = subSelection;
+          subSelection = '';
+        }
+        const isValidLevel = (level) => (_.isLength(level) || (level && _.isString(level)));
+        const updatePath = _.filter([..._.toPath(selectionPath), ..._.toPath(subSelection)], isValidLevel).join('.');
+        query.update(updatePath, {
+          arguments: ({ node }) => node.merge(val),
+        });
+      } else {
+        query.update(selectionPath, {
+          arguments: ({ node }) => node.merge(item),
+        });
+      }
+    });
+    if(selections) {
+      query.update({
+        selections,
+      });
+    }
+    query.selectionPath = `${queryName}`;
+    return query;
+  }
+
   static async find(args, selections) {
     try {
       if(this.getDefinition().GQL_ACTIONS.FIND && this.Collection) {
-        const query = this.getDefinition().getBaseQuery();
-        const queryName = this.getDefinition().GQL_ACTIONS.FIND;
-        query.update({
-          name: queryName,
-        });
-
-        const selectionPath = '';
-        _.castArray(args || []).map(item => {
-          if(_.isArray(item)) {
-            // sub selection args settings case, first index is the sub selection, second index is the args value
-            let [subSelection, val] = item;
-            if(!val) {
-              val = subSelection;
-              subSelection = '';
-            }
-            const isValidLevel = (level) => (_.isLength(level) || (level && _.isString(level)));
-            const updatePath = _.filter([..._.toPath(selectionPath), ..._.toPath(subSelection)], isValidLevel).join('.');
-            query.update(updatePath, {
-              arguments: ({ node }) => node.merge(val),
-            });
-          } else {
-            query.update(selectionPath, {
-              arguments: ({ node }) => node.merge(item),
-            });
-          }
-        });
-        if(selections) {
-          query.update({
-            selections,
-          });
-        }
-        query.selectionPath = `${queryName}`;
-
+        const query = this.getFindQuery(args, selections);
         const rtn = await this.getDefinition().getClient().request(query.toString());
+        const queryName = this.getDefinition().GQL_ACTIONS.FIND;
         const rtnData = _.get(rtn, queryName, []);
         // return a collection
-        return this.Collection(rtnData);
+        const col = this.Collection(rtnData);
+        col.setArgs(args)
+        col.setSelections(selections)
+        return col;
       }
       // invalid model configuration or find action is not supported
       return [];

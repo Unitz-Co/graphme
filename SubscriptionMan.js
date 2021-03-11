@@ -1,4 +1,3 @@
-const console = require('console');
 const _ = require('lodash');
 
 const ensureArray = (container, path) => {
