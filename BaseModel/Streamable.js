@@ -1,22 +1,26 @@
 const _ = require('lodash');
+const utils = require('../utils');
+
+const privateData = utils.privateDataWrapper({
+  listeners: () => ({})
+});
 
 class Streamable {
-  listeners = {};
   emit(event, ...params) {
-    _.get(this.listeners, [event], []).map(listener => listener.call(this, ...params));
+    _.get(privateData.get(this, 'listeners'), [event], []).map(listener => listener.call(this, ...params));
   }
 
   on(event, listener) {
-    _.update(this.listeners, [event], val => (val ? val.concat(listener) : [listener]));
+    _.update(privateData.get(this, 'listeners'), [event], val => (val ? val.concat(listener) : [listener]));
     return () => {
-      _.update(this.listeners, [event], val => (_.reject((val || []), listener)));
+      _.update(privateData.get(this, 'listeners'), [event], val => (_.reject((val || []), listener)));
     };
   }
 
   once(event, listener) {
     const handlers = {
       disposer: () => {
-        _.update(this.listeners, [event], val => (_.reject((val || []), handlers.listener)));
+        _.update(privateData.get(this, 'listeners'), [event], val => (_.reject((val || []), handlers.listener)));
       },
       listener: (...args) => {
         // self disposing
@@ -24,7 +28,7 @@ class Streamable {
         listener.call(...args);
       }
     }
-    _.update(this.listeners, [event], val => (val ? val.concat(handlers.listener) : [handlers.listener]));
+    _.update(privateData.get(this, 'listeners'), [event], val => (val ? val.concat(handlers.listener) : [handlers.listener]));
     return handlers.disposer;
   }
 
@@ -38,7 +42,7 @@ class Streamable {
   }
 
   destroy() {
-    this.listeners = {};
+    privateData.set(this, 'listeners', {});
   }
 }
 

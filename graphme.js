@@ -41,12 +41,12 @@ function GraphMe() {
       schema.Collection.getSelection = schema.getSelection.bind(schema);
 
       container.register(name, schema);
-      container.registerDeffinition(name, schema, definition);  
+      container.registerDefinition(name, schema, definition);  
     },
     resolve: container.resolve,
     resolveDefinition: container.resolveDefinition,
     register: container.register,
-    registerDeffinition: container.registerDeffinition,
+    registerDefinition: container.registerDefinition,
 
     extends(name, handler) {
       instance[name] = handler;

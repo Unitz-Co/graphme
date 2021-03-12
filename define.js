@@ -1,12 +1,13 @@
 const _ = require('lodash');
 const container = require('./container');
+const RefData = require('./RefData');
 
 const define = (instance) => {
   const modelDef = instance.getDefinition();
   // define fields
-  if(_.isFunction(modelDef.getFields)) {
-    _.castArray(modelDef.getFields() || []).map(fieldName => {
-      Object.defineProperty(instance, fieldName, {
+  modelDef.with('getFields', (fields) => {
+    _.castArray(fields || []).map(fieldName => {
+      Object.defineProperty(instance, `${fieldName}`, {
         get() {
           if(instance.has(fieldName)) {
             return instance.get(fieldName);
@@ -25,31 +26,30 @@ const define = (instance) => {
         }
       });
     });
-  }
+  });
 
   // define nodes
-  if(_.isFunction(modelDef.getNodes)) {
+  modelDef.with('getNodes', (nodes) => {
     const nodesMap = {};
     // const nodesMap = instance.props;
-    _.castArray(modelDef.getNodes() || []).map(item => {
-      let [nodeName, NodeModel, using] = item;
+    _.castArray(nodes || []).map(item => {
+      let [nodeName, NodeModel] = item;
       NodeModel = container.resolve(NodeModel);
 
-      Object.defineProperty(instance, nodeName, {
+      Object.defineProperty(instance, `${nodeName}`, {
         get() {
-
           const resolveObjectRelationship = () => {
             // binding change from sourceKey to node forreignKey
             // resolve nodeData if possible
             if(instance.has(nodeName)) {
-              const nodeData = instance.get(nodeName);
+              const nodeData = instance.getRef(nodeName);
               nodesMap[nodeName] = new NodeModel(nodeData, instance.getContext());
               nodesMap[nodeName].getContext().set({ nodeName });
               return nodesMap[nodeName];
             } else {
               const rtn = new Promise(async (res) => {
                 await instance.sync([`${nodeName} ${NodeModel.getSelection()}`]);
-                const nodeData = instance.get(nodeName);
+                const nodeData = instance.getRef(nodeName);
                 nodesMap[nodeName] = new NodeModel(nodeData, instance.getContext());
                 nodesMap[nodeName].getContext().set({ nodeName });
                 res(nodesMap[nodeName]);
@@ -62,27 +62,35 @@ const define = (instance) => {
             // binding change from sourceKey to node forreignKey
             // resolve nodeData if possible
             if(instance.has(nodeName)) {
-              const arrData = _.castArray(instance.get(nodeName));
+              const arrData = instance.getRef(nodeName);
               const col = NodeModel(arrData, instance.getContext());
               nodesMap[nodeName] = col;
               nodesMap[nodeName].getContext().set({ nodeName });
 
               return nodesMap[nodeName];
             } else {
-              const col = NodeModel([], instance.getContext());
+              // init data locally
+              instance.set(nodeName, []);
+              const dataRef = instance.getRef(nodeName);
+              const col = NodeModel(dataRef, instance.getContext());
               nodesMap[nodeName] = col;
               nodesMap[nodeName].getContext().set({ nodeName });
 
               col.on('onSync', async () => {
                 let argsStr = col.getArgs();
                 argsStr = argsStr ? `(${argsStr})` : '';
-                await instance.sync([`${nodeName}${argsStr} ${NodeModel.getSelection()}`]);
-                const arrData = _.castArray(instance.get(nodeName));
+                const selectionsStr = col.getSelections();
+                await instance.sync(
+                  [`${nodeName}${argsStr} ${NodeModel.getSelection()}`]
+                  .concat(selectionsStr ? [`${nodeName}${argsStr} { ${selectionsStr} }`] : [])
+                );
+                const arrData = instance.getRef(nodeName);
                 // load the collection with new arrData
                 col.splice(0, col.length);
-                arrData.forEach((nodeData, index) => {
+                _.forEach(arrData, (nodeData, index) => {
                   col[index] = nodeData;
                 });
+                // arrData.forEach();
               });
               return nodesMap[nodeName];
             }
@@ -118,25 +126,8 @@ const define = (instance) => {
         }
       });
     });
-  }
+  });
 
-  // each model must have getId method to use as primary key in query
-  Object.defineProperty(instance, 'getKey', {
-    get() {
-      return () => {
-        const idKey = 'id'; // from modelDef config also
-        return idKey;
-      };
-    }
-  });
-  Object.defineProperty(instance, 'getId', {
-    get() {
-      return () => {
-        const idKey = instance.getKey();
-        return instance.get(idKey);
-      };
-    }
-  });
 }
 
 module.exports = define;

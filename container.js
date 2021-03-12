@@ -6,8 +6,8 @@ function Container() {
   const modelConstDefs = new Map();
 
   const container = {
-    register(name, schema) {
-      _.set(models, name, schema);
+    register(name, Model) {
+      _.set(models, name, Model);
     },
     resolve(name) {
       if(_.isString(name)) {
@@ -16,11 +16,11 @@ function Container() {
       return name;
     },
 
-    registerDeffinition(name, schema, definition) {
+    registerDefinition(name, Model, definition) {
 
       _.set(modelDefs, name, definition);
 
-      modelConstDefs.set(schema, definition);  
+      modelConstDefs.set(Model, definition);
 
     },
     resolveDefinition(name) {
@@ -29,6 +29,8 @@ function Container() {
       } else if(modelConstDefs.has(name)) {
         // use model constructor as name
         return modelConstDefs.get(name);
+      } else if(_.has(name, 'DEFINITION')) {
+        return _.get(name, 'DEFINITION');
       }
       return name;
     }  

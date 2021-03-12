@@ -1,14 +1,13 @@
 const _ = require('lodash');
 
-const StreamableAndQueriable = require('./StreamableAndQueriable');
+const Streamable = require('./Streamable');
 const container = require('../container');
 const define = require('../define');
 const hooks = require('../hooks');
 const Context = require('../context');
 const SubscriptionMan = require('../SubscriptionMan');
-const utils = require('../utils');
 
-const privateData = utils.privateDataWrapper();
+
 
 class BaseModel extends StreamableAndQueriable {
   static getClass() {
@@ -87,67 +86,77 @@ class BaseModel extends StreamableAndQueriable {
     const definition = this.getDefinition();
 
     // configure context data by using definition.getContextName
-
-    definition.with('getContextName', (contextName) => {
-      !!contextName && this.getContext().set(contextName, this);
-    });
-    definition.with('name', (name) => {
-      !!name && this.getContext().set(definition.name, this);
-    });
-    this.getContext().set('@model', this);
-    this.getContext().set('@node', this);
+    ;(() => {
+      if(definition.getContextName) {
+        const contextName = definition.getContextName();
+        !!contextName && this.getContext().set(contextName, this);
+      }
+      if(definition.name) {
+        this.getContext().set(definition.name, this);
+      }
+      this.getContext().set('@model', this);
+    })();
 
     // auto resolve foreignKey by using ctx
-    definition.with('getForeignKeysMapping', (foreignKeysMapping) => {
-      _.map(foreignKeysMapping, async (mappings, fKey) => {
-        const [contextName, path] = mappings;
-        const target = this.getContext().get(contextName);
-        if(target) {
-          const fVal = _.get(target, path);
-          this.set(fKey, fVal);
-        }
-      });
-    });
+    ;(() => {
+      if(definition.getForeignKeysMapping) {
+        const foreignKeysMapping = definition.getForeignKeysMapping();
+        _.map(foreignKeysMapping, async (mappings, fKey) => {
+          const [contextName, path] = mappings;
+          const target = this.getContext().get(contextName);
+          if(target) {
+            const fVal = _.get(target, path);
+            this.set(fKey, fVal);
+          }
+        });
+      }
+    })();
 
+    // args props
+    let _args = '';
+
+    this.setArgs = (args) => {
+      _args = args;
+      return this.target;
+    };
+  
+    this.getArgs = () => {
+      return _args;
+    };
+
+    this.updateArgs = (updater) => {
+      if(!_.isFunction(updater)) {
+        throw Error('UpdateArgs requires updater function as the input');
+      }
+      return this.setArgs(updater(this.getArgs()));
+    }
+
+    // selection props
+    let _selections = '';
+
+    this.setSelections = (selections) => {
+      _selections = selections;
+      return this.target;
+    };
+  
+    this.getSelections = () => {
+      return _selections;
+    };
+
+    this.updateSelection = (updater) => {
+      if(!_.isFunction(updater)) {
+        throw Error('UpdateSelection requires updater function as the input');
+      }
+      return this.setSelections(updater(this.getSelections()));
+    }
+    
     // console.log('init model', props);
     define(this);
   }
 
   static getSelection() {
     const definition = this.getDefinition();
-    return definition.getSelection ? definition.getSelection() : `{${definition.getKeys()}}`;
-  }
-
-  setArgs(args) {
-    privateData.set(this, 'args', args);
-    return this.target;
-  };
-
-  getArgs(){
-    return privateData.get(this, 'args');
-  };
-
-  updateArgs(updater){
-    if(!_.isFunction(updater)) {
-      throw Error('UpdateArgs requires updater function as the input');
-    }
-    return this.setArgs(updater(this.getArgs()));
-  }
-
-  setSelections(selections) {
-    privateData.set(this, 'selections', selections);
-    return this.target;
-  };
-
-  getSelections(){
-    return privateData.get(this, 'selections');
-  };
-
-  updateSelections(updater){
-    if(!_.isFunction(updater)) {
-      throw Error('updateSelections requires updater function as the input');
-    }
-    return this.setSelections(updater(this.getSelections()));
+    return definition.getSelection ? definition.getSelection() : `{${definition.getKey()}}`;
   }
 
   getSelection() {
@@ -169,16 +178,23 @@ class BaseModel extends StreamableAndQueriable {
 
   toObject() {
     const rtn = this.get() || {};
+    const def = this.getDefinition();
+    if(def && def.getNodes) {
+      const nodes = def.getNodes();
+      _.map(nodes, ([nodeName]) => {
+        if(this.hasNode(nodeName)) {
+          let nodeValue = this.getNode(nodeName);
+          if(nodeValue && nodeValue.toArray) {
+            nodeValue = nodeValue.toArray();
+          } else if(nodeValue instanceof BaseModel) {
+            nodeValue = nodeValue.toObject();
+          }
+          rtn[nodeName] = nodeValue;
+        }
+      })
+    }
+
     return rtn;
-  }
-
-  getId() {
-    const idKey = this.getKey();
-    return this.get(idKey);
-  }
-
-  getKey() {
-    return this.getDefinition().getKey();
   }
 
   /**
@@ -232,12 +248,12 @@ class BaseModel extends StreamableAndQueriable {
       // config keys args if configured
       const args = {};
       let hasArgs = false;
-      const keys = _.uniq(_.compact([
+      const keys = _.compact([
         // key from getKey method
         (definition.getKey && definition.getKey()),
         // keys from getKeys method
         ..._.castArray(definition.getKeys && definition.getKeys()),
-      ]));
+      ]);
 
       if(keys.length) {
         keys.map(key => {
@@ -398,6 +414,7 @@ class BaseModel extends StreamableAndQueriable {
             _set: object,
           },
         });
+      // console.log('saving with mutation', mutation.toString());
       await this.getDefinition().getClient().request(mutation.toString());
       // need to update the returned data?
       return this;
@@ -435,6 +452,7 @@ class BaseModel extends StreamableAndQueriable {
           name: this.getDefinition().GQL_ACTIONS.INSERT,
           arguments: { object },
         });
+      // console.log('creating with mutation', mutation.toString());
       const rtn = await this.getDefinition().getClient().request(mutation.toString());
       const rtnData = _.get(rtn, 'item');
       if(rtnData) {
@@ -556,6 +574,7 @@ class BaseModel extends StreamableAndQueriable {
             arguments: { objects: _.map(batchObjects, (({ object }) => object)) },
             selections: `returning {${keyName}}`,
           });
+        // console.log('insert many items with muation', mutation.toString());
         const rtn = await this.getDefinition().getClient().request(mutation.toString());
         const rtnData = _.get(rtn, 'item.returning', []);
 
@@ -635,6 +654,7 @@ class BaseModel extends StreamableAndQueriable {
             arguments: { where: { [keyName]: { _in: batchIds } }},
             selections: `returning {${keyName}}`,
           });
+        // console.log('delete many items with muation', mutation.toString())
         const rtn = await this.getDefinition().getClient().request(mutation.toString());
         const rtnData = _.get(rtn, 'item.returning');
 
@@ -673,7 +693,7 @@ class BaseModel extends StreamableAndQueriable {
     }
   }
 
-  observe(field = '') {
+  subscribe(field = '') {
     const client = this.getDefinition().getClient();
     if(!client.subscribe) {
       throw Error('Client does not support subscribe method');
@@ -684,8 +704,8 @@ class BaseModel extends StreamableAndQueriable {
       const subField = paths.pop();
       return new Promise(async (res, rej) => {
         const target = await this.getByPath(paths.join('.'));
-        if(target && target.observe) {
-          return res(target.observe(subField));
+        if(target && target.subscribe) {
+          return res(target.subscribe(subField));
         }
         rej(Error(`Invalid field ${field} to apply subscribe`));
       });

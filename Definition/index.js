@@ -2,9 +2,23 @@ const _ = require('lodash');
 const { GqlBuilder } = require('@unitz/gqlbuilder');
 const container = require('../container');
 
+const BaseModel = require('../BaseModel');
+
+const deDuplicateNode = (nodes) => {
+  const len = nodes.length;
+  const nameMap = {};
+  for(let index = 0; index < len; index++) {
+    const node = nodes.shift();
+    if(!nameMap[node[0]]) {
+      nodes.push(node);
+    }
+    nameMap[node[0]] = true;
+  }
+}
+
 class Definition {
   
-  name = 'TransactionAggregateCount';
+  name = '';
 
   schema = {
     count: Number,
@@ -22,6 +36,7 @@ class Definition {
     this.name = _.get(this.definition, 'name');
     this.schema = _.get(this.definition, 'schema');
     this.GQL_ACTIONS = _.get(this.definition, 'GQL_ACTIONS');
+
   }
 
   getFields() {
@@ -29,7 +44,19 @@ class Definition {
   }
 
   getNodes() {
+    // before getting, normalize the nodes defifition
+    this.normalizeModelNodes();
     return _.get(this.definition, 'nodes', []);
+  }
+
+  addNode(nodeConfig) {
+    const nodes = _.get(this.definition, 'nodes', []);
+    const [nodeName] = nodeConfig;
+    const found = _.find(nodes, ([name]) => (name === nodeName));
+    if(!found) {
+      nodes.push(nodeConfig);
+    }
+    return this;
   }
 
   isNode(key) {
@@ -116,6 +143,95 @@ class Definition {
     }
   }
 
+  with(propName, cb) {
+    const propVal = _.get(this, propName);
+    if(typeof propVal === 'function') {
+      cb(propVal.call(this));
+    } else if(_.has(this, propVal)) {
+      cb(propVal);
+    }
+  }
+
+  normalizeModelNodes = _.memoize(() => {
+    const cacheImNodeMap = new Map();
+    const createImNodeModel = (nodeDef) => {
+      const [nodeName, nodeModel, nodeConfig] = nodeDef;
+      const paths = _.toPath(nodeName);
+      if(paths.length > 1) {
+        const nodeModelClass = container.resolve(nodeModel);
+        const nextNodeSelection = (nodeModelClass && nodeModelClass.getSelection) ? nodeModelClass.getSelection() : '';
+
+        const rtn = _.reduceRight(paths.slice(0, -1), (nodeDefAcc, currLevel, index) => {
+          const nextNodeSelection = nodeDefAcc.nextNodeSelection;
+          const currNodeConfig = nodeDefAcc.nodeConfig;
+          const currNodeModel = nodeDefAcc.nodeModel;
+          const currPaths = paths.slice(0, index);
+          const currPathsKey = `path@${currPaths.join('_')}`;
+          const nextLevel = paths[index + 1];
+          const currNodeSelection = `{${nextLevel} ${nextNodeSelection}}`;
+
+          // find existsing ImNodeModel and update its definitions
+          if(cacheImNodeMap.has(currPathsKey)) {
+            // reuse the InNodeModel
+            const ImNodeModel = cacheImNodeMap.get(currPathsKey);
+            // update node
+            ImNodeModel.getDefinition().addNode([nextLevel, currNodeModel, currNodeConfig]);
+            // update selection
+
+            return {
+              nodeModel: ImNodeModel,
+              nodeConfig: { usePlanSync: true },
+              nextNodeSelection: currNodeSelection,
+            }
+
+          } else {
+            const currNodeDef = {
+              name: currLevel,
+              schema: {},
+              nodes: [
+                [nextLevel, currNodeModel, currNodeConfig],
+              ],
+              key: '',
+              baseQuery: '',
+              selection: currNodeSelection,
+          
+              GQL_ACTIONS: {
+                GET: currLevel,
+              },
+              getClient: this.definition.getClient,
+            };
+
+            class ImNodeModel extends BaseModel {
+              static DEFINITION = Definition.create(currNodeDef);
+            }
+
+            cacheImNodeMap.set(currPathsKey, ImNodeModel)
+            return {
+              nodeModel: ImNodeModel,
+              nodeConfig: { usePlanSync: true },
+              nextNodeSelection: currNodeSelection,
+            }
+          }
+        }, {
+          nodeModel,
+          nodeConfig,
+          nextNodeSelection,
+        });
+        return [paths[0], rtn.nodeModel, rtn.nodeConfig];
+      }
+
+      return nodeDef;
+    };
+
+    const rtn = _.castArray(this.definition.nodes || []).map(nodeDef => createImNodeModel(nodeDef));
+
+    // remove duplicate nodes by name (index0)
+    deDuplicateNode(rtn);
+
+    this.definition.nodes = rtn;    
+    return rtn;
+  })
+
   static fromConfig(config) {
     // const Definition = this.constructor;
     return new Definition(config);
@@ -126,5 +242,6 @@ class Definition {
     return new Definition(config);
   }
 }
+
 
 module.exports = Definition;

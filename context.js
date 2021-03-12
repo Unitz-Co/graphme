@@ -74,6 +74,17 @@ class Context {
     return rtn;
   }
 
+  getChain(key) {
+    let rtn = [];
+    if(this.has(key)) {
+      rtn.push(this.get(key));
+    }
+    if(this.parent) {
+      rtn.push(...this.parent.getChain(key));
+    }
+    return rtn;
+  }
+
   toString() {
     return 'context';
   }
