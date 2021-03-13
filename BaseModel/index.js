@@ -111,6 +111,27 @@ class BaseModel extends StreamableAndQueriable {
 
     // console.log('init model', props);
     define(this);
+
+    /**
+     * PromiseLike object 
+     *
+     */
+    Object.defineProperty(this, 'then', {
+      value: (cb) => {
+        const rtn = this.sync();
+        this.then = null;
+        if(rtn && rtn.then) {
+          rtn.then(() => {
+            // remove thenable
+            cb(this);
+          })
+        } else {
+          cb(rtn);
+        }  
+      },
+      writable: true,
+      enumerable: false,
+    });
   }
 
   static getSelection() {
@@ -120,7 +141,7 @@ class BaseModel extends StreamableAndQueriable {
 
   setArgs(args) {
     privateData.set(this, 'args', args);
-    return this.target;
+    return this;
   };
 
   getArgs(){
@@ -136,7 +157,7 @@ class BaseModel extends StreamableAndQueriable {
 
   setSelections(selections) {
     privateData.set(this, 'selections', selections);
-    return this.target;
+    return this;
   };
 
   getSelections(){
@@ -194,6 +215,8 @@ class BaseModel extends StreamableAndQueriable {
       const rtn = await this.getDefinition().getClient().request(select.toString());
       const selectionPath = select.selectionPath;
       this.set(_.get(rtn, selectionPath));
+      // remove thenable
+      this.then = null;
       return this;  
     } catch (err) {
       console.log('syncing data failure for model:', this);

@@ -5,9 +5,11 @@ const CacheMan = require('../CacheMan');
 const hooks = require('../hooks');
 const SubscriptionMan = require('../SubscriptionMan');
 const utils = require('../utils');
+const Streamable = require('../BaseModel/Streamable');
 
-class CollectionMixins {
+class CollectionMixins extends Streamable {
   constructor(Type, target, inst, ctx) {
+    super();
     const getType = () => Type;
     // caching castType by item id
     const cacheInstance = new CacheMan({
@@ -81,6 +83,39 @@ class CollectionMixins {
     this.getContext = () => {
       return container.context;
     }
+
+    // selection props
+    let _inited = false;
+
+    this.setInited = () => {
+      _inited = true;
+      return this.target;
+    };
+  
+    this.getInited = () => {
+      return _inited;
+    };
+
+    /**
+     * PromiseLike object 
+     *
+     */
+     Object.defineProperty(this, 'then', {
+      value: (cb) => {
+        const rtn = this.sync();
+        // thenable only apply once
+        this.then = null;
+        if(rtn && rtn.then) {
+          rtn.then(() => {
+            cb(this.target);
+          })
+        } else {
+          cb(rtn);
+        }
+      },
+      writable: true,
+      enumerable: false,
+    });
   }
 
   // redefine all array methods here
@@ -93,8 +128,8 @@ class CollectionMixins {
   _updateCollectionData(data) {
     const len = this.target.length;
     const arrData = _.castArray(data || []);
-    arrData.map((item, index) => {
-      this[index] = item;
+    _.map(arrData, (item, index) => {
+      this.target[index] = item;
     })
     if(arrData.length < len) {
       this.target.splice(arrData.length, len);
@@ -113,11 +148,34 @@ class CollectionMixins {
     return this.target;
   }
 
-  async sync() {
-    // reload data from server
-    const rtn = this.emit('onSync');
-    const data = await Promise.all(rtn);
-    return null;
+  async sync(fields = []) {
+    let argsStr = this.getArgs();
+    argsStr = argsStr ? `(${argsStr})` : '';
+    const selectionsStr = this.getSelections();
+    const parentModel = this.getContext().get('@model');
+    const nodeName = this.getContext().get('nodeName');
+    const NodeModel = this.Type;
+
+    if(parentModel) {
+      await parentModel.sync(
+        _.castArray(fields || []).concat(
+          [`${nodeName}${argsStr} ${NodeModel.getSelection()}`],
+          selectionsStr ? [`${nodeName}${argsStr} { ${selectionsStr} }`] : []
+        )
+      );
+      // update collection node after syncing
+      const arrData = parentModel.getRef(nodeName);
+      this._updateCollectionData(arrData);
+      // remove thenable
+      this.then = null;
+      return this.target;
+    } else {
+      // self call query
+      this.then = undefined;
+      return this.target;
+    }
+
+    // return this.target;
   }
 
   observe(field = '') {
@@ -198,23 +256,6 @@ class CollectionMixins {
     }
   }
 
-  /**
-   * PromiseLike object for the collection
-   *
-   * @memberof CollectionArray
-   */
-  then(cb) {
-    const rtn = this.sync();
-    if(rtn && rtn.then) {
-      rtn.then(() => {
-        // resolve the promise with thenable
-        cb(utils.deThenableProxy(this));
-      })
-    } else {
-      cb([]);
-    }
-  }
-
   toArray() {
     return this.inst;
   }
@@ -223,80 +264,16 @@ class CollectionMixins {
     return this.toArray();
   }
 
-  // streamable interface
-  listeners = {};
-  emit(event, ...params) {
-    return _.get(this.listeners, [event], []).map(listener => listener.call(this, ...params));
+  getByPath(path, def) {
+    return utils.getByPath(this, path, def);
   }
 
-  on(event, listener) {
-    _.update(this.listeners, [event], val => (val ? val.concat(listener) : [listener]));
-    return () => {
-      _.update(this.listeners, [event], val => (_.reject((val || []), listener)));
-    };
+  setByPath(path, val) {
+    return utils.setByPath(this, path, val);
   }
 
-  once(event, listener) {
-    const handlers = {
-      disposer: () => {
-        _.update(this.listeners, [event], val => (_.reject((val || []), handlers.listener)));
-      },
-      listener: (...args) => {
-        // self disposing
-        handlers.disposer();
-        listener.call(...args);
-      }
-    }
-    _.update(this.listeners, [event], val => (val ? val.concat(handlers.listener) : [handlers.listener]));
-    return handlers.disposer;
-  }
-
-  proxy(stream, events) {
-    const dispoers = [].concat(events || _.keys(stream.listeners)).map((event) => {
-      return stream.on(event, (...params) => {
-        this.emit(event, ...params);
-      });
-    });
-    return () => dispoers.map(dis => dis());
-  }
-
-  destroy() {
-    this.listeners = {};
-  }
-
-  async getByPath(path, def) {
-    const paths = _.compact(_.toPath(path));
-    if(!paths.length) return this;
-
-    let curr = this;
-    const size = paths.length - 1;
-    for(let index = 0; index < paths.length; index++) {
-      const level = paths[index];
-      curr = await curr[level];
-      if(!curr && (index < size))  {
-        return def;
-      }
-    }
-    return curr;
-  }
-
-  async setByPath(path, val) {
-    const paths = _.compact(_.toPath(path));
-    if(!paths.length) return this;
-
-    const key = paths.pop();
-    const target = await this.getByPath(paths);
-    _.set(target, key, val)
-    return val;
-  }
-
-  async applyByPath(path, ...args) {
-    const paths = _.compact(_.toPath(path));
-    if(!paths.length) return this;
-
-    const key = paths.pop();
-    const target = await this.getByPath(paths);
-    return target[key].call(target, ...args);
+  applyByPath(path, ...args) {
+    return utils.applyByPath(this, path, ...args);
   }
 
   getDefinition() {

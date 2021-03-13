@@ -4,6 +4,10 @@ const container = require('../container');
 
 const BaseModel = require('../BaseModel');
 
+const isField = (val) => {
+  return [String, Number, Date, Boolean].includes(val);
+}
+
 const deDuplicateNode = (nodes) => {
   const len = nodes.length;
   const nameMap = {};
@@ -24,9 +28,7 @@ class Definition {
     count: Number,
   };
 
-  GQL_ACTIONS = {
-    GET: `aggregate`,
-  };
+  GQL_ACTIONS = {};
 
   definition = {};
   
@@ -41,6 +43,12 @@ class Definition {
 
   getFields() {
     return _.keys(this.definition.schema || {});
+  }
+
+  addField(fieldConfig) {
+    const [fieldName, fieldType] = fieldConfig;
+    _.set(this.definition.schema, fieldName, fieldType);
+    return this;
   }
 
   getNodes() {
@@ -143,6 +151,26 @@ class Definition {
     }
   }
 
+  addSelection(selection) {
+    const escapseSelection = (val) => {
+      const reg = /^\s*\{(.*)\}\s*$/g;
+      const matches = reg.exec(`${val}`);
+      if(matches) {
+        return matches[1];
+      }
+      return val
+    }
+    const currSelection = this.getSelection();
+    if(currSelection) {
+      const merged = GqlBuilder.utils.selections.merge(
+        GqlBuilder.utils.selections.toAst(escapseSelection(currSelection)),
+        GqlBuilder.utils.selections.toAst(escapseSelection(selection)),
+      );
+      this.definition.selection = GqlBuilder.utils.selections.astToStr(merged);
+    }
+    return this;
+  }
+
   with(propName, cb) {
     const propVal = _.get(this, propName);
     if(typeof propVal === 'function') {
@@ -163,9 +191,10 @@ class Definition {
 
         const rtn = _.reduceRight(paths.slice(0, -1), (nodeDefAcc, currLevel, index) => {
           const nextNodeSelection = nodeDefAcc.nextNodeSelection;
-          const currNodeConfig = nodeDefAcc.nodeConfig;
-          const currNodeModel = nodeDefAcc.nodeModel;
-          const currPaths = paths.slice(0, index);
+          const nextNodeConfig = nodeDefAcc.nodeConfig;
+          const nextNodeModel = nodeDefAcc.nodeModel;
+
+          const currPaths = paths.slice(0, index + 1);
           const currPathsKey = `path@${currPaths.join('_')}`;
           const nextLevel = paths[index + 1];
           const currNodeSelection = `{${nextLevel} ${nextNodeSelection}}`;
@@ -174,9 +203,15 @@ class Definition {
           if(cacheImNodeMap.has(currPathsKey)) {
             // reuse the InNodeModel
             const ImNodeModel = cacheImNodeMap.get(currPathsKey);
-            // update node
-            ImNodeModel.getDefinition().addNode([nextLevel, currNodeModel, currNodeConfig]);
+            if(isField(nextNodeModel)) {
+              // update field
+              ImNodeModel.getDefinition().addField([nextLevel, nextNodeModel]);
+            } else {
+              // update node
+              ImNodeModel.getDefinition().addNode([nextLevel, nextNodeModel, nextNodeConfig]);
+            }
             // update selection
+            ImNodeModel.getDefinition().addSelection(currNodeSelection);
 
             return {
               nodeModel: ImNodeModel,
@@ -187,10 +222,19 @@ class Definition {
           } else {
             const currNodeDef = {
               name: currLevel,
-              schema: {},
-              nodes: [
-                [nextLevel, currNodeModel, currNodeConfig],
-              ],
+              ...(
+                isField(nextNodeModel) ? 
+                {
+                  schema: { [nextLevel]: nextNodeModel },
+                  nodes: [],
+                } :
+                {
+                  schema: {},
+                  nodes: [
+                    [nextLevel, nextNodeModel, nextNodeConfig],
+                  ],
+                }
+              ),
               key: '',
               baseQuery: '',
               selection: currNodeSelection,

@@ -7,38 +7,31 @@ const privateData = utils.privateDataWrapper({
 
 class Streamable {
   emit(event, ...params) {
-    _.get(privateData.get(this, 'listeners'), [event], []).map(listener => listener.call(this, ...params));
+    return _.get(privateData.get(this, 'listeners'), [event], []).map(listener => listener.call(this, ...params));
   }
 
   on(event, listener) {
     _.update(privateData.get(this, 'listeners'), [event], val => (val ? val.concat(listener) : [listener]));
     return () => {
-      _.update(privateData.get(this, 'listeners'), [event], val => (_.reject((val || []), listener)));
+      _.update(privateData.get(this, 'listeners'), [event], val => (_.filter((val || []), item => (item !== listener))));
     };
   }
 
   once(event, listener) {
     const handlers = {
-      disposer: () => {
-        _.update(privateData.get(this, 'listeners'), [event], val => (_.reject((val || []), handlers.listener)));
-      },
       listener: (...args) => {
         // self disposing
-        handlers.disposer();
-        listener.call(...args);
-      }
+        if(handlers.disposer) {
+          handlers.disposer();
+          handlers.disposer = null;
+          handlers.listener = null;
+        } 
+        return listener.call(...args);
+      },
+      disposer: null,
     }
-    _.update(privateData.get(this, 'listeners'), [event], val => (val ? val.concat(handlers.listener) : [handlers.listener]));
+    handlers.disposer = this.on(event, handlers.listener);
     return handlers.disposer;
-  }
-
-  proxy(stream, events) {
-    const dispoers = [].concat(events || _.keys(stream.listeners)).map((event) => {
-      return stream.on(event, (...params) => {
-        this.emit(event, ...params);
-      });
-    });
-    return () => dispoers.map(dis => dis());
   }
 
   destroy() {

@@ -177,39 +177,16 @@ class StreamableAndQueriable extends Streamable {
     return rtn;
   }
 
-  async getByPath(path, def) {
-    const paths = _.compact(_.toPath(path));
-    if(!paths.length) return this;
-
-    let curr = this;
-    const size = paths.length - 1;
-    for(let index = 0; index < paths.length; index++) {
-      const level = paths[index];
-      curr = await curr[level];
-      if(!curr && (index < size))  {
-        return def;
-      }
-    }
-    return curr;
+  getByPath(path, def) {
+    return utils.getByPath(this, path, def);
   }
 
-  async setByPath(path, val) {
-    const paths = _.compact(_.toPath(path));
-    if(!paths.length) return this;
-
-    const key = paths.pop();
-    const target = await this.getByPath(paths);
-    _.set(target, key, val)
-    return val;
+  setByPath(path, val) {
+    return utils.setByPath(this, path, val);
   }
 
-  async applyByPath(path, ...args) {
-    const paths = _.compact(_.toPath(path));
-    if(!paths.length) return this;
-
-    const key = paths.pop();
-    const target = await this.getByPath(paths);
-    return target[key].call(target, ...args);
+  applyByPath(path, ...args) {
+    return utils.applyByPath(this, path, ...args);
   }
 }
 
