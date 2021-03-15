@@ -1,4 +1,5 @@
-const AdvisorModel = require('@uz/mod-models/AdvisorModel');
+import _ from 'lodash';
+import AdvisorModel from './models/AdvisorModel';
 
 const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
 

@@ -1,4 +1,5 @@
-const AdvisorModel = require('@unitz/graphme/__test__/models/AdvisorModel');
+import _ from 'lodash';
+import AdvisorModel from './models/AdvisorModel';
 
 const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
 
@@ -21,13 +22,18 @@ test('direct instance property getter', async () => {
 
 
 test('direct instance property subscription', async () => {
+  console.log('running')
   const observer = instance.observe('is_active');
-
-  const subs = observer.observe(val => {
+  const subs = observer.subscribe(val => {
     console.snapshot('is_active', val);
   });
-  await sleep(10000);
+  await sleep(1000);
+  instance.is_active = false;
+  await instance.save();
+  await sleep(1000);
   subs.unsubscribe();
+  instance.is_active = true;
+  await instance.save();
 });
 
 test('direct instance property setter', async () => {

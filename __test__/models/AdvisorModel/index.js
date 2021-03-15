@@ -6,8 +6,9 @@ import Definition from '../Definition';
 import GetAdvisor from '../../gql/advisor/GetAdvisor.gql';
 
 import AdvisorProfileModel from '../AdvisorProfileModel';
-
-// const AdvisorPresenceModel = require('../AdvisorPresenceModel');
+import AdvisorPresenceModel from '../AdvisorPresenceModel';
+import TransactionModel from '../TransactionModel';
+import TransactionAggregateModel from '../TransactionAggregateModel';
 
 class AdvisorModel extends graphme.BaseModel {
   static DEFINITION = Definition.create({
@@ -19,13 +20,9 @@ class AdvisorModel extends graphme.BaseModel {
     },
     nodes: [
       ['profile', 'AdvisorProfileModel', { column_mapping: { id: 'advisor_id' } }],
-      // ['presence', 'AdvisorPresenceModel', { column_mapping: { id: 'advisor_id' } }],
-      // ['transactions', 'TransactionModel.Collection', { column_mapping: { id: 'advisor_id' } }],
-      // ['transactions_aggregate', 'TransactionAggregateModel', { column_mapping: { id: 'advisor_id' }, usePlanSync: true }],
-      // ['transactions_aggregate.nodes', 'TransactionModel.Collection', { usePlanSync: true }],
-      // ['transactions_aggregate.aggregate', 'TransactionAggregateCount', { usePlanSync: true }],
-      // ['transactions_aggregate.aggregate.count', Number, { usePlanSync: true }],
-      // ['transactions_aggregate.aggregate.min', 'TransactionModel', { usePlanSync: true }],
+      ['presence', 'AdvisorPresenceModel', { column_mapping: { id: 'advisor_id' } }],
+      ['transactions', 'TransactionModel.Collection', { column_mapping: { id: 'advisor_id' } }],
+      ['transactions_aggregate', 'TransactionAggregateModel', { column_mapping: { id: 'advisor_id' }, usePlanSync: true }],
     ],
     key: 'id',
 

@@ -19,7 +19,6 @@ class TransactionAggregateCount extends graphme.BaseModel {
     GQL_ACTIONS: {
       GET: `aggregate`,
     },
-    getClient: hasuraClient.getClient,
   });
 }
 

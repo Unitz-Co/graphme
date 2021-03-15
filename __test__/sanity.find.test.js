@@ -1,4 +1,4 @@
-const AdvisorModel = require('@uz/mod-models/AdvisorModel');
+import AdvisorModel from './models/AdvisorModel';
 
 
 test('init with find gql string', async () => {

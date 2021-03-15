@@ -5,8 +5,6 @@ import Definition from '../Definition';
 
 import GetAdvisorProfile from '../../gql/advisor_profile/GetAdvisorProfile.gql';
 
-graphme.GqlBuilder.loadDocument({ GetAdvisorProfile });
-
 class AdvisorProfileModel extends graphme.BaseModel {
   static DEFINITION = Definition.create({
     name: 'AdvisorProfile',
@@ -19,7 +17,7 @@ class AdvisorProfileModel extends graphme.BaseModel {
     foreignKeys: ['advisor_id'],
     key: 'id',
 
-    baseQuery: 'GetAdvisorProfile',
+    baseQuery: GetAdvisorProfile,
     GQL_ACTIONS: {
       GET: `advisor_profile_by_pk`,
       INSERT: `insert_advisor_profile_one`,

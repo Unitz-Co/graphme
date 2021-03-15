@@ -58,8 +58,8 @@ exports[`direct instance property setByPath 1`] = `
 Object {
   "args": Array [
     "is_active: (before)",
-    false,
     true,
+    false,
   ],
 }
 `;
@@ -68,7 +68,7 @@ exports[`direct instance property setByPath 2`] = `
 Object {
   "args": Array [
     "is_active: (after)",
-    false,
+    true,
   ],
 }
 `;
@@ -77,7 +77,7 @@ exports[`direct instance property setter 1`] = `
 Object {
   "args": Array [
     "is_active: (before)",
-    false,
+    true,
     false,
   ],
 }
@@ -87,12 +87,21 @@ exports[`direct instance property setter 2`] = `
 Object {
   "args": Array [
     "is_active: (after)",
-    false,
+    true,
   ],
 }
 `;
 
 exports[`direct instance property subscription 1`] = `
+Object {
+  "args": Array [
+    "is_active",
+    true,
+  ],
+}
+`;
+
+exports[`direct instance property subscription 2`] = `
 Object {
   "args": Array [
     "is_active",

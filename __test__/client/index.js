@@ -3,6 +3,12 @@ const _ = require('lodash');
 const { gql } = require('graphql-request');
 const { SubscriptionClient } = require('graphql-subscriptions-client');
 
+const WebSocket = require('ws');
+
+if(global) {
+  global.WebSocket = WebSocket;
+}
+
 const getOptions = _.memoize(() => {
   const options = {
     endpoint: process.env.HASURA_GRAPHQL_ENDPOINT,
