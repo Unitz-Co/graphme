@@ -1,0 +1,4 @@
+fragment FragmentUserPresence on user_presence {
+  id
+  status
+}

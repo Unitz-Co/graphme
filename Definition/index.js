@@ -4,6 +4,10 @@ const container = require('../container');
 
 const BaseModel = require('../BaseModel');
 
+const isDocument = (val) => {
+  return (val && (_.get(val, 'kind') === 'Document'))
+}
+
 const isField = (val) => {
   return [String, Number, Date, Boolean].includes(val);
 }
@@ -125,6 +129,8 @@ class Definition {
     if(_.isString(baseQuery)) {
       // try to load query instance via gqlbuilder instance
       baseQuery = GqlBuilder.loadDocument(baseQuery);
+    } else if(isDocument(baseQuery)) {
+      baseQuery = GqlBuilder.from(baseQuery);
     }
 
     if(!baseQuery.clone) {
@@ -272,7 +278,7 @@ class Definition {
     // remove duplicate nodes by name (index0)
     deDuplicateNode(rtn);
 
-    this.definition.nodes = rtn;    
+    this.definition.nodes = rtn;
     return rtn;
   })
 

@@ -1,0 +1,7 @@
+#import "./FragmentUserPresence.gql"
+
+query GetUserPresence {
+  user_presence_by_pk {
+    ...FragmentUserPresence
+  }
+}

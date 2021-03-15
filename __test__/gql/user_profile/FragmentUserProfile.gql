@@ -1,0 +1,5 @@
+fragment FragmentUserProfile on user_profile {
+  id
+  display_name
+  avatar_url
+}

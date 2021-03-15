@@ -1,0 +1,12 @@
+#import "./FragmentTransaction.gql"
+
+query GetTransactionAggregate {
+  transaction_aggregate {
+    aggregate {
+      count
+    }
+    nodes {
+      ...FragmentTransaction
+    }
+  }
+}

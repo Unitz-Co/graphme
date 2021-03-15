@@ -1,0 +1,7 @@
+#import "./FragmentAdvisorProfile.gql"
+
+query QueryAdvisorProfile {
+  advisor_profile {
+    ...FragmentAdvisorProfile
+  }
+}

@@ -1,0 +1,8 @@
+#import "./FragmentAdvisor.gql"
+
+query GetAdvisor {
+  advisor_by_pk {
+    ...FragmentAdvisor
+    created_at
+  }
+}

@@ -1,0 +1,16 @@
+#import "./FragmentUser.gql"
+#import "../user_profile/FragmentUserProfile.gql"
+#import "../user_presence/FragmentUserPresence.gql"
+
+query QueryUser {
+  user {
+    id
+    ...FragmentUser
+    presence {
+      ...FragmentUserPresence
+    }
+    profile {
+      ...FragmentUserProfile
+    }
+  }
+}

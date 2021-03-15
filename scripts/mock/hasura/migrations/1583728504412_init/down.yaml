@@ -1,0 +1,6 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: |-
+      drop function if exists set_current_timestamp_updated_at;
+  type: run_sql

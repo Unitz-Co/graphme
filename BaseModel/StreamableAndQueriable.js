@@ -132,7 +132,7 @@ class StreamableAndQueriable extends Streamable {
     if(args.length === 1 && _.isPlainObject(args[0])) {
       for(let key of _.keys(args[0])) {
         const val = args[0][key];
-        this.setState(key, value);
+        this.setState(key, val);
       }
       return this;
     }

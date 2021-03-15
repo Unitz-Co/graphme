@@ -1,0 +1,7 @@
+#import "./FragmentUser.gql"
+
+query GetUser {
+  user_by_pk {
+    ...FragmentUser
+  }
+}

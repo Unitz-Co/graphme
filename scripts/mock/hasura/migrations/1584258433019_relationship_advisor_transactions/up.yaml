@@ -1,0 +1,21 @@
+- args:
+    name: transactions
+    table:
+      name: advisor
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: advisor_id
+        table:
+          name: transaction
+          schema: public
+  type: create_array_relationship
+# transaction.advisor(transaction.advisor_id => advisor.id)
+- args:
+    name: advisor
+    table:
+      name: transaction
+      schema: public
+    using:
+      foreign_key_constraint_on: advisor_id
+  type: create_object_relationship

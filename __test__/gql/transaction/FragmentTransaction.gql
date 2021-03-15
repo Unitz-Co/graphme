@@ -1,0 +1,6 @@
+fragment FragmentTransaction on transaction {
+  id
+  user_id
+  advisor_id
+  session_id
+}

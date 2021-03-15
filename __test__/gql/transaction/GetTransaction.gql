@@ -1,0 +1,7 @@
+#import "./FragmentTransaction.gql"
+
+query GetTransaction {
+  transaction_by_pk {
+    ...FragmentTransaction
+  }
+}

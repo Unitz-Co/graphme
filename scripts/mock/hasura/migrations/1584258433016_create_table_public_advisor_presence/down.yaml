@@ -1,0 +1,34 @@
+- args:
+    role: user
+    table:
+      name: advisor_presence
+      schema: public
+  type: drop_delete_permission
+- args:
+    role: user
+    table:
+      name: advisor_presence
+      schema: public
+  type: drop_update_permission
+- args:
+    role: user
+    table:
+      name: advisor_presence
+      schema: public
+  type: drop_insert_permission
+- args:
+    role: user
+    table:
+      name: advisor_presence
+      schema: public
+  type: drop_select_permission
+- args:
+    table:
+      name: advisor_presence
+      schema: public
+  type: untrack_table
+- args:
+    cascade: false
+    read_only: false
+    sql: DROP TABLE public.advisor_presence;
+  type: run_sql

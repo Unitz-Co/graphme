@@ -4,7 +4,7 @@ exports[`init with find gql object 1`] = `
 Object {
   "args": Array [
     "advisor.0.profile.display_name",
-    "new_displayName",
+    "newVal_1615370308388",
   ],
 }
 `;
@@ -15,25 +15,475 @@ Object {
     "advisor list",
     CollectionMixins [
       AdvisorModel {
-        "getArgs": [Function],
-        "getContext": [Function],
-        "getSelections": [Function],
-        "listeners": Object {},
-        "props": Object {
-          "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
-          "is_active": false,
-          "profile": Object {
-            "id": "3c9a060e-82ef-41f7-a191-f1bbbdfa3c74",
-          },
+        "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+        "is_active": false,
+        "presence": AdvisorPresenceModel {
+          "advisor_id": Promise {},
+          "id": Promise {},
+          "status": Promise {},
         },
-        "setArgs": [Function],
-        "setContext": [Function],
-        "setSelections": [Function],
-        "state": Object {},
+        "profile": _ImNodeModel {
+          "display_name": "newVal_1615370308388",
+        },
         "syncProfile": [Function],
-        "transactions": CollectionMixins [],
-        "updateArgs": [Function],
-        "updateSelection": [Function],
+        "transactions": CollectionMixins [
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "9fd256a1-ecfb-4458-a47d-77dd2ce6e01d",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "455e5e72-e0d5-4fa6-83a1-468c2d9322e3",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "a0231195-4b75-4359-9006-74ba6e289ee9",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "60fa64b4-c652-4fb6-b33a-63df1d20a21b",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "06f1a27e-7f5a-4d16-9ab7-c79ab3a3e99f",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "23a6ce73-eb10-4ece-a875-c3f3d0bc042e",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "56e52355-c117-471b-919a-d09dc7ca6aee",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "a682e5e0-c852-4b91-a5a4-9e368a446dac",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "b93c0877-b9e1-40d4-8cdd-427246a6e3ef",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+          TransactionModel {
+            "advisor": AdvisorModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": AdvisorPresenceModel {
+                "advisor_id": Promise {},
+                "id": Promise {},
+                "status": Promise {},
+              },
+              "profile": _ImNodeModel {
+                "display_name": Promise {},
+              },
+              "syncProfile": [Function],
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": _ImNodeModel {
+                "aggregate": _ImNodeModel {
+                  "count": Promise {},
+                },
+                "nodes": CollectionMixins [],
+              },
+            },
+            "advisor_id": Promise {},
+            "id": "2a944866-4e4d-4c20-9dac-e45fa1a71de0",
+            "session_id": Promise {},
+            "user": UserModel {
+              "id": Promise {},
+              "is_active": Promise {},
+              "presence": UserPresenceModel {
+                "id": Promise {},
+                "status": Promise {},
+                "user_id": Promise {},
+              },
+              "profile": UserProfileModel {
+                "avatar_url": Promise {},
+                "display_name": Promise {},
+                "id": Promise {},
+                "user_id": Promise {},
+              },
+              "transactions": CollectionMixins [],
+              "transactions_aggregate": TransactionAggregateModel {
+                "nodes": CollectionMixins [],
+              },
+            },
+            "user_id": Promise {},
+          },
+        ],
+        "transactions_aggregate": _ImNodeModel {
+          "aggregate": _ImNodeModel {
+            "count": Promise {},
+          },
+          "nodes": CollectionMixins [],
+        },
       },
     ],
   ],
@@ -44,7 +494,7 @@ exports[`init with find gql object 3`] = `
 Object {
   "args": Array [
     "advs",
-    "new_displayName",
+    "newVal_1615370308388",
   ],
 }
 `;
@@ -62,7 +512,7 @@ exports[`init with find gql string 1`] = `
 Object {
   "args": Array [
     "advisor.0.profile.display_name",
-    "new_displayName",
+    "newVal_1615370308388",
   ],
 }
 `;
@@ -73,44 +523,26 @@ Object {
     "advisor list",
     CollectionMixins [
       AdvisorModel {
-        "getArgs": [Function],
-        "getContext": [Function],
-        "getSelections": [Function],
-        "listeners": Object {},
-        "props": Object {
-          "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
-          "is_active": false,
-          "profile": Object {
-            "id": "3c9a060e-82ef-41f7-a191-f1bbbdfa3c74",
-          },
+        "id": "PdOJWFBgNPUEMhX1JlsDm7zWy012",
+        "is_active": false,
+        "presence": AdvisorPresenceModel {
+          "advisor_id": Promise {},
+          "id": Promise {},
+          "status": Promise {},
         },
-        "setArgs": [Function],
-        "setContext": [Function],
-        "setSelections": [Function],
-        "state": Object {},
+        "profile": _ImNodeModel {
+          "display_name": "newVal_1615370308388",
+        },
         "syncProfile": [Function],
-        "updateArgs": [Function],
-        "updateSelection": [Function],
+        "transactions": CollectionMixins [],
+        "transactions_aggregate": _ImNodeModel {
+          "aggregate": _ImNodeModel {
+            "count": Promise {},
+          },
+          "nodes": CollectionMixins [],
+        },
       },
     ],
-  ],
-}
-`;
-
-exports[`init with find gql string 3`] = `
-Object {
-  "args": Array [
-    "advs",
-    "new_displayName",
-  ],
-}
-`;
-
-exports[`init with find gql string 4`] = `
-Object {
-  "args": Array [
-    "transactionstransactions",
-    1,
   ],
 }
 `;

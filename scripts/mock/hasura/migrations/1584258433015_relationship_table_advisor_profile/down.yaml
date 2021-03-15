@@ -1,0 +1,12 @@
+- args:
+    relationship: profile
+    table:
+      name: advisor
+      schema: public
+  type: drop_relationship
+- args:
+    relationship: advisor
+    table:
+      name: advisor_profile
+      schema: public
+  type: drop_relationship

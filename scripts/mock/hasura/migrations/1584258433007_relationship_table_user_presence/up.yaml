@@ -1,0 +1,23 @@
+# user.profile(user.id => user_presence.user_id)
+- args:
+    name: presence
+    table:
+      name: user
+      schema: public
+    using:
+      manual_configuration:
+        column_mapping:
+          id: user_id
+        remote_table:
+          name: user_presence
+          schema: public
+  type: create_object_relationship
+# user_presence.user(user_presence.user_id => user.id)
+- args:
+    name: user
+    table:
+      name: user_presence
+      schema: public
+    using:
+      foreign_key_constraint_on: user_id
+  type: create_object_relationship

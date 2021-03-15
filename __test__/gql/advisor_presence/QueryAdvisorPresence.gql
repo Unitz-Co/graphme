@@ -1,0 +1,7 @@
+#import "./FragmentAdvisorPresence.gql"
+
+query QueryAdvisorPresence($id: String!) {
+  advisor_presence {
+    ...FragmentAdvisorPresence
+  }
+}

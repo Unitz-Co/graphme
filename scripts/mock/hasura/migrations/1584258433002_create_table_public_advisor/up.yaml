@@ -1,0 +1,43 @@
+- args:
+    name: advisor
+    schema: public
+  type: add_existing_table_or_view
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+        - id
+        - is_active
+        - created_at
+        - updated_at
+        - created_by
+        - updated_by
+      computed_fields: []
+      filter:
+        _and:
+          - id:
+              _eq: X-Hasura-user-Id
+      limit: null
+    role: user
+    table:
+      name: advisor
+      schema: public
+  type: create_select_permission
+- args:
+    permission:
+      columns:
+        - is_active
+      filter:
+        _and:
+          - id:
+              _eq: X-Hasura-user-Id
+      localPresets:
+        - key: updated_by
+          value: x-hasura-user-id
+      set:
+        updated_by: x-hasura-user-id
+    role: user
+    table:
+      name: advisor
+      schema: public
+  type: create_update_permission

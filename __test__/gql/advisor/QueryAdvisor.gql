@@ -1,0 +1,7 @@
+#import "./FragmentAdvisor.gql"
+
+query QueryAdvisor {
+  advisor {
+    ...FragmentAdvisor
+  }
+}

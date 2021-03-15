@@ -1,0 +1,23 @@
+# advisor.profile(advisor.id => advisor_presence.advisor_id)
+- args:
+    name: presence
+    table:
+      name: advisor
+      schema: public
+    using:
+      manual_configuration:
+        column_mapping:
+          id: advisor_id
+        remote_table:
+          name: advisor_presence
+          schema: public
+  type: create_object_relationship
+# advisor_presence.advisor(advisor_presence.advisor_id => advisor.id)
+- args:
+    name: advisor
+    table:
+      name: advisor_presence
+      schema: public
+    using:
+      foreign_key_constraint_on: advisor_id
+  type: create_object_relationship

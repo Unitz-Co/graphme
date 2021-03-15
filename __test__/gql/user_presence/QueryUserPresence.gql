@@ -1,0 +1,7 @@
+#import "./FragmentUserPresence.gql"
+
+query QueryUserPresence {
+  user_presence {
+    ...FragmentUserPresence
+  }
+}

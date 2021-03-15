@@ -23,7 +23,7 @@ const define = (instance) => {
           instance.setState({ dirty: true });
           return instance.set(fieldName, value);
         },
-        enumerable: true,
+        // enumerable: true,
       });
     });
   });
@@ -92,7 +92,7 @@ const define = (instance) => {
           nodesMap[nodeName] = value;
           return nodesMap[nodeName];
         },
-        enumerable: true,
+        // enumerable: true,
       });
     });
   });

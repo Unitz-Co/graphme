@@ -1,0 +1,7 @@
+#import "./FragmentTransaction.gql"
+
+query QueryTransaction {
+  transactions {
+    ...FragmentTransaction
+  }
+}

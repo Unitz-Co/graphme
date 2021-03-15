@@ -1,0 +1,25 @@
+version: '3.6'
+services:
+  test_postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  test_hasura:
+    image: hasura/graphql-engine:v1.2.0.cli-migrations
+    ports:
+      - '28080:8080'
+    depends_on:
+      - 'test_postgres'
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@test_postgres:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
+      ## uncomment next line to set an admin secret
+      HASURA_GRAPHQL_ADMIN_SECRET: admin
+    volumes:
+      - ./hasura/migrations:/hasura-migrations
+volumes:
+  db_data:

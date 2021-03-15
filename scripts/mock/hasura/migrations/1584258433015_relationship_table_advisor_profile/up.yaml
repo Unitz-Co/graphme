@@ -1,0 +1,23 @@
+# user.profile(user.id => advisor_profile.advisor_id)
+- args:
+    name: profile
+    table:
+      name: advisor
+      schema: public
+    using:
+      manual_configuration:
+        column_mapping:
+          id: advisor_id
+        remote_table:
+          name: advisor_profile
+          schema: public
+  type: create_object_relationship
+# advisor_profile.user(advisor_profile.advisor_id => user.id)
+- args:
+    name: advisor
+    table:
+      name: advisor_profile
+      schema: public
+    using:
+      foreign_key_constraint_on: advisor_id
+  type: create_object_relationship

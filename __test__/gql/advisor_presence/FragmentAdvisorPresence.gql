@@ -1,0 +1,4 @@
+fragment FragmentAdvisorPresence on advisor_presence {
+  id
+  status
+}

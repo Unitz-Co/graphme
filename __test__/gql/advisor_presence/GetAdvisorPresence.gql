@@ -1,0 +1,8 @@
+#import "./FragmentAdvisorPresence.gql"
+
+query GetAdvisorPresence {
+  advisor_presence_by_pk {
+    id
+    ...FragmentAdvisorPresence
+  }
+}

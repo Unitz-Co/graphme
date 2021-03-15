@@ -1,0 +1,5 @@
+fragment FragmentAdvisorProfile on advisor_profile {
+  id
+  display_name
+  avatar_url
+}

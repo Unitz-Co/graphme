@@ -1,0 +1,4 @@
+fragment FragmentAdvisor on advisor {
+  id
+  is_active
+}

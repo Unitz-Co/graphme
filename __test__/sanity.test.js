@@ -1,10 +1,12 @@
-const AdvisorModel = require('@uz/mod-models/AdvisorModel');
+const AdvisorModel = require('@unitz/graphme/__test__/models/AdvisorModel');
 
 const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
 
 test('init with fromData', async () => {
-  console.snapshot('before sync', instance);
+  console.snapshot('before sync', instance.toObject());
   console.snapshot('instance', await instance);
+  console.snapshot('instance.id', instance.id);
+  console.snapshot('instance.created_at', instance.created_at)
 });
 
 test('direct instance property getter', async () => {
@@ -19,12 +21,13 @@ test('direct instance property getter', async () => {
 
 
 test('direct instance property subscription', async () => {
-  const subscription = instance.subscribe('is_active');
+  const observer = instance.observe('is_active');
 
-  subscription.subscribe(val => {
+  const subs = observer.observe(val => {
     console.snapshot('is_active', val);
   });
   await sleep(10000);
+  subs.unsubscribe();
 });
 
 test('direct instance property setter', async () => {

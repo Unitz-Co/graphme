@@ -1,0 +1,3 @@
+fragment FragmentUser on user {
+  id
+}
