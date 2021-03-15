@@ -1,24 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`direct nested instance property getter 1`] = `
+Object {
+  "args": Array [
+    "profile.display_name (direct)",
+    "newVal_1615370308388",
+  ],
+}
+`;
+
+exports[`direct nested model method applyByPath 1`] = `
+Object {
+  "args": Array [
+    "getClass",
+    [Function],
+  ],
+}
+`;
+
+exports[`direct nested model method call 1`] = `
+Object {
+  "args": Array [
+    "getClass",
+    [Function],
+  ],
+}
+`;
+
+exports[`direct nested model property setByPath 1`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (before)",
+    "newVal_1615370308388",
+  ],
+}
+`;
+
+exports[`direct nested model property setByPath 2`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (change)",
+    "newVal_newName",
+    "newVal_newName",
+  ],
+}
+`;
+
+exports[`direct nested model property setByPath 3`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (after)",
+    "newVal_1615370308388",
+  ],
+}
+`;
+
+exports[`direct nested model property setter 1`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (before)",
+    "newVal_1615370308388",
+  ],
+}
+`;
+
+exports[`direct nested model property setter 2`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (change)",
+    "newVal_newName",
+    "newVal_newName",
+  ],
+}
+`;
+
+exports[`direct nested model property setter 3`] = `
+Object {
+  "args": Array [
+    "profile.display_name: (after)",
+    "newVal_1615370308388",
+  ],
+}
+`;
+
 exports[`indirect nested model property getter 1`] = `
 Object {
   "args": Array [
     "profile",
-    AdvisorProfileModel {
-      "getArgs": [Function],
-      "getContext": [Function],
-      "getSelections": [Function],
-      "listeners": Object {},
-      "props": Object {
-        "id": "3c9a060e-82ef-41f7-a191-f1bbbdfa3c74",
-      },
-      "setArgs": [Function],
-      "setContext": [Function],
-      "setSelections": [Function],
-      "state": Object {},
-      "updateArgs": [Function],
-      "updateSelection": [Function],
-    },
+    AdvisorProfileModel {},
   ],
 }
 `;
@@ -27,7 +96,7 @@ exports[`indirect nested model property getter 2`] = `
 Object {
   "args": Array [
     "profile.display_name (indirect)",
-    "new_displayName",
+    "newVal_1615370308388",
   ],
 }
 `;

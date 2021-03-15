@@ -211,6 +211,15 @@ class BaseModel extends StreamableAndQueriable {
    */
   async sync(fields = []) {
     try {
+      const parentMode = this.getContext().getFromParent('@model');
+      const nodeName = this.getContext().get('nodeName');
+      if(parentMode && !_.has(parentMode.toObject(), nodeName)) {
+        // try to ask parent to sync data
+        parentMode.updateSelections(selection => `${selection ? selection : ''} ${nodeName} ${this.getSelection()}`);
+        await parentMode.sync();
+        // apply data
+        this.set(_.get(parentMode.toObject(), nodeName));
+      }
       const select = this.getSyncQuery(fields);
       const rtn = await this.getDefinition().getClient().request(select.toString());
       const selectionPath = select.selectionPath;

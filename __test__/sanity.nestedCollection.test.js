@@ -5,7 +5,7 @@ const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
 
 test('nested collection getter', async () => {
   const transactions = await instance.transactions;
-  console.snapshot('transactions', transactions);
+  console.snapshot('transactions', transactions.toObject());
 });
 
 test('nested collection getter', async () => {
@@ -21,7 +21,7 @@ test('nested collection getter', async () => {
 
 });
 
-test('nested collection getter', async () => {
+test('nested collection getter from find', async () => {
   const instances = await AdvisorModel.find({ where: {id: { _eq: 'PdOJWFBgNPUEMhX1JlsDm7zWy012'}} }, `
     id
     created_at
@@ -40,11 +40,7 @@ test('nested collection getter', async () => {
   const instance = _.first(instances);
   // const instnace = instances.getByPath('0');
 
-  // support?
-  // instance.with('transactions').setArgs('limit: 2');
-  //  @ALTER: another option to set nested node args
-  instance.setArgs(['transactions', 'limit: 2']);
-  instance.updateArgs(['transactions', 'limit: 2']);
+  await instance.transactions.setArgs('limit: 2').sync();
 
 
   const transactions = await instance.transactions;
@@ -54,15 +50,15 @@ test('nested collection getter', async () => {
   await transactions.setArgs('limit: 2, order_by: {advisor_id: asc}').sync();
   console.snapshot('transactions', transactions);
 
-  await transactions.setArgs({ limit: 2, where: {id: { _in: ["123"] } } }).sync();
-  console.snapshot('transactions', transactions);
+  // await transactions.setArgs({ limit: 2, where: {id: { _in: ["123"] } } }).sync();
+  // console.snapshot('transactions', transactions);
 
 });
 
 test('nested collection index access', async () => {
   const transactions = await instance.transactions;
   console.snapshot('transactions', transactions[0]);
-  console.snapshot('advisor_id', transactions[0].advisor_id);
+  console.snapshot('advisor_id', await transactions[0].advisor_id);
   console.snapshot('user_id', await transactions[0].user_id);
   console.snapshot('session_id', await transactions[0].getByPath('session_id'));
 });
@@ -131,7 +127,7 @@ test('direct nested model property setter', async () => {
   const oldName = await profile.display_name;
 
   console.snapshot('profile.display_name: (before)', oldName);
-  const newName = `newVal_${Date.now()}`;
+  const newName = `newVal_newName`;
 
   profile.display_name = newName;
   await profile.save();
@@ -147,7 +143,7 @@ test('direct nested model property setter', async () => {
 test('direct nested model property setByPath', async () => {
   const oldName = await instance.getByPath('profile.display_name');
   console.snapshot('profile.display_name: (before)', oldName);
-  const newName = `newVal_${Date.now()}`;
+  const newName = `newVal_newName`;
 
   await instance.setByPath('profile.display_name', newName);
   await instance.applyByPath('profile.save');

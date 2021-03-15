@@ -11,7 +11,10 @@ test('init with find gql string', async () => {
   const transactions = await advisors.getByPath('0.transactions');
 
   await transactions.setArgs('limit: 2').sync();
-  console.snapshot('transactionstransactions', transactions.length);
+  console.snapshot('transactions(limit:2).length', transactions.length);
+
+  await transactions.setArgs('limit: 6').sync();
+  console.snapshot('transactions(limit:6).length', transactions.length);
 
 });
 

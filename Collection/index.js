@@ -24,6 +24,8 @@ function Collection(Type, ...args) {
           obj[prop] = value;
           ref.mixins().emit('change', prop);
           return true;
+        } else if(prop === 'then') {
+          return true;
         } else {
           obj[prop] = value;
           return true;

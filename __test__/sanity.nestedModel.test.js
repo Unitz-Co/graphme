@@ -18,7 +18,7 @@ test('direct nested model property setter', async () => {
   const oldName = await profile.display_name;
 
   console.snapshot('profile.display_name: (before)', oldName);
-  const newName = `newVal_${Date.now()}`;
+  const newName = `newVal_newName`;
 
   profile.display_name = newName;
   await profile.save();
@@ -34,7 +34,7 @@ test('direct nested model property setter', async () => {
 test('direct nested model property setByPath', async () => {
   const oldName = await instance.getByPath('profile.display_name');
   console.snapshot('profile.display_name: (before)', oldName);
-  const newName = `newVal_${Date.now()}`;
+  const newName = `newVal_newName`;
 
   await instance.setByPath('profile.display_name', newName);
   await instance.applyByPath('profile.save');
