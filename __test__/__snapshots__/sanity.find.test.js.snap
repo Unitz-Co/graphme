@@ -4,7 +4,7 @@ exports[`init with find gql object 1`] = `
 Object {
   "args": Array [
     "advisor.0.profile.display_name",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;
@@ -24,7 +24,7 @@ exports[`init with find gql object 3`] = `
 Object {
   "args": Array [
     "advs",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;
@@ -42,7 +42,7 @@ exports[`init with find gql string 1`] = `
 Object {
   "args": Array [
     "advisor.0.profile.display_name",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;
@@ -62,7 +62,7 @@ exports[`init with find gql string 3`] = `
 Object {
   "args": Array [
     "advs",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;

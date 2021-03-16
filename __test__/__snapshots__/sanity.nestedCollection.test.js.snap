@@ -4,7 +4,7 @@ exports[`direct nested instance property getter 1`] = `
 Object {
   "args": Array [
     "profile.display_name (direct)",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;
@@ -31,7 +31,7 @@ exports[`direct nested model property setByPath 1`] = `
 Object {
   "args": Array [
     "profile.display_name: (before)",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;
@@ -50,7 +50,7 @@ exports[`direct nested model property setByPath 3`] = `
 Object {
   "args": Array [
     "profile.display_name: (after)",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;
@@ -59,7 +59,7 @@ exports[`direct nested model property setter 1`] = `
 Object {
   "args": Array [
     "profile.display_name: (before)",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;
@@ -78,7 +78,7 @@ exports[`direct nested model property setter 3`] = `
 Object {
   "args": Array [
     "profile.display_name: (after)",
-    "newVal_1615370308388",
+    "new_displayName",
   ],
 }
 `;
@@ -300,14 +300,8 @@ Object {
 exports[`nested collection mutations 3`] = `
 Object {
   "args": Array [
-    "removedTrans",
-    Array [
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-      undefined,
-    ],
+    "removedTrans.len",
+    undefined,
   ],
 }
 `;

@@ -3,12 +3,12 @@ import AdvisorModel from './models/AdvisorModel';
 
 const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
 
-test('model props subscription', async () => {
+test('model props subscription 1', async () => {
   const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
 
   const advisor = await advisors.getByPath('0');
 
-  const subscription = advisor.subscribe('is_active');
+  const subscription = advisor.observe('is_active');
 
   let count = 0;
   const obs = subscription.subscribe((is_active) => {
@@ -48,7 +48,7 @@ test('subscribe without field prop', async () => {
 
   const profile = await advisor.profile;
 
-  const subscription = profile.subscribe();
+  const subscription = profile.observe();
 
   let count = 0;
   const obs = subscription.subscribe((data) => {
@@ -78,7 +78,7 @@ test('subscribe with field prop', async () => {
 
   const profile = await advisor.profile;
 
-  const subscription = profile.subscribe('display_name');
+  const subscription = profile.observe('display_name');
 
   let count = 0;
   const obs = subscription.subscribe((data) => {
@@ -106,7 +106,7 @@ test('subscribe to field of nested model', async () => {
 
   const advisor = _.first(advisors);
 
-  const subscription = await advisor.subscribe('profile.display_name');
+  const subscription = await advisor.observe('profile.display_name');
 
   let count = 0;
   const obs = subscription.subscribe((data) => {
@@ -140,7 +140,7 @@ test('subscribe to collection', async () => {
 
   const transactions = await advisor.transactions;
 
-  const subscription = transactions.subscribe();
+  const subscription = transactions.observe();
 
   let count = 0;
   const obs = subscription.subscribe((data) => {
@@ -178,7 +178,7 @@ test('nested model props subscription', async () => {
 
   advisor.setArgs([['transactions', 'limit: 5, order_by: {created_at: desc}']])
 
-  const subscription = advisor.subscribe('transactions');
+  const subscription = advisor.observe('transactions');
 
   let count = 0;
   const obs = subscription.subscribe((data) => {
@@ -219,7 +219,7 @@ test('nested model props subscription', async () => {
 
   const transactions = await advisor.transactions;
 
-  const subscription = transactions.subscribe('length');
+  const subscription = transactions.observe('length');
 
   let count = 0;
   const obs = subscription.subscribe((data) => {

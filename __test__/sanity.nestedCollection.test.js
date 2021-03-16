@@ -64,9 +64,8 @@ test('nested collection index access', async () => {
 });
 
 
-
-
 test('nested collection mutations', async () => {
+  const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
   const transactions = await instance.transactions;
 
   const firstTran = _.first(transactions);
@@ -106,7 +105,7 @@ test('nested collection mutations', async () => {
 
   const removedTrans = transactions.splice(10, 1000);
 
-  console.snapshot('removedTrans', removedTrans);
+  console.snapshot('removedTrans.len', removedTrans.len);
 
   await Promise.all(removedTrans.map(item => item.delete()));
 

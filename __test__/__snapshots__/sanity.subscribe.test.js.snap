@@ -10,6 +10,44 @@ Object {
 }
 `;
 
+exports[`model props subscription 1 1`] = `
+Object {
+  "args": Array [
+    "subscribe.is_active",
+    0,
+    true,
+  ],
+}
+`;
+
+exports[`model props subscription 1 2`] = `
+Object {
+  "args": Array [
+    "subscribe.is_active",
+    1,
+    false,
+  ],
+}
+`;
+
+exports[`model props subscription 1 3`] = `
+Object {
+  "args": Array [
+    "subscribe.is_active",
+    2,
+    true,
+  ],
+}
+`;
+
+exports[`model props subscription 1 4`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;
+
 exports[`model props subscription 2`] = `
 Object {
   "args": Array [
@@ -21,6 +59,16 @@ Object {
 `;
 
 exports[`model props subscription 3`] = `
+Object {
+  "args": Array [
+    "subscribe.is_active",
+    2,
+    true,
+  ],
+}
+`;
+
+exports[`model props subscription 4`] = `
 Object {
   "args": Array [
     "unsubscribe changes",
@@ -40,12 +88,126 @@ Object {
 exports[`nested model props subscription 2`] = `
 Object {
   "args": Array [
-    "unsubscribe changes",
+    "subscribe.transactions",
+    0,
+    CollectionMixins [
+      TransactionModel {},
+      TransactionModel {},
+      TransactionModel {},
+      TransactionModel {},
+      TransactionModel {},
+    ],
   ],
 }
 `;
 
 exports[`nested model props subscription 3`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;
+
+exports[`nested model props subscription 4`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;
+
+exports[`subscribe to collection 1`] = `
+Object {
+  "args": Array [
+    "user_iduser_iduser_id",
+    "9KGhxtVGdPMD4VRIuZw25Iwo8x33",
+  ],
+}
+`;
+
+exports[`subscribe to collection 2`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;
+
+exports[`subscribe to field of nested model 1`] = `
+Object {
+  "args": Array [
+    "subscribe.profile.display_name",
+    0,
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`subscribe to field of nested model 2`] = `
+Object {
+  "args": Array [
+    "instance.profile.display_name",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`subscribe to field of nested model 3`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;
+
+exports[`subscribe with field prop 1`] = `
+Object {
+  "args": Array [
+    "subscribe.profile.display_name",
+    0,
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`subscribe with field prop 2`] = `
+Object {
+  "args": Array [
+    "instance.profile.display_name",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`subscribe with field prop 3`] = `
+Object {
+  "args": Array [
+    "unsubscribe changes",
+  ],
+}
+`;
+
+exports[`subscribe without field prop 1`] = `
+Object {
+  "args": Array [
+    "subscribe.profile",
+    0,
+    AdvisorProfileModel {},
+  ],
+}
+`;
+
+exports[`subscribe without field prop 2`] = `
+Object {
+  "args": Array [
+    "instance.profile.display_name",
+    "new_displayName",
+  ],
+}
+`;
+
+exports[`subscribe without field prop 3`] = `
 Object {
   "args": Array [
     "unsubscribe changes",

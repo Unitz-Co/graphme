@@ -1,6 +1,9 @@
-const _ = require('lodash');
+import _ from 'lodash';
+import graphme from '@unitz/graphme';
 
-const Definition = require('../Definition');
+import Definition from '../Definition';
+
+import GetUser from '../../gql/user/GetUser.gql';
 
 const UserProfileModel = require('../UserProfileModel');
 const UserPresenceModel = require('../UserPresenceModel');
@@ -22,7 +25,7 @@ class UserModel extends graphme.BaseModel {
     ],
     key: 'id',
 
-    baseQuery: 'GetUser',
+    baseQuery: GetUser,
 
     GQL_ACTIONS: {
       FIND: `user`,

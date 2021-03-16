@@ -38,10 +38,12 @@ const getClientSubs = _.memoize((endpoint, opts = {}) => {
         'x-hasura-admin-secret': adminSecret,
       },
     }
-  });  
+  });
+  getClientSubs.client = client;
   return client;
 });
 
+exports.getClientSubs = getClientSubs;
 
 exports.getClient = _.memoize((endpoint, opts = {}) => {
   const options = getOptions();
@@ -60,14 +62,14 @@ exports.getClient = _.memoize((endpoint, opts = {}) => {
       get(obj, prop) {
         if(prop === 'request') {
           return function(...args) {
-            console.log('request with args:', ...args);
+            // console.log('request with args:', ...args);
             return obj.request(...args);
           }
         }
         if(prop === 'subscribe') {
           return function(...args) {
             const [query] = args;
-            console.log('susbcribe with query:', query);
+            // console.log('susbcribe with query:', query);
             return getClientSubs().request({ query });
           }
         }

@@ -1,8 +1,11 @@
-const _ = require('lodash');
+import _ from 'lodash';
+import graphme from '@unitz/graphme';
 
-const graphme = require('@unitz/graphme');
+import Definition from '../Definition';
 
-const Definition = require('../Definition');
+import GetTransaction from '../../gql/transaction/GetTransaction.gql';
+
+graphme.GqlBuilder.loadDocument({ GetTransaction });
 
 class TransactionModel extends graphme.BaseModel {
   static DEFINITION = Definition.create({

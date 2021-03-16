@@ -1,8 +1,9 @@
-const _ = require('lodash');
+import _ from 'lodash';
+import graphme from '@unitz/graphme';
 
-const graphme = require('@unitz/graphme');
- 
-const Definition = require('../Definition');
+import Definition from '../Definition';
+
+import GetUserPresence from '../../gql/user_presence/GetUserPresence.gql';
 
 class UserPresenceModel extends graphme.BaseModel {
   static DEFINITION = Definition.create({
@@ -15,7 +16,7 @@ class UserPresenceModel extends graphme.BaseModel {
     foreignKeys: ['user_id'],
     key: 'id',
 
-    baseQuery: 'GetUserPresence',
+    baseQuery: GetUserPresence,
     GQL_ACTIONS: {
       GET: `user_presence_by_pk`,
       INSERT: `insert_user_presence_one`,

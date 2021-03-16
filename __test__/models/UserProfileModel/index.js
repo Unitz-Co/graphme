@@ -1,8 +1,9 @@
-const _ = require('lodash');
+import _ from 'lodash';
+import graphme from '@unitz/graphme';
 
-const graphme = require('@unitz/graphme');
- 
-const Definition = require('../Definition');
+import Definition from '../Definition';
+
+import GetUserProfile from '../../gql/user_profile/GetUserProfile.gql';
 
 class UserProfileModel extends graphme.BaseModel {
   static DEFINITION = Definition.create({

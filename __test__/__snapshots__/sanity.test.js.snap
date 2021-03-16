@@ -31,7 +31,7 @@ exports[`direct instance property getter 2`] = `
 Object {
   "args": Array [
     "is_active",
-    false,
+    true,
   ],
 }
 `;
@@ -40,7 +40,7 @@ exports[`direct instance property getter 3`] = `
 Object {
   "args": Array [
     "is_active (before)",
-    false,
+    Promise {},
   ],
 }
 `;
@@ -49,7 +49,7 @@ exports[`direct instance property getter 4`] = `
 Object {
   "args": Array [
     "is_active",
-    false,
+    true,
   ],
 }
 `;

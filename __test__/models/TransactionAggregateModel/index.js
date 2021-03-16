@@ -1,7 +1,9 @@
-const _ = require('lodash');
+import _ from 'lodash';
+import graphme from '@unitz/graphme';
 
-const graphme = require('@unitz/graphme');
-const Definition = require('../Definition');
+import Definition from '../Definition';
+
+import GetTransactionAggregate from '../../gql/transaction/GetTransactionAggregate.gql';
 
 class TransactionAggregateCount extends graphme.BaseModel {
   static DEFINITION = Definition.create({
@@ -13,7 +15,7 @@ class TransactionAggregateCount extends graphme.BaseModel {
       ['min', 'TransactionModel'],
       ['max', 'TransactionModel'],
     ],
-    baseQuery: 'GetTransactionAggregate',
+    baseQuery: GetTransactionAggregate,
     selection: `{ count }`,
 
     GQL_ACTIONS: {
@@ -49,7 +51,7 @@ class TransactionAggregateModel extends graphme.BaseModel {
       // ['aggregate', 'TransactionAggregateCount', { usePlanSync: true }],
     ],
     key: '',
-    baseQuery: 'GetTransactionAggregate',
+    baseQuery: GetTransactionAggregate,
     selection: `{
       nodes {
         id
