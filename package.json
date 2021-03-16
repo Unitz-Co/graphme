@@ -1,6 +1,6 @@
 {
   "name": "@unitz/graphme",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GraphQL query builder lib",
   "private": false,
   "main": "dist/graphme.cjs.js",
@@ -53,6 +53,7 @@
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@trendyol/jest-testcontainers": "^2.0.0",
+    "@unitz/gqlbuilder": "^1.0.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "24.9.0",
