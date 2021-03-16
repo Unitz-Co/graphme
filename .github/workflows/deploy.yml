@@ -25,10 +25,10 @@ jobs:
           && sudo rm dockerize-linux-amd64-v0.6.1.tar.gz
       - name: Install deps
         run: yarn install
-      - name: Build the stack
-        run: yarn mock:up
-      - name: Wait for container
-        run: dockerize -wait tcp://localhost:28080 -timeout 15m
+      # - name: Build the stack
+      #   run: yarn mock:up -d
+      # - name: Wait for container
+      #   run: dockerize -wait tcp://localhost:28080 -timeout 15m
       - name: Run test
         run: yarn test
       - name: Publish package
