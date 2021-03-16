@@ -25,8 +25,8 @@ jobs:
           && sudo rm dockerize-linux-amd64-v0.6.1.tar.gz
       - name: Install deps
         run: yarn install
-      # - name: Build the stack
-      #   run: yarn mock:up -d
+      - name: Bring up graphql mock
+        run: yarn mock:wait
       # - name: Wait for container
       #   run: dockerize -wait tcp://localhost:28080 -timeout 15m
       - name: Run test
