@@ -1,6 +1,6 @@
 {
   "name": "@unitz/graphme",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "GraphQL query builder lib",
   "private": false,
   "main": "dist/graphme.cjs.js",
