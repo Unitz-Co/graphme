@@ -32,8 +32,8 @@
     "coverage": "jest --collectCoverageFrom=./**.js --coverage ./"
   },
   "dependencies": {
-    "@unitz/gqlbuilder": "^1.0.0",
     "@babel/runtime": "^7.7.0",
+    "@unitz/gqlbuilder": "^1.0.2",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
@@ -53,7 +53,6 @@
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@trendyol/jest-testcontainers": "^2.0.0",
-    "@unitz/gqlbuilder": "^1.0.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "24.9.0",
