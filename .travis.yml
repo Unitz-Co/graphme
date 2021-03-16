@@ -1,0 +1,16 @@
+sudo: required
+language: node_js
+on:
+  tags: true
+node_js:
+  - 12.18.2
+services:
+  - docker
+innstal:
+  - yarn install
+before_script:
+  - yarn pretest
+script:
+  - yarn test
+after_script:
+  - yarn mock:down
