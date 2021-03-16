@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import graphme from '@unitz/graphme';
+import graphme from '../../../index';
 
 import Definition from '../Definition';
 

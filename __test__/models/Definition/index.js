@@ -1,4 +1,4 @@
-const graphme = require('@unitz/graphme');
+import graphme from '../../../index';
 
 const hasuraClient = require('../../client');
 
