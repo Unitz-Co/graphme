@@ -14,8 +14,8 @@ jobs:
       - name: Install Dockerize
         run: |
           wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz \
-          && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz \
-          && rm dockerize-linux-amd64-v0.6.1.tar.gz
+          && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz \
+          && sudo rm dockerize-linux-amd64-v0.6.1.tar.gz
       - name: Install deps
         run: yarn install
       - name: Build the stack
