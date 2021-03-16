@@ -25,7 +25,7 @@ INSERT INTO public.advisor (id, is_active, deleted, created_at, updated_at, crea
 INSERT INTO public.advisor (id, is_active, deleted, created_at, updated_at, created_by, updated_by) VALUES ('1HVruML305WfGiAgJIUosp', true, 0, '2021-03-04 03:40:08.216923+00', '2021-03-04 03:40:08.216923+00', NULL, NULL);
 INSERT INTO public.advisor (id, is_active, deleted, created_at, updated_at, created_by, updated_by) VALUES ('66QsJp61HFt3mIcHXg8WjM', true, 0, '2021-03-04 04:17:07.934166+00', '2021-03-04 04:17:07.934166+00', NULL, NULL);
 INSERT INTO public.advisor (id, is_active, deleted, created_at, updated_at, created_by, updated_by) VALUES ('1vEXsvWOSTQO1nqREN2niU', true, 0, '2021-03-04 08:58:14.706116+00', '2021-03-04 08:58:14.706116+00', NULL, NULL);
-INSERT INTO public.advisor (id, is_active, deleted, created_at, updated_at, created_by, updated_by) VALUES ('PdOJWFBgNPUEMhX1JlsDm7zWy012', false, 0, '2021-02-21 07:23:19.372269+00', '2021-03-14 05:30:36.243248+00', NULL, NULL);
+INSERT INTO public.advisor (id, is_active, deleted, created_at, updated_at, created_by, updated_by) VALUES ('PdOJWFBgNPUEMhX1JlsDm7zWy012', true, 0, '2021-02-21 07:23:19.372269+00', '2021-03-14 05:30:36.243248+00', NULL, NULL);
 
 
 --
