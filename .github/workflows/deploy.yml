@@ -1,0 +1,35 @@
+name: Test on Push
+on:
+  push:
+    branches:
+      - "!*"
+    tags:
+      - "v*"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install Yarn
+        run: npm install -g yarn
+      - name: Install wget
+        run: sudo apt-get update && apt-get install -y wget
+      - name: Install Dockerize
+        run: |
+          wget https://github.com/jwilder/dockerize/releases/download/v0.6.1/dockerize-linux-amd64-v0.6.1.tar.gz \
+          && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.6.1.tar.gz \
+          && rm dockerize-linux-amd64-v0.6.1.tar.gz
+      - name: Install deps
+        run: yarn install
+      - name: Build the stack
+        run: yarn mock:up
+      - name: Wait for container
+        run: dockerize -wait tcp://localhost:28080 -timeout 15m
+      - name: Run test
+        run: yarn test
+      - name: Publish package
+        run: npm publish
