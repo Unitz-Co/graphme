@@ -156,41 +156,6 @@ Object {
 }
 `;
 
-exports[`nested collection getter 4`] = `
-Object {
-  "args": Array [
-    "instances",
-    CollectionMixins [
-      AdvisorModel {},
-    ],
-  ],
-}
-`;
-
-exports[`nested collection getter 5`] = `
-Object {
-  "args": Array [
-    "transactions",
-    CollectionMixins [
-      TransactionModel {},
-      TransactionModel {},
-    ],
-  ],
-}
-`;
-
-exports[`nested collection getter 6`] = `
-Object {
-  "args": Array [
-    "transactions",
-    CollectionMixins [
-      TransactionModel {},
-      TransactionModel {},
-    ],
-  ],
-}
-`;
-
 exports[`nested collection getter from find 1`] = `
 Object {
   "args": Array [

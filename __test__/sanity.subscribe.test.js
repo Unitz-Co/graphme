@@ -55,7 +55,7 @@ test('subscribe without field prop', async () => {
     console.snapshot('subscribe.profile', count++, data);
   });
 
-  await sleep(10000);
+  await sleep(1000);
 
   const display_name = await instance.getByPath('profile.display_name');
   await instance.setByPath('profile.display_name', 'new_displayName');
@@ -63,7 +63,7 @@ test('subscribe without field prop', async () => {
 
   console.snapshot('instance.profile.display_name', await instance.getByPath('profile.display_name'));
 
-  await sleep(10000);
+  await sleep(1000);
 
   console.snapshot('unsubscribe changes')
   obs.unsubscribe();
@@ -85,7 +85,7 @@ test('subscribe with field prop', async () => {
     console.snapshot('subscribe.profile.display_name', count++, data);
   });
 
-  await sleep(10000);
+  await sleep(1000);
 
   const display_name = await instance.getByPath('profile.display_name');
   await instance.setByPath('profile.display_name', 'new_displayName');
@@ -93,7 +93,7 @@ test('subscribe with field prop', async () => {
 
   console.snapshot('instance.profile.display_name', await instance.getByPath('profile.display_name'));
 
-  await sleep(10000);
+  await sleep(1000);
 
   console.snapshot('unsubscribe changes')
   obs.unsubscribe();
@@ -113,7 +113,7 @@ test('subscribe to field of nested model', async () => {
     console.snapshot('subscribe.profile.display_name', count++, data);
   });
 
-  await sleep(10000);
+  await sleep(1000);
 
   const display_name = await instance.getByPath('profile.display_name');
   await instance.setByPath('profile.display_name', 'new_displayName');
@@ -121,7 +121,7 @@ test('subscribe to field of nested model', async () => {
 
   console.snapshot('instance.profile.display_name', await instance.getByPath('profile.display_name'));
 
-  await sleep(10000);
+  await sleep(1000);
 
   console.snapshot('unsubscribe changes')
   obs.unsubscribe();
@@ -147,7 +147,7 @@ test('subscribe to collection', async () => {
     console.snapshot('subscribe.transactions', count++, _.map(data, 'id'));
   });
 
-  await sleep(10000);
+  await sleep(1000);
 
   // const user_id = await instance.getByPath('transactions.0.user_id');
   const user_id = '9KGhxtVGdPMD4VRIuZw25Iwo8x33';
@@ -161,7 +161,7 @@ test('subscribe to collection', async () => {
 
   await iTrans.save();
 
-  await sleep(10000);
+  await sleep(1000);
 
   console.snapshot('unsubscribe changes')
 
@@ -189,7 +189,7 @@ test('nested model props subscription', async () => {
   const user_id = '9KGhxtVGdPMD4VRIuZw25Iwo8x33';
   console.snapshot('user_iduser_iduser_id', user_id);
 
-  await sleep(10000);
+  await sleep(1000);
 
   const iTrans = await instance.transactions;
     
@@ -200,7 +200,7 @@ test('nested model props subscription', async () => {
 
   await iTrans.save();
 
-  await sleep(10000);
+  await sleep(1000);
 
   console.snapshot('unsubscribe changes')
 
@@ -238,7 +238,7 @@ test('nested model props subscription', async () => {
 
   await iTrans.save();
 
-  await sleep(10000);
+  await sleep(1000);
 
   console.snapshot('unsubscribe changes')
 

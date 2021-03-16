@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`model props subscription 1`] = `
-Object {
-  "args": Array [
-    "subscribe.is_active",
-    0,
-    true,
-  ],
-}
-`;
-
 exports[`model props subscription 1 1`] = `
 Object {
   "args": Array [
@@ -41,34 +31,6 @@ Object {
 `;
 
 exports[`model props subscription 1 4`] = `
-Object {
-  "args": Array [
-    "unsubscribe changes",
-  ],
-}
-`;
-
-exports[`model props subscription 2`] = `
-Object {
-  "args": Array [
-    "subscribe.is_active",
-    1,
-    false,
-  ],
-}
-`;
-
-exports[`model props subscription 3`] = `
-Object {
-  "args": Array [
-    "subscribe.is_active",
-    2,
-    true,
-  ],
-}
-`;
-
-exports[`model props subscription 4`] = `
 Object {
   "args": Array [
     "unsubscribe changes",
