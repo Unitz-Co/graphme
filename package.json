@@ -29,10 +29,13 @@
     "mock:clean": "yarn mock:clean:container && yarn mock:clean:volume",
     "mock:clean:container": "docker ps -a | grep 'mock_test_*' | awk '{print $1}' | xargs docker rm",
     "mock:clean:volume": "docker volume ls -q | grep 'mock_*' | awk '{print $1}' | xargs docker volume rm",
+    "pretest": "yarn mock:up -d && dockerize -wait tcp://localhost:28080 -timeout 15m",
     "test": "jest --runInBand",
     "test:u": "jest --runInBand --updateSnapshot",
     "test:watch": "jest --watch --coverage",
-    "coverage": "jest --collectCoverageFrom=./**.js --coverage ./"
+    "coverage": "jest --collectCoverageFrom=./**.js --coverage ./",
+    "preversion": "yarn test",
+    "postversion": "git push --tags && yarn publish . --tag $npm_package_version && git push && echo \"Successfully released version $npm_package_version!\""
   },
   "dependencies": {
     "@babel/runtime": "^7.7.0",
