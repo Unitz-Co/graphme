@@ -7,13 +7,13 @@ node_js:
 services:
   - docker
 innstal:
-  - yarn install
-before_script:
   - sudo apt-get update && sudo apt-get install -y wget
-  - DOCKERIZE_VERSION v0.6.1
+  - export DOCKERIZE_VERSION=v0.6.1
   - wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+  - yarn install
+before_script:
   - yarn pretest
 script:
   - yarn test
