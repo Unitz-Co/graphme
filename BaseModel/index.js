@@ -55,11 +55,13 @@ class BaseModel extends StreamableAndQueriable {
     try {
 
       const query = this.getDefinition().getBaseQuery();
-      const mutation = query.update({
-        name: this.getDefinition().GQL_ACTIONS.INSERT,
-        alias: 'item',
-        arguments: {object: { [this.getDefinition().getKey()]: id }},
-      });
+      const mutation = query
+        .setOperation('mutation')
+        .update({
+          name: this.getDefinition().GQL_ACTIONS.INSERT,
+          alias: 'item',
+          arguments: {object: { [this.getDefinition().getKey()]: id }},
+        });
       const rtn = await this.getDefinition().getClient().request(mutation.toString());  
       const rtnData = _.get(rtn, 'item');
       if(rtnData) {
@@ -229,8 +231,9 @@ class BaseModel extends StreamableAndQueriable {
       return this;  
     } catch (err) {
       console.log('syncing data failure for model:', this);
-      throw err;
+      this.then = null;
     }
+    return this;
   }
 
   getSyncQuery(fields = []) {
@@ -363,10 +366,29 @@ class BaseModel extends StreamableAndQueriable {
     query.selectionPath = `${query.selectionPath ? `${query.selectionPath}.` : ''}${queryName}`;
   }
 
+  async isExists() {
+    const id = this.getId();
+    if(id === undefined || id === null) return false;
+
+    if(!this.hasState('isExists')) {
+      let isExists = false;
+      try {
+        const ModelClass = this.getClass();
+        const model = await ModelClass.fromId({ id });
+        isExists = !!model;
+      } catch (err) {
+        isExists = false;
+      }
+      this.setState({ isExists });
+    }
+    return this.getState('isExists');
+  }
+
   async save() {
     try {
-      const id = this.getId();
-      if(id) {
+      // check for existsing
+      if(await this.isExists()) {
+        // query for the item before
         return this.update();
       } else {
         // new item, call the insert mutation instead
