@@ -3,9 +3,9 @@
   "version": "1.0.3",
   "description": "GraphQL query builder lib",
   "private": false,
-  "main": "dist/graphme.cjs.js",
-  "module": "dist/graphme.esm.js",
-  "browser": "dist/graphme.umd.js",
+  "main_dist": "dist/graphme.cjs.js",
+  "module_dist": "dist/graphme.esm.js",
+  "browser_dist": "dist/graphme.umd.js",
   "keywords": [
     "graphql",
     "builder",
