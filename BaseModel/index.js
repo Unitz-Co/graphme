@@ -44,7 +44,7 @@ class BaseModel extends StreamableAndQueriable {
       console.log(err);
     }
 
-    throw Error('Model data is not found');
+    throw Error(`Model data is not found id: ${id}`);
   }
 
   /**
@@ -87,6 +87,10 @@ class BaseModel extends StreamableAndQueriable {
     super(props, ctx);
 
     const definition = this.getDefinition();
+
+    if(!definition) {
+      throw Error('Missing Model definition');
+    }
 
     // configure context data by using definition.getContextName
 
@@ -230,7 +234,7 @@ class BaseModel extends StreamableAndQueriable {
       this.then = null;
       return this;  
     } catch (err) {
-      console.log('syncing data failure for model:', this);
+      console.log('syncing data failure for model:', this, this.getClass());
       this.then = null;
     }
     return this;

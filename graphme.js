@@ -26,7 +26,8 @@ function GraphMe() {
       }
       // validate model
       if(!BaseModel.isModelClass(schema)) {
-        throw Error('Model must be a subsclass of graphme.BaseModel')
+        console.log(schema);
+        throw Error('Model must be a subsclass of graphme.BaseModel class')
       }
 
       const definition = schema.DEFINITION;
