@@ -1,6 +1,10 @@
 import AdvisorModel from './models/AdvisorModel';
 
 
+test('list advisors', async () => {
+  console.snapshot('list advisors', await AdvisorModel.find());
+});
+
 test('init with find gql string', async () => {
   const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
 

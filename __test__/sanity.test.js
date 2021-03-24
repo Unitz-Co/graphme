@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _, { constant } from 'lodash';
 import AdvisorModel from './models/AdvisorModel';
 
 const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
@@ -25,16 +25,20 @@ test('direct instance property getter', async () => {
 
 test('direct instance property subscription', async () => {
   console.log('running')
+  var isActive = await instance.is_active;
   const observer = instance.observe('is_active');
   const subs = observer.subscribe(val => {
     console.snapshot('is_active', val);
   });
   await sleep(1000);
-  instance.is_active = false;
+  instance.is_active = !instance.is_active;
+  await instance.save();
+  await sleep(1000);
+  instance.is_active = !instance.is_active;
   await instance.save();
   await sleep(1000);
   subs.unsubscribe();
-  instance.is_active = true;
+  instance.is_active = isActive;
   await instance.save();
 });
 
@@ -44,11 +48,12 @@ test('direct instance property setter', async () => {
   instance.is_active = !is_active;
 
   await instance.save();
-
+  await sleep(2000);
   console.snapshot('is_active: (before)', is_active, await instance.is_active);
 
   instance.is_active = is_active;
   await instance.save();
+  await sleep(2000);
   console.snapshot('is_active: (after)', await instance.is_active);
 });
 
@@ -56,10 +61,11 @@ test('direct instance property setByPath', async () => {
   const is_active = await instance.is_active;
   await instance.setByPath('is_active', !is_active);
   await instance.save();
-
+  await sleep(2000);
   console.snapshot('is_active: (before)', is_active, await instance.is_active);
   await instance.setByPath('is_active', is_active);
   await instance.save();
+  await sleep(2000);
   console.snapshot('is_active: (after)', await instance.is_active);
 });
 

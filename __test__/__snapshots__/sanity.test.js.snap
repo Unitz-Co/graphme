@@ -96,12 +96,21 @@ exports[`direct instance property subscription 1`] = `
 Object {
   "args": Array [
     "is_active",
-    true,
+    false,
   ],
 }
 `;
 
 exports[`direct instance property subscription 2`] = `
+Object {
+  "args": Array [
+    "is_active",
+    true,
+  ],
+}
+`;
+
+exports[`direct instance property subscription 3`] = `
 Object {
   "args": Array [
     "is_active",

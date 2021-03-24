@@ -84,3 +84,19 @@ Object {
   ],
 }
 `;
+
+exports[`list advisors 1`] = `
+Object {
+  "args": Array [
+    "list advisors",
+    CollectionMixins [
+      AdvisorModel {},
+      AdvisorModel {},
+      AdvisorModel {},
+      AdvisorModel {},
+      AdvisorModel {},
+      AdvisorModel {},
+    ],
+  ],
+}
+`;

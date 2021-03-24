@@ -200,7 +200,7 @@ test('nested model props subscription', async () => {
 
   await iTrans.save();
 
-  await sleep(1000);
+  await sleep(5000);
 
   console.snapshot('unsubscribe changes')
 
@@ -238,7 +238,7 @@ test('nested model props subscription', async () => {
 
   await iTrans.save();
 
-  await sleep(1000);
+  await sleep(5000);
 
   console.snapshot('unsubscribe changes')
 
