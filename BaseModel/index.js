@@ -44,14 +44,15 @@ class BaseModel extends StreamableAndQueriable {
       console.log(err);
     }
 
-    throw Error(`Model data is not found id: ${id}`);
+    // not found model by id, return null
+    return null;
   }
 
   /**
    * 
    * @param {*} param0 
    */
-  static async create({ id }) {
+  static async create(object) {
     try {
 
       const query = this.getDefinition().getBaseQuery();
@@ -60,7 +61,10 @@ class BaseModel extends StreamableAndQueriable {
         .update({
           name: this.getDefinition().GQL_ACTIONS.INSERT,
           alias: 'item',
-          arguments: {object: { [this.getDefinition().getKey()]: id }},
+          arguments: {
+            // object: { [this.getDefinition().getKey()]: id },
+            object,
+          },
         });
       const rtn = await this.getDefinition().getClient().request(mutation.toString());  
       const rtnData = _.get(rtn, 'item');
@@ -235,6 +239,7 @@ class BaseModel extends StreamableAndQueriable {
       return this;  
     } catch (err) {
       console.log('syncing data failure for model:', this, this.getClass());
+      console.log('errerrerr', err);
       this.then = null;
     }
     return this;
