@@ -142,21 +142,4 @@ utils.privateDataWrapper = (options) => {
   };
 };
 
-const K_START = Math.pow(10, 4);
-const M_START = Math.pow(10, 6);
-const B_START = Math.pow(10, 9);
-
-utils.currencyFormatter = (ctx) => (num) => {
-  if (num >= B_START) {
-    return `${_.round(num / B_START, 1)}${ctx.apply('i18n.t', 'currency.billion')}`;
-  }
-  if (num >= M_START) {
-    return `${_.round(num / M_START, 1)}${ctx.apply('i18n.t', 'currency.million')}`;
-  }
-  if (num >= K_START) {
-    return `${_.round(num / K_START, 1)}${ctx.apply('i18n.t', 'currency.thousand')}`;
-  }
-  return num;
-};
-
 module.exports = utils;
