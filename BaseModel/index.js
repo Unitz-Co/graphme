@@ -1,6 +1,7 @@
 const _ = require('lodash');
 
 const StreamableAndQueriable = require('./StreamableAndQueriable');
+const Streamable = require('./Streamable');
 const container = require('../container');
 const define = require('../define');
 const hooks = require('../hooks');
