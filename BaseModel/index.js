@@ -239,8 +239,8 @@ class BaseModel extends StreamableAndQueriable {
       this.then = null;
       return this;  
     } catch (err) {
-      console.log('syncing data failure for model:', this, this.getClass());
-      console.log('errerrerr', err);
+      // console.log('syncing data failure for model:', this, this.getClass());
+      // console.log('errerrerr', err);
       this.then = null;
     }
     return this;
