@@ -7,6 +7,13 @@ const ensureArray = (container, path) => {
 
 const isRootPath = (val) => ((val !== 0) && !val);
 
+const resolveTargetVal = target => {
+  if(target && _.isFunction(target.toObject)) {
+    return target.toObject();
+  }
+  return target;
+};
+
 class SubscriptionMan {
   constructor(target) {
 
@@ -44,7 +51,7 @@ class SubscriptionMan {
       scan: _.debounce(() => {
         _.map(data.listenersByPath, (listeners, path) => {
           const prevValue = _.get(data.prevValuesByPath, path);
-          const curValue = isRootPath(path) ? target : _.get(target, path);
+          const curValue = isRootPath(path) ? resolveTargetVal(target) : _.get(target, path);
 
           if(!_.isEqual(prevValue, curValue)) {
             // trigger all callback in the listeners
