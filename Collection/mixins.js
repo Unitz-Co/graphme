@@ -128,11 +128,17 @@ class CollectionMixins extends Streamable {
   _updateCollectionData(data) {
     const len = this.target.length;
     const arrData = _.castArray(data || []);
+    const arrDataOld = this.toObject();
+
     _.map(arrData, (item, index) => {
       this.target[index] = item;
     })
     if(arrData.length < len) {
       this.target.splice(arrData.length, len);
+    }
+    // emit change on the collection instance
+    if(_.isEqual(arrData, arrDataOld)) {
+      this.emit('change');
     }
   }
 
@@ -180,7 +186,6 @@ class CollectionMixins extends Streamable {
 
   observe(field = '') {
     const NodeModel = this.getType();
-
     // build plan query for this object
     try {
       const [subsMan, ref] = hooks.useMemo.call(this, 'subsMan', () => {
