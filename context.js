@@ -2,11 +2,11 @@ const _ = require('lodash');
 
 const NOT_FOUND = null;
 
-const tagsify = val => {
-  if(_.isString(val)) {
+const tagsify = (val) => {
+  if (_.isString(val)) {
     return _.split(val, ' ');
   }
-  if(_.isArray(val)) {
+  if (_.isArray(val)) {
     return val;
   }
   return [val];
@@ -27,7 +27,7 @@ class Context {
   }
 
   get(key, defVal = NOT_FOUND) {
-    if(this.has(key)) {
+    if (this.has(key)) {
       return _.get(this.data, key, defVal);
     } else {
       return this.getFromParent(key, defVal);
@@ -39,15 +39,15 @@ class Context {
   }
 
   getFromParent(key, defVal = NOT_FOUND) {
-    if(this.parent) {
+    if (this.parent) {
       return this.parent.get(key, defVal);
     }
     return defVal;
   }
 
   set(...args) {
-    if(args.length === 1 && _.isPlainObject(args[0])) {
-      for(let key of _.keys(args[0])) {
+    if (args.length === 1 && _.isPlainObject(args[0])) {
+      for (let key of _.keys(args[0])) {
         const val = args[0][key];
         _.set(this.data, key, val);
         this.emit && this.emit('change', key, val);
@@ -55,7 +55,7 @@ class Context {
       return this;
     }
 
-    if(args.length === 2) {
+    if (args.length === 2) {
       const [key, val] = args;
       // trigger change event
       _.set(this.data, key, val);
@@ -66,7 +66,7 @@ class Context {
 
   getPathToRoot() {
     let rtn = [];
-    if(this.parent) {
+    if (this.parent) {
       rtn = [this.tags, ...this.parent.getPathToRoot()];
     } else {
       rtn = [this.tags];
@@ -76,10 +76,10 @@ class Context {
 
   getChain(key) {
     let rtn = [];
-    if(this.has(key)) {
+    if (this.has(key)) {
       rtn.push(this.get(key));
     }
-    if(this.parent) {
+    if (this.parent) {
       rtn.push(...this.parent.getChain(key));
     }
     return rtn;

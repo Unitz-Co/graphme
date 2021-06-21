@@ -5,10 +5,10 @@ const define = (instance) => {
   const modelDef = instance.getDefinition();
   // define fields
   modelDef.with('getFields', (fields) => {
-    _.castArray(fields || []).map(fieldName => {
+    _.castArray(fields || []).map((fieldName) => {
       Object.defineProperty(instance, `${fieldName}`, {
         get() {
-          if(instance.has(fieldName)) {
+          if (instance.has(fieldName)) {
             return instance.get(fieldName);
           } else {
             // make query to fetch the field and return the promise
@@ -32,7 +32,7 @@ const define = (instance) => {
   modelDef.with('getNodes', (nodes) => {
     const nodesMap = {};
     // const nodesMap = instance.props;
-    _.castArray(nodes || []).map(item => {
+    _.castArray(nodes || []).map((item) => {
       let [nodeName, NodeModel] = item;
       NodeModel = container.resolve(NodeModel);
 
@@ -41,19 +41,19 @@ const define = (instance) => {
           const resolveObjectRelationship = () => {
             // binding change from sourceKey to node forreignKey
             // resolve nodeData if possible
-            if(!instance.has(nodeName)) {
+            if (!instance.has(nodeName)) {
               // init data at the node
             }
             const nodeData = instance.getRef(nodeName);
             nodesMap[nodeName] = new NodeModel(nodeData, instance.getContext());
             nodesMap[nodeName].getContext().set({ nodeName });
             return nodesMap[nodeName];
-          }
+          };
 
           const resolveArrayRelationship = () => {
             // binding change from sourceKey to node forreignKey
             // resolve nodeData if possible
-            if(!instance.has(nodeName)) {
+            if (!instance.has(nodeName)) {
               // init dataRef
               instance.set(nodeName, []);
             }
@@ -62,10 +62,10 @@ const define = (instance) => {
             nodesMap[nodeName] = col;
             col.getContext().set({ nodeName });
             return nodesMap[nodeName];
-          }
+          };
 
-          if(!_.has(nodesMap, nodeName)) {
-            if(NodeModel && NodeModel.isCollection) {
+          if (!_.has(nodesMap, nodeName)) {
+            if (NodeModel && NodeModel.isCollection) {
               return resolveArrayRelationship();
             } else {
               return resolveObjectRelationship();
@@ -74,9 +74,9 @@ const define = (instance) => {
           return nodesMap[nodeName];
         },
         set(value) {
-          if(value instanceof NodeModel) {
+          if (value instanceof NodeModel) {
           } else {
-            if(NodeModel && NodeModel.isCollection) {
+            if (NodeModel && NodeModel.isCollection) {
               const col = NodeModel([], instance.getContext());
               _.castArray(value || []).forEach((nodeData, index) => {
                 col[index] = nodeData;
@@ -96,7 +96,6 @@ const define = (instance) => {
       });
     });
   });
-
-}
+};
 
 module.exports = define;

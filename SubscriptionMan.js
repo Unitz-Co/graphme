@@ -1,14 +1,14 @@
 const _ = require('lodash');
 
 const ensureArray = (container, path) => {
-  _.update(container, path, (curr) => (curr ? curr : []))
+  _.update(container, path, (curr) => (curr ? curr : []));
   return _.get(container, path);
-}
+};
 
-const isRootPath = (val) => ((val !== 0) && !val);
+const isRootPath = (val) => val !== 0 && !val;
 
-const resolveTargetVal = target => {
-  if(target && _.isFunction(target.toObject)) {
+const resolveTargetVal = (target) => {
+  if (target && _.isFunction(target.toObject)) {
     return target.toObject();
   }
   return target;
@@ -16,17 +16,16 @@ const resolveTargetVal = target => {
 
 class SubscriptionMan {
   constructor(target) {
-
     const data = {
       listenersByPath: {},
       prevValuesByPath: {},
       susbcriptionsByPath: {},
-    }
+    };
 
     const methods = {
       subscription: (path) => {
         _.update(data.susbcriptionsByPath, [path], (sub) => {
-          if(!sub) {
+          if (!sub) {
             const listeners = ensureArray(data, ['listenersByPath', path]);
             const subscription = {
               subscribe(...args) {
@@ -35,12 +34,12 @@ class SubscriptionMan {
                 return {
                   unsubscribe() {
                     const foundIndex = listeners.indexOf(cb);
-                    if(foundIndex >=0 ) {
+                    if (foundIndex >= 0) {
                       listeners.splice(foundIndex, 1);
                     }
-                  }
-                }
-              }
+                  },
+                };
+              },
             };
             return subscription;
           }
@@ -53,10 +52,10 @@ class SubscriptionMan {
           const prevValue = _.get(data.prevValuesByPath, path);
           const curValue = isRootPath(path) ? resolveTargetVal(target) : _.get(target, path);
 
-          if(!_.isEqual(prevValue, curValue)) {
+          if (!_.isEqual(prevValue, curValue)) {
             // trigger all callback in the listeners
             listeners.map((cb) => {
-              if(cb && _.isFunction(cb)) {
+              if (cb && _.isFunction(cb)) {
                 cb(curValue);
               }
             });
@@ -65,7 +64,7 @@ class SubscriptionMan {
           }
         });
       }, 10),
-    }
+    };
     _.assign(this, methods);
   }
 }

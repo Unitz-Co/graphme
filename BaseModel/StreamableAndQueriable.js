@@ -14,7 +14,7 @@ class StreamableAndQueriable extends Streamable {
   constructor(props, ctx) {
     super();
     // create context chain
-    this.setContext(new Context(ctx, { data: { type: 'Model'} }));
+    this.setContext(new Context(ctx, { data: { type: 'Model' } }));
 
     // hoisted all props to the root query select model?
     // if(ctx) {
@@ -23,7 +23,7 @@ class StreamableAndQueriable extends Streamable {
     //   console.log('asdasdasdasdasdasd', selectionPathToRoot, parentNode, ctx);
     // }
     // init data if provided
-    if(props) {
+    if (props) {
       // this.set(props);
       privateData.set(this, 'props', props);
     }
@@ -38,15 +38,15 @@ class StreamableAndQueriable extends Streamable {
   }
 
   set(...args) {
-    if(args.length === 1 && _.isPlainObject(args[0])) {
-      for(let key of _.keys(args[0])) {
+    if (args.length === 1 && _.isPlainObject(args[0])) {
+      for (let key of _.keys(args[0])) {
         const val = args[0][key];
         this.set(key, val);
       }
       return this;
     }
 
-    if(args.length === 2) {
+    if (args.length === 2) {
       const [key, val] = args;
       // trigger change event
       _.set(privateData.get(this, 'props'), key, val);
@@ -65,7 +65,7 @@ class StreamableAndQueriable extends Streamable {
   }
 
   get(...args) {
-    if(args.length === 0) {
+    if (args.length === 0) {
       return privateData.get(this, 'props');
     }
     const [key, def] = args;
@@ -73,7 +73,7 @@ class StreamableAndQueriable extends Streamable {
   }
 
   getRef(key) {
-    if(utils.isRootPath(key)) {
+    if (utils.isRootPath(key)) {
       return privateData.get(this, 'props');
     }
     return RefData.create(privateData.get(this, 'props'), key);
@@ -81,16 +81,16 @@ class StreamableAndQueriable extends Streamable {
 
   pick(props) {
     const rtn = {};
-    _.castArray(props || []).map(prop => {
-      if(_.isArray(prop) && prop.length >= 2) {
+    _.castArray(props || []).map((prop) => {
+      if (_.isArray(prop) && prop.length >= 2) {
         let [key, def, alias] = prop;
         alias = alias || key;
-        if(this.has(key)) {
+        if (this.has(key)) {
           rtn[alias] = this.get(key, def);
         }
-      } else if(_.isString(prop)) {
+      } else if (_.isString(prop)) {
         let key = prop;
-        if(this.has(key)) {
+        if (this.has(key)) {
           rtn[key] = this.get(key);
         }
       }
@@ -99,15 +99,15 @@ class StreamableAndQueriable extends Streamable {
   }
 
   setNode(...args) {
-    if(args.length === 1 && _.isPlainObject(args[0])) {
-      for(let key of _.keys(args[0])) {
+    if (args.length === 1 && _.isPlainObject(args[0])) {
+      for (let key of _.keys(args[0])) {
         const val = args[0][key];
         this.setNode(key, val);
       }
       return this;
     }
 
-    if(args.length === 2) {
+    if (args.length === 2) {
       const [key, val] = args;
       // trigger change event
       _.set(privateData.get(this, 'nodes'), key, val);
@@ -121,7 +121,7 @@ class StreamableAndQueriable extends Streamable {
   }
 
   getNode(...args) {
-    if(args.length === 0) {
+    if (args.length === 0) {
       return privateData.get(this, 'nodes');
     }
     const [key, def] = args;
@@ -129,15 +129,15 @@ class StreamableAndQueriable extends Streamable {
   }
 
   setState(...args) {
-    if(args.length === 1 && _.isPlainObject(args[0])) {
-      for(let key of _.keys(args[0])) {
+    if (args.length === 1 && _.isPlainObject(args[0])) {
+      for (let key of _.keys(args[0])) {
         const val = args[0][key];
         this.setState(key, val);
       }
       return this;
     }
 
-    if(args.length === 2) {
+    if (args.length === 2) {
       const [key, val] = args;
       // trigger change event
       _.set(privateData.get(this, 'state'), key, val);
@@ -151,7 +151,7 @@ class StreamableAndQueriable extends Streamable {
   }
 
   getState(...args) {
-    if(args.length === 0) {
+    if (args.length === 0) {
       return privateData.get(this, 'state');
     }
     const [key, def] = args;
@@ -160,16 +160,16 @@ class StreamableAndQueriable extends Streamable {
 
   pickState(props) {
     const rtn = {};
-    _.castArray(props || []).map(prop => {
-      if(_.isArray(prop) && prop.length >= 2) {
+    _.castArray(props || []).map((prop) => {
+      if (_.isArray(prop) && prop.length >= 2) {
         let [key, def, alias] = prop;
         alias = alias || key;
-        if(this.has(key)) {
+        if (this.has(key)) {
           rtn[alias] = this.getState(key, def);
         }
-      } else if(_.isString(prop)) {
+      } else if (_.isString(prop)) {
         let key = prop;
-        if(this.has(key)) {
+        if (this.has(key)) {
           rtn[key] = this.getState(key);
         }
       }

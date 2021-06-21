@@ -43,7 +43,7 @@ class TransactionAggregateModel extends graphme.BaseModel {
       //   id: String,
       //   advisor_id: String,
       //   user_id: String,
-      //   session_id: String,  
+      //   session_id: String,
       // }],
     },
     nodes: [

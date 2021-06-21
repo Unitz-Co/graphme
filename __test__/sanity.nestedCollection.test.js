@@ -18,11 +18,12 @@ test('nested collection getter', async () => {
 
   // await transactions.setArgs({ limit: 2, where: {id: { _in: ["123"] } } }).sync();
   // console.snapshot('transactions', transactions);
-
 });
 
 test('nested collection getter from find', async () => {
-  const instances = await AdvisorModel.find({ where: {id: { _eq: 'PdOJWFBgNPUEMhX1JlsDm7zWy012'}} }, `
+  const instances = await AdvisorModel.find(
+    { where: { id: { _eq: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' } } },
+    `
     id
     created_at
     profile {
@@ -35,13 +36,13 @@ test('nested collection getter from find', async () => {
       user_id
       session_id
     }
-  `);
+  `
+  );
   console.snapshot('instances', instances);
   const instance = _.first(instances);
   // const instnace = instances.getByPath('0');
 
   await instance.transactions.setArgs('limit: 2').sync();
-
 
   const transactions = await instance.transactions;
   await transactions.setArgs('limit: 2').sync();
@@ -52,7 +53,6 @@ test('nested collection getter from find', async () => {
 
   // await transactions.setArgs({ limit: 2, where: {id: { _in: ["123"] } } }).sync();
   // console.snapshot('transactions', transactions);
-
 });
 
 test('nested collection index access', async () => {
@@ -62,7 +62,6 @@ test('nested collection index access', async () => {
   console.snapshot('user_id', await transactions[0].user_id);
   console.snapshot('session_id', await transactions[0].getByPath('session_id'));
 });
-
 
 test('nested collection mutations', async () => {
   const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
@@ -102,15 +101,12 @@ test('nested collection mutations', async () => {
   const lastTran = _.last(transactions);
   console.snapshot('lastTran', await lastTran.session_id);
 
-
   const removedTrans = transactions.splice(10, 1000);
 
   console.snapshot('removedTrans.len', removedTrans.len);
 
-  await Promise.all(removedTrans.map(item => item.delete()));
-
+  await Promise.all(removedTrans.map((item) => item.delete()));
 });
-
 
 test('indirect nested model property getter', async () => {
   const profile = await instance.transactions;
@@ -138,7 +134,6 @@ test('direct nested model property setter', async () => {
   console.snapshot('profile.display_name: (after)', await instance.getByPath('profile.display_name'));
 });
 
-
 test('direct nested model property setByPath', async () => {
   const oldName = await instance.getByPath('profile.display_name');
   console.snapshot('profile.display_name: (before)', oldName);
@@ -162,5 +157,3 @@ test('direct nested model method call', async () => {
 test('direct nested model method applyByPath', async () => {
   console.snapshot('getClass', await instance.applyByPath('profile.getClass'));
 });
-
-

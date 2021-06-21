@@ -25,7 +25,6 @@ class AdvisorProfileModel extends graphme.BaseModel {
       DELETE: `delete_advisor_profile_by_pk`,
     },
   });
-
 }
 
 graphme.model({ AdvisorProfileModel });

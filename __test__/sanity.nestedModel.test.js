@@ -30,7 +30,6 @@ test('direct nested model property setter', async () => {
   console.snapshot('profile.display_name: (after)', await instance.getByPath('profile.display_name'));
 });
 
-
 test('direct nested model property setByPath', async () => {
   const oldName = await instance.getByPath('profile.display_name');
   console.snapshot('profile.display_name: (before)', oldName);
@@ -46,7 +45,6 @@ test('direct nested model property setByPath', async () => {
   console.snapshot('profile.display_name: (after)', await instance.getByPath('profile.display_name'));
 });
 
-
 test('direct nested model method call', async () => {
   const profile = await instance.profile;
   console.snapshot('getClass', profile.getClass());
@@ -55,5 +53,3 @@ test('direct nested model method call', async () => {
 test('direct nested model method applyByPath', async () => {
   console.snapshot('getClass', await instance.applyByPath('profile.getClass'));
 });
-
-

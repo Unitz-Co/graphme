@@ -9,7 +9,7 @@ class TestEnvironment extends NodeEnvironment {
   async setup() {
     await super.setup();
 
-    this.global.sleep = (ms) => new Promise(res => setTimeout(res, ms));
+    this.global.sleep = (ms) => new Promise((res) => setTimeout(res, ms));
   }
 }
 

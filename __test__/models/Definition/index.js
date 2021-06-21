@@ -7,7 +7,7 @@ class Definition {
     return graphme.Definition.create({
       ...config,
       getClient: hasuraClient.getClient,
-    }) 
+    });
   }
 }
 

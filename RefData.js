@@ -4,7 +4,7 @@ const utils = require('./utils');
 
 const privateRefData = utils.privateDataWrapper({
   container: () => ({}),
-  path: () => (''),
+  path: () => '',
 });
 
 class RefData {
@@ -12,22 +12,22 @@ class RefData {
     privateRefData.set(this, 'container', container);
     privateRefData.set(this, 'path', path);
   }
-  
+
   getTarget() {
     return _.get(privateRefData.get(this, 'container'), privateRefData.get(this, 'path'));
   }
 
   get(...args) {
     // root not getter
-    if(args.length === 0) {
-      return this.getTarget();  
+    if (args.length === 0) {
+      return this.getTarget();
     }
     const [key, def] = args;
     return _.get(this.getTarget(), key, def);
   }
   set(...args) {
     // root not setter
-    if(args.length === 1) {
+    if (args.length === 1) {
       const [val] = args;
       return _.set(privateRefData.get(this, 'container'), privateRefData.get(this, 'path'), val);
     }
@@ -43,24 +43,24 @@ class RefData {
     const inst = new RefData(container, path);
 
     const ref = {
-      inst: _.memoize(() => (inst.get() || {})),
+      inst: _.memoize(() => inst.get() || {}),
       mixins: _.memoize(() => new RefData(ref.target(), path)),
       target: _.memoize(() => new Proxy(ref.inst(), ref.handlers())),
       handlers: _.memoize(() => ({
         get(obj, prop) {
-          if(['get', 'set'].includes(prop)) {
+          if (['get', 'set'].includes(prop)) {
             const mixins = ref.mixins();
             return mixins[prop].bind(obj);
-          } else if(prop === 'getTarget') {
+          } else if (prop === 'getTarget') {
             return null;
           }
           return obj[prop];
         },
         set(obj, prop, val) {
           const mixins = ref.mixins();
-          if(['get', 'set'].includes(prop)) {
+          if (['get', 'set'].includes(prop)) {
             return null;
-          } else if(prop === 'getTarget') {
+          } else if (prop === 'getTarget') {
             return null;
           }
           mixins.set(prop, val);
@@ -72,7 +72,7 @@ class RefData {
           return mixins.has(key);
         },
       })),
-    }
+    };
     return ref.target();
   }
 }

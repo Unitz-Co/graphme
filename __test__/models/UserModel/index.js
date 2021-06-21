@@ -32,7 +32,6 @@ class UserModel extends graphme.BaseModel {
       UPDATE: `update_user_by_pk`,
       DELETE: `delete_user_by_pk`,
     },
-
   });
 }
 

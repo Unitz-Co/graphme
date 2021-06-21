@@ -11,8 +11,7 @@ export default [
   // browser-friendly UMD build
   {
     input: 'index.js',
-    external: [
-    ],
+    external: [],
     output: {
       name: 'graphme',
       exports: 'named',
@@ -26,9 +25,9 @@ export default [
         dependencies: true,
         // packagePath: path.resolve('../../package.json'),
         peerDependencies: false,
-      }),      
+      }),
       visualizer({
-        filename: 'stats_viz.html'
+        filename: 'stats_viz.html',
       }),
       filesize(),
       nodeResolve({
@@ -45,8 +44,7 @@ export default [
   // and ES module (for bundlers) build.
   {
     input: 'index.js',
-    external: [
-    ],
+    external: [],
     output: {
       name: 'graphme',
       file: pkg.module,
@@ -58,9 +56,9 @@ export default [
         dependencies: true,
         // packagePath: path.resolve('../../package.json'),
         peerDependencies: false,
-      }),      
+      }),
       visualizer({
-        filename: 'stats_viz.html'
+        filename: 'stats_viz.html',
       }),
       filesize(),
       nodeResolve({
@@ -73,16 +71,15 @@ export default [
     ],
   },
 
-  // CommonJS (for Node)  
+  // CommonJS (for Node)
   {
     input: 'index.js',
-    external: [
-    ],
+    external: [],
     output: {
       name: 'graphme',
       exports: 'named',
       file: pkg.main,
-      format: 'cjs'
+      format: 'cjs',
     },
     plugins: [
       autoExternal({
@@ -90,9 +87,9 @@ export default [
         dependencies: true,
         // packagePath: path.resolve('../../package.json'),
         peerDependencies: false,
-      }),      
+      }),
       visualizer({
-        filename: 'stats_viz.html'
+        filename: 'stats_viz.html',
       }),
       filesize(),
       nodeResolve({
@@ -104,5 +101,5 @@ export default [
         babelHelpers: 'runtime',
       }),
     ],
-  },  
+  },
 ];

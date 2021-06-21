@@ -16,17 +16,17 @@ class CollectionMixins extends Streamable {
       initer: (item) => new Type(item, this.getContext()),
       getId: (item) => {
         const keyName = Type.getDefinition().getKey();
-        if(keyName && _.has(item, keyName)) {
+        if (keyName && _.has(item, keyName)) {
           return _.get(item, keyName);
         }
-      }
-    })
+      },
+    });
     const castType = (item) => {
-      if(item instanceof Type) {
+      if (item instanceof Type) {
         return item;
       }
       return cacheInstance.get(item);
-    }
+    };
 
     this.inst = inst;
     this.target = target;
@@ -42,17 +42,17 @@ class CollectionMixins extends Streamable {
       _args = args;
       return this.target;
     };
-  
+
     this.getArgs = () => {
       return _args;
     };
 
     this.updateArgs = (updater) => {
-      if(!_.isFunction(updater)) {
+      if (!_.isFunction(updater)) {
         throw Error('UpdateArgs requires updater function as the input');
       }
       return this.setArgs(updater(this.getArgs()));
-    }
+    };
 
     // selection props
     let _selections = '';
@@ -61,28 +61,28 @@ class CollectionMixins extends Streamable {
       _selections = selections;
       return this.target;
     };
-  
+
     this.getSelections = () => {
       return _selections;
     };
 
     this.updateSelection = (updater) => {
-      if(!_.isFunction(updater)) {
+      if (!_.isFunction(updater)) {
         throw Error('UpdateSelection requires updater function as the input');
       }
       return this.setSelections(updater(this.getSelections()));
-    }
+    };
 
     // create context chain
     let container = {
-      context: new Context(ctx, { data: { type: 'Collection'} }),
+      context: new Context(ctx, { data: { type: 'Collection' } }),
     };
     this.setContext = (ctx) => {
       container.context = ctx;
-    }
+    };
     this.getContext = () => {
       return container.context;
-    }
+    };
 
     // selection props
     let _inited = false;
@@ -91,24 +91,24 @@ class CollectionMixins extends Streamable {
       _inited = true;
       return this.target;
     };
-  
+
     this.getInited = () => {
       return _inited;
     };
 
     /**
-     * PromiseLike object 
+     * PromiseLike object
      *
      */
-     Object.defineProperty(this, 'then', {
+    Object.defineProperty(this, 'then', {
       value: (cb) => {
         const rtn = this.sync();
         // thenable only apply once
         this.then = null;
-        if(rtn && rtn.then) {
+        if (rtn && rtn.then) {
           rtn.then(() => {
             cb(this.target);
-          })
+          });
         } else {
           cb(rtn);
         }
@@ -132,25 +132,27 @@ class CollectionMixins extends Streamable {
 
     _.map(arrData, (item, index) => {
       this.target[index] = item;
-    })
-    if(arrData.length < len) {
+    });
+    if (arrData.length < len) {
       this.target.splice(arrData.length, len);
     }
     // emit change on the collection instance
-    if(_.isEqual(arrData, arrDataOld)) {
+    if (_.isEqual(arrData, arrDataOld)) {
       this.emit('change');
     }
   }
 
   async save() {
     // apply saving method for all items in the collection
-    await Promise.all(this.target.map(async (item) => {
-      try {
-        await item.saveIfDirty();
-      } catch (err) {
-        // console.log(err);
-      }
-    }));
+    await Promise.all(
+      this.target.map(async (item) => {
+        try {
+          await item.saveIfDirty();
+        } catch (err) {
+          // console.log(err);
+        }
+      })
+    );
     return this.target;
   }
 
@@ -162,7 +164,7 @@ class CollectionMixins extends Streamable {
     const nodeName = this.getContext().get('nodeName');
     const NodeModel = this.Type;
 
-    if(parentModel) {
+    if (parentModel) {
       await parentModel.sync(
         _.castArray(fields || []).concat(
           [`${nodeName}${argsStr} ${NodeModel.getSelection()}`],
@@ -190,7 +192,10 @@ class CollectionMixins extends Streamable {
     try {
       const [subsMan, ref] = hooks.useMemo.call(this, 'subsMan', () => {
         const subsMan = new SubscriptionMan(this);
-        this.on('change', _.debounce(() => subsMan.scan()));
+        this.on(
+          'change',
+          _.debounce(() => subsMan.scan())
+        );
 
         const ref = {
           fields: [],
@@ -200,11 +205,10 @@ class CollectionMixins extends Streamable {
         ref.fields.push(..._.castArray(field || []));
         ref.fields = _.uniq(ref.fields);
         // const target = this;
-  
+
         const instance = this.getContext().get('@model');
 
-
-        if(instance) {
+        if (instance) {
           const nodeName = this.getContext().get('nodeName');
           let argsStr = this.getArgs();
           argsStr = argsStr ? `(${argsStr})` : '';
@@ -215,11 +219,10 @@ class CollectionMixins extends Streamable {
             this._updateCollectionData(data);
           });
         } else {
-
           const client = NodeModel.getDefinition().getClient();
-          if(!client.subscribe) {
+          if (!client.subscribe) {
             throw Error('Client does not support subscribe method');
-          }     
+          }
           // no parent instance found, root collection query?
           const select = NodeModel.getFindQuery(this.getArgs(), this.getSelections());
           select.setOperation('subscription');
@@ -231,30 +234,29 @@ class CollectionMixins extends Streamable {
           const currQuery = queryStr;
           const observer = client.subscribe(currQuery);
           const prevObs = ref.currObs;
-          if(!prevObs || (prevQuery !== currQuery)) {
+          if (!prevObs || prevQuery !== currQuery) {
             ref.currObs = observer.subscribe({
               next: (res) => {
                 const selectionPath = select.selectionPath;
                 const { data } = res;
-                if(data) {
+                if (data) {
                   const rtnData = _.get(data, selectionPath);
                   this._updateCollectionData(rtnData);
                 }
-              }
+              },
             });
             ref.currQuery = currQuery;
-      
-            if(prevObs) {
+
+            if (prevObs) {
               // unsubscribe prev Op
               prevObs.unsubscribe();
-            }  
+            }
           }
         }
-    
+
         return [subsMan, ref];
       });
       return subsMan.subscription(field);
-
     } catch (err) {
       console.log('subscription failure for model:', this);
       throw err;

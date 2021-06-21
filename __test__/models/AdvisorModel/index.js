@@ -22,7 +22,11 @@ class AdvisorModel extends graphme.BaseModel {
       ['profile', 'AdvisorProfileModel', { column_mapping: { id: 'advisor_id' } }],
       ['presence', 'AdvisorPresenceModel', { column_mapping: { id: 'advisor_id' } }],
       ['transactions', 'TransactionModel.Collection', { column_mapping: { id: 'advisor_id' } }],
-      ['transactions_aggregate', 'TransactionAggregateModel', { column_mapping: { id: 'advisor_id' }, usePlanSync: true }],
+      [
+        'transactions_aggregate',
+        'TransactionAggregateModel',
+        { column_mapping: { id: 'advisor_id' }, usePlanSync: true },
+      ],
     ],
     key: 'id',
 
@@ -34,11 +38,10 @@ class AdvisorModel extends graphme.BaseModel {
       INSERT: `insert_advisor_one`,
       UPDATE: `update_advisor_by_pk`,
       DELETE: `delete_advisor_by_pk`,
-    },    
+    },
   });
 }
 
 graphme.model('AdvisorModel', AdvisorModel);
 
 export default AdvisorModel;
-

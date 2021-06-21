@@ -29,13 +29,13 @@ test('model props subscription 1', async () => {
     instance.is_active = is_active;
     await sleep(2000);
     // await instance.save();
-  }
+  };
 
   await changeIsActive();
 
   await sleep(1000);
 
-  console.snapshot('unsubscribe changes')
+  console.snapshot('unsubscribe changes');
   obs.unsubscribe();
 
   await changeIsActive();
@@ -65,10 +65,9 @@ test('subscribe without field prop', async () => {
 
   await sleep(1000);
 
-  console.snapshot('unsubscribe changes')
+  console.snapshot('unsubscribe changes');
   obs.unsubscribe();
   await instance.setByPath('profile.display_name', display_name);
-
 });
 
 test('subscribe with field prop', async () => {
@@ -95,10 +94,9 @@ test('subscribe with field prop', async () => {
 
   await sleep(1000);
 
-  console.snapshot('unsubscribe changes')
+  console.snapshot('unsubscribe changes');
   obs.unsubscribe();
   await instance.setByPath('profile.display_name', display_name);
-
 });
 
 test('subscribe to field of nested model', async () => {
@@ -123,10 +121,9 @@ test('subscribe to field of nested model', async () => {
 
   await sleep(1000);
 
-  console.snapshot('unsubscribe changes')
+  console.snapshot('unsubscribe changes');
   obs.unsubscribe();
   await instance.setByPath('profile.display_name', display_name);
-
 });
 
 test('subscribe to collection', async () => {
@@ -136,7 +133,7 @@ test('subscribe to collection', async () => {
 
   advisor.setSelections('transactions { id }');
 
-  advisor.setArgs([['transactions', 'limit: 5, order_by: {created_at: desc}']])
+  advisor.setArgs([['transactions', 'limit: 5, order_by: {created_at: desc}']]);
 
   const transactions = await advisor.transactions;
 
@@ -163,10 +160,9 @@ test('subscribe to collection', async () => {
 
   await sleep(1000);
 
-  console.snapshot('unsubscribe changes')
+  console.snapshot('unsubscribe changes');
 
   obs.unsubscribe();
-
 });
 
 test('nested model props subscription', async () => {
@@ -176,7 +172,7 @@ test('nested model props subscription', async () => {
 
   advisor.setSelections('transactions { id }');
 
-  advisor.setArgs([['transactions', 'limit: 5, order_by: {created_at: desc}']])
+  advisor.setArgs([['transactions', 'limit: 5, order_by: {created_at: desc}']]);
 
   const subscription = advisor.observe('transactions');
 
@@ -192,7 +188,7 @@ test('nested model props subscription', async () => {
   await sleep(1000);
 
   const iTrans = await instance.transactions;
-    
+
   iTrans.push({
     user_id,
     session_id: 'new_session',
@@ -202,10 +198,9 @@ test('nested model props subscription', async () => {
 
   await sleep(1000);
 
-  console.snapshot('unsubscribe changes')
+  console.snapshot('unsubscribe changes');
 
   obs.unsubscribe();
-
 });
 
 test('nested model props subscription', async () => {
@@ -230,7 +225,7 @@ test('nested model props subscription', async () => {
   // const user_id = await instance.getByPath('transactions.0.user_id');
 
   const iTrans = await instance.transactions;
-    
+
   iTrans.push({
     user_id,
     session_id: 'new_session',
@@ -240,9 +235,7 @@ test('nested model props subscription', async () => {
 
   await sleep(1000);
 
-  console.snapshot('unsubscribe changes')
+  console.snapshot('unsubscribe changes');
 
   obs.unsubscribe();
-
-
 });

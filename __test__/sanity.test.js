@@ -7,7 +7,7 @@ test('init with fromData', async () => {
   console.snapshot('before sync', instance.toObject());
   console.snapshot('instance', await instance);
   console.snapshot('instance.id', instance.id);
-  console.snapshot('instance.created_at', instance.created_at)
+  console.snapshot('instance.created_at', instance.created_at);
 });
 
 test('direct instance property getter', async () => {
@@ -22,11 +22,10 @@ test('direct instance property getter', async () => {
   console.snapshot('is_active', await instance.getByPath('is_active'));
 });
 
-
 test('direct instance property subscription', async () => {
-  console.log('running')
+  console.log('running');
   const observer = instance.observe('is_active');
-  const subs = observer.subscribe(val => {
+  const subs = observer.subscribe((val) => {
     console.snapshot('is_active', val);
   });
   await sleep(1000);
@@ -64,7 +63,7 @@ test('direct instance property setByPath', async () => {
 });
 
 test('direct instance method call', async () => {
-  console.snapshot('getClass', instance.getClass())
+  console.snapshot('getClass', instance.getClass());
 });
 
 test('direct instance method applyByPath', async () => {

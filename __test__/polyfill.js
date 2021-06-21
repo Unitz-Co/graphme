@@ -3,16 +3,16 @@ const chalk = require('chalk');
 
 const testPolyFill = () => {
   const allTest = {};
-  if(global) {
+  if (global) {
     global.test = (testName, testFn) => {
       _.set(allTest, testName, testFn);
     };
     global.runTest = async () => {
       const testKeys = Object.keys(allTest);
-      for(let index = 0; index < testKeys.length; index++) {
+      for (let index = 0; index < testKeys.length; index++) {
         const testName = testKeys[index];
         const test = allTest[testName];
-        if(test) {
+        if (test) {
           console.log(chalk.blue(`[************* Running test [${testName}] *************]`));
           await test.call();
         }
@@ -26,7 +26,7 @@ const testPolyFill = () => {
 
     console.snapshot = (...args) => {
       console.log(...args);
-      if(expect) {
+      if (expect) {
         expect({ args }).toMatchSnapshot();
       }
     };
@@ -38,8 +38,8 @@ const testPolyFill = () => {
     },
     runTest: () => {
       runTest();
-    }
-  }
+    },
+  };
   return runner;
 };
 

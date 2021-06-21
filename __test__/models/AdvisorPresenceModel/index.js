@@ -4,7 +4,7 @@ import graphme from '../../../index';
 import Definition from '../Definition';
 
 import GetAdvisorPresence from '../../gql/advisor_presence/GetAdvisorPresence.gql';
- 
+
 class AdvisorPresenceModel extends graphme.BaseModel {
   static DEFINITION = Definition.create({
     name: 'AdvisorPresence',

@@ -25,7 +25,6 @@ class UserProfileModel extends graphme.BaseModel {
       DELETE: `delete_user_profile_by_pk`,
     },
   });
-
 }
 
 graphme.model({ UserProfileModel });
