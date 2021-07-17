@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import graphme from '../../../index';
 
 import Definition from '../Definition';
@@ -26,11 +25,11 @@ class UserModel extends graphme.BaseModel {
     baseQuery: GetUser,
 
     GQL_ACTIONS: {
-      FIND: `user`,
-      GET: `user_by_pk`,
-      INSERT: `insert_user_one`,
-      UPDATE: `update_user_by_pk`,
-      DELETE: `delete_user_by_pk`,
+      FIND: 'user',
+      GET: 'user_by_pk',
+      INSERT: 'insert_user_one',
+      UPDATE: 'update_user_by_pk',
+      DELETE: 'delete_user_by_pk',
     },
   });
 }

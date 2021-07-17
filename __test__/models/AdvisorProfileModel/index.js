@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import graphme from '../../../index';
 
 import Definition from '../Definition';
@@ -19,10 +18,10 @@ class AdvisorProfileModel extends graphme.BaseModel {
 
     baseQuery: GetAdvisorProfile,
     GQL_ACTIONS: {
-      GET: `advisor_profile_by_pk`,
-      INSERT: `insert_advisor_profile_one`,
-      UPDATE: `update_advisor_profile_by_pk`,
-      DELETE: `delete_advisor_profile_by_pk`,
+      GET: 'advisor_profile_by_pk',
+      INSERT: 'insert_advisor_profile_one',
+      UPDATE: 'update_advisor_profile_by_pk',
+      DELETE: 'delete_advisor_profile_by_pk',
     },
   });
 }

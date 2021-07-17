@@ -1,6 +1,8 @@
 class CacheMan {
   initer = null;
+
   map = {};
+
   constructor(options) {
     const { initer, getId } = options || {};
     if (typeof initer !== 'function') {

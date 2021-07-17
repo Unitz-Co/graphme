@@ -33,12 +33,12 @@ class TransactionModel extends graphme.BaseModel {
 
     GQL_ACTIONS: _.memoize(() => {
       return {
-        GET: `transaction_by_pk`,
-        INSERT: `insert_transaction_one`,
-        INSERT_MANY: `insert_transaction`,
-        UPDATE: `update_transaction_by_pk`,
-        DELETE: `delete_transaction_by_pk`,
-        DELETE_MANY: `delete_transaction`,
+        GET: 'transaction_by_pk',
+        INSERT: 'insert_transaction_one',
+        INSERT_MANY: 'insert_transaction',
+        UPDATE: 'update_transaction_by_pk',
+        DELETE: 'delete_transaction_by_pk',
+        DELETE_MANY: 'delete_transaction',
       };
     })(),
   });

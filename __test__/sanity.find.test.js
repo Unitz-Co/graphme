@@ -1,7 +1,7 @@
 import AdvisorModel from './models/AdvisorModel';
 
 test('init with find gql string', async () => {
-  const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
+  const advisors = await AdvisorModel.find('limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } ');
 
   const advisor = await advisors.getByPath('0');
   console.snapshot('advisor.0.profile.display_name', await advisor.getByPath('profile.display_name'));
@@ -19,7 +19,7 @@ test('init with find gql string', async () => {
 test('init with find gql object', async () => {
   const advisors = await AdvisorModel.find(
     { limit: 5, where: { id: { _eq: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' } } },
-    ({ node }) => node.merge(`transactions { id }`)
+    ({ node }) => node.merge('transactions { id }'),
   );
 
   const advisor = await advisors.getByPath('0');

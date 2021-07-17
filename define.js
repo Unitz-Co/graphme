@@ -10,13 +10,12 @@ const define = (instance) => {
         get() {
           if (instance.has(fieldName)) {
             return instance.get(fieldName);
-          } else {
-            // make query to fetch the field and return the promise
-            return new Promise(async (res) => {
-              await instance.sync([fieldName]);
-              res(instance.get(fieldName));
-            });
           }
+          // make query to fetch the field and return the promise
+          return new Promise(async (res) => {
+            await instance.sync([fieldName]);
+            res(instance.get(fieldName));
+          });
         },
         set(value) {
           // mark model as dirty
@@ -68,27 +67,24 @@ const define = (instance) => {
           if (!_.has(nodesMap, nodeName)) {
             if (NodeModel && NodeModel.isCollection) {
               return resolveArrayRelationship();
-            } else {
-              return resolveObjectRelationship();
             }
+            return resolveObjectRelationship();
           }
           return nodesMap[nodeName];
         },
         set(value) {
           if (value instanceof NodeModel) {
+          } else if (NodeModel && NodeModel.isCollection) {
+            const col = NodeModel([], instance.getContext());
+            _.castArray(value || []).forEach((nodeData, index) => {
+              col[index] = nodeData;
+            });
+            value = col;
+            // instance.set(nodeName, col);
           } else {
-            if (NodeModel && NodeModel.isCollection) {
-              const col = NodeModel([], instance.getContext());
-              _.castArray(value || []).forEach((nodeData, index) => {
-                col[index] = nodeData;
-              });
-              value = col;
-              // instance.set(nodeName, col);
-            } else {
-              value = NodeModel.fromData(value, instance.getContext());
-              // sync data from value to parent node
-              instance.set(nodeName, value.get());
-            }
+            value = NodeModel.fromData(value, instance.getContext());
+            // sync data from value to parent node
+            instance.set(nodeName, value.get());
           }
           nodesMap[nodeName] = value;
           return nodesMap[nodeName];

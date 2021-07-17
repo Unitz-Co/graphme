@@ -20,22 +20,21 @@ function Collection(Type, ...args) {
           obj[prop] = value;
           ref.mixins().emit('change', prop);
           return true;
-        } else if (utils.isIndex(prop)) {
+        } if (utils.isIndex(prop)) {
           obj[prop] = value;
           ref.mixins().emit('change', prop);
           return true;
-        } else if (prop === 'then') {
-          return true;
-        } else {
-          obj[prop] = value;
+        } if (prop === 'then') {
           return true;
         }
+        obj[prop] = value;
+        return true;
       },
       get(obj, prop) {
         const mixins = ref.mixins();
         if (mixins[prop]) {
           return mixins[prop];
-        } else if (utils.isIndex(prop)) {
+        } if (utils.isIndex(prop)) {
           // accessing to collection index
           const pureData = obj[prop];
           if (!pureData) return pureData;

@@ -37,7 +37,7 @@ const testPolyFill = () => {
       return runner;
     },
     runTest: () => {
-      runTest();
+      global.runTest();
     },
   };
   return runner;

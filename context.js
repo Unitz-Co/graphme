@@ -29,9 +29,8 @@ class Context {
   get(key, defVal = NOT_FOUND) {
     if (this.has(key)) {
       return _.get(this.data, key, defVal);
-    } else {
-      return this.getFromParent(key, defVal);
     }
+    return this.getFromParent(key, defVal);
   }
 
   has(key) {
@@ -47,7 +46,7 @@ class Context {
 
   set(...args) {
     if (args.length === 1 && _.isPlainObject(args[0])) {
-      for (let key of _.keys(args[0])) {
+      for (const key of _.keys(args[0])) {
         const val = args[0][key];
         _.set(this.data, key, val);
         this.emit && this.emit('change', key, val);
@@ -75,7 +74,7 @@ class Context {
   }
 
   getChain(key) {
-    let rtn = [];
+    const rtn = [];
     if (this.has(key)) {
       rtn.push(this.get(key));
     }

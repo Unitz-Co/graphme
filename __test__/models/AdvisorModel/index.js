@@ -1,14 +1,9 @@
-import _ from 'lodash';
 import graphme from '../../../index';
 
 import Definition from '../Definition';
 
 import GetAdvisor from '../../gql/advisor/GetAdvisor.gql';
 
-import AdvisorProfileModel from '../AdvisorProfileModel';
-import AdvisorPresenceModel from '../AdvisorPresenceModel';
-import TransactionModel from '../TransactionModel';
-import TransactionAggregateModel from '../TransactionAggregateModel';
 
 class AdvisorModel extends graphme.BaseModel {
   static DEFINITION = Definition.create({
@@ -33,11 +28,11 @@ class AdvisorModel extends graphme.BaseModel {
     baseQuery: GetAdvisor,
 
     GQL_ACTIONS: {
-      FIND: `advisor`,
-      GET: `advisor_by_pk`,
-      INSERT: `insert_advisor_one`,
-      UPDATE: `update_advisor_by_pk`,
-      DELETE: `delete_advisor_by_pk`,
+      FIND: 'advisor',
+      GET: 'advisor_by_pk',
+      INSERT: 'insert_advisor_one',
+      UPDATE: 'update_advisor_by_pk',
+      DELETE: 'delete_advisor_by_pk',
     },
   });
 }

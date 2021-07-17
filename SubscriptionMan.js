@@ -1,11 +1,11 @@
 const _ = require('lodash');
 
 const ensureArray = (container, path) => {
-  _.update(container, path, (curr) => (curr ? curr : []));
+  _.update(container, path, curr => (curr || []));
   return _.get(container, path);
 };
 
-const isRootPath = (val) => val !== 0 && !val;
+const isRootPath = val => val !== 0 && !val;
 
 const resolveTargetVal = (target) => {
   if (target && _.isFunction(target.toObject)) {

@@ -4,7 +4,7 @@ import AdvisorModel from './models/AdvisorModel';
 const instance = AdvisorModel.fromData({ id: 'PdOJWFBgNPUEMhX1JlsDm7zWy012' });
 
 test('model props subscription 1', async () => {
-  const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
+  const advisors = await AdvisorModel.find('limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } ');
 
   const advisor = await advisors.getByPath('0');
 
@@ -42,7 +42,7 @@ test('model props subscription 1', async () => {
 });
 
 test('subscribe without field prop', async () => {
-  const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
+  const advisors = await AdvisorModel.find('limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } ');
 
   const advisor = _.first(advisors);
 
@@ -71,7 +71,7 @@ test('subscribe without field prop', async () => {
 });
 
 test('subscribe with field prop', async () => {
-  const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
+  const advisors = await AdvisorModel.find('limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } ');
 
   const advisor = _.first(advisors);
 
@@ -100,7 +100,7 @@ test('subscribe with field prop', async () => {
 });
 
 test('subscribe to field of nested model', async () => {
-  const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
+  const advisors = await AdvisorModel.find('limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } ');
 
   const advisor = _.first(advisors);
 
@@ -127,7 +127,7 @@ test('subscribe to field of nested model', async () => {
 });
 
 test('subscribe to collection', async () => {
-  const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
+  const advisors = await AdvisorModel.find('limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } ');
 
   const advisor = _.first(advisors);
 
@@ -166,7 +166,7 @@ test('subscribe to collection', async () => {
 });
 
 test('nested model props subscription', async () => {
-  const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
+  const advisors = await AdvisorModel.find('limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } ');
 
   const advisor = _.first(advisors);
 
@@ -204,7 +204,7 @@ test('nested model props subscription', async () => {
 });
 
 test('nested model props subscription', async () => {
-  const advisors = await AdvisorModel.find(`limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } `);
+  const advisors = await AdvisorModel.find('limit: 1, where: { id: { _eq: "PdOJWFBgNPUEMhX1JlsDm7zWy012" } } ');
 
   const advisor = _.first(advisors);
 

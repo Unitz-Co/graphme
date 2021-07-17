@@ -7,13 +7,13 @@ const privateData = utils.privateDataWrapper({
 
 class Streamable {
   emit(event, ...params) {
-    return _.get(privateData.get(this, 'listeners'), [event], []).map((listener) => listener.call(this, ...params));
+    return _.get(privateData.get(this, 'listeners'), [event], []).map(listener => listener.call(this, ...params));
   }
 
   on(event, listener) {
-    _.update(privateData.get(this, 'listeners'), [event], (val) => (val ? val.concat(listener) : [listener]));
+    _.update(privateData.get(this, 'listeners'), [event], val => (val ? val.concat(listener) : [listener]));
     return () => {
-      _.update(privateData.get(this, 'listeners'), [event], (val) => _.filter(val || [], (item) => item !== listener));
+      _.update(privateData.get(this, 'listeners'), [event], val => _.filter(val || [], item => item !== listener));
     };
   }
 

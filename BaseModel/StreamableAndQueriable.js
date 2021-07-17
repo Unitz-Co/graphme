@@ -39,7 +39,7 @@ class StreamableAndQueriable extends Streamable {
 
   set(...args) {
     if (args.length === 1 && _.isPlainObject(args[0])) {
-      for (let key of _.keys(args[0])) {
+      for (const key of _.keys(args[0])) {
         const val = args[0][key];
         this.set(key, val);
       }
@@ -58,9 +58,9 @@ class StreamableAndQueriable extends Streamable {
 
   has(key) {
     return (
-      _.has(privateData.get(this, 'props'), key) ||
-      _.hasIn(privateData.get(this, 'props'), key) ||
-      _.has(privateData.get(this, 'nodes'), key)
+      _.has(privateData.get(this, 'props'), key)
+      || _.hasIn(privateData.get(this, 'props'), key)
+      || _.has(privateData.get(this, 'nodes'), key)
     );
   }
 
@@ -89,7 +89,7 @@ class StreamableAndQueriable extends Streamable {
           rtn[alias] = this.get(key, def);
         }
       } else if (_.isString(prop)) {
-        let key = prop;
+        const key = prop;
         if (this.has(key)) {
           rtn[key] = this.get(key);
         }
@@ -101,7 +101,7 @@ class StreamableAndQueriable extends Streamable {
 
   setNode(...args) {
     if (args.length === 1 && _.isPlainObject(args[0])) {
-      for (let key of _.keys(args[0])) {
+      for (const key of _.keys(args[0])) {
         const val = args[0][key];
         this.setNode(key, val);
       }
@@ -131,7 +131,7 @@ class StreamableAndQueriable extends Streamable {
 
   setState(...args) {
     if (args.length === 1 && _.isPlainObject(args[0])) {
-      for (let key of _.keys(args[0])) {
+      for (const key of _.keys(args[0])) {
         const val = args[0][key];
         this.setState(key, val);
       }
@@ -169,7 +169,7 @@ class StreamableAndQueriable extends Streamable {
           rtn[alias] = this.getState(key, def);
         }
       } else if (_.isString(prop)) {
-        let key = prop;
+        const key = prop;
         if (this.has(key)) {
           rtn[key] = this.getState(key);
         }

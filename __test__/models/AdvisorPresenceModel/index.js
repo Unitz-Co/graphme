@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import graphme from '../../../index';
 
 import Definition from '../Definition';
@@ -18,10 +17,10 @@ class AdvisorPresenceModel extends graphme.BaseModel {
 
     baseQuery: GetAdvisorPresence,
     GQL_ACTIONS: {
-      GET: `advisor_presence_by_pk`,
-      INSERT: `insert_advisor_presence_one`,
-      UPDATE: `update_advisor_presence_by_pk`,
-      DELETE: `delete_advisor_presence_by_pk`,
+      GET: 'advisor_presence_by_pk',
+      INSERT: 'insert_advisor_presence_one',
+      UPDATE: 'update_advisor_presence_by_pk',
+      DELETE: 'delete_advisor_presence_by_pk',
     },
   });
 }

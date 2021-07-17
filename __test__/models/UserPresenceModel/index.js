@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import graphme from '../../../index';
 
 import Definition from '../Definition';
@@ -18,10 +17,10 @@ class UserPresenceModel extends graphme.BaseModel {
 
     baseQuery: GetUserPresence,
     GQL_ACTIONS: {
-      GET: `user_presence_by_pk`,
-      INSERT: `insert_user_presence_one`,
-      UPDATE: `update_user_presence_by_pk`,
-      DELETE: `delete_user_presence_by_pk`,
+      GET: 'user_presence_by_pk',
+      INSERT: 'insert_user_presence_one',
+      UPDATE: 'update_user_presence_by_pk',
+      DELETE: 'delete_user_presence_by_pk',
     },
   });
 }

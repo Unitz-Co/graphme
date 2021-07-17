@@ -118,8 +118,8 @@ utils.privateDataWrapper = (options) => {
       const data = {};
       containerMap.set(target, data);
       // apply initter for all initer
-      options &&
-        _.map(options, (val, key) => {
+      options
+        && _.map(options, (val, key) => {
           data[key] = getInitVal(val);
         });
     }

@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import graphme from '../../../index';
 
 import Definition from '../Definition';
@@ -16,10 +15,10 @@ class TransactionAggregateCount extends graphme.BaseModel {
       ['max', 'TransactionModel'],
     ],
     baseQuery: GetTransactionAggregate,
-    selection: `{ count }`,
+    selection: '{ count }',
 
     GQL_ACTIONS: {
-      GET: `aggregate`,
+      GET: 'aggregate',
     },
   });
 }
@@ -59,7 +58,7 @@ class TransactionAggregateModel extends graphme.BaseModel {
     }`,
 
     GQL_ACTIONS: {
-      GET: `transaction_aggregate`,
+      GET: 'transaction_aggregate',
     },
   });
 }

@@ -165,7 +165,7 @@ class Definition {
     if (currSelection) {
       const merged = GqlBuilder.utils.selections.merge(
         GqlBuilder.utils.selections.toAst(escapseSelection(currSelection)),
-        GqlBuilder.utils.selections.toAst(escapseSelection(selection))
+        GqlBuilder.utils.selections.toAst(escapseSelection(selection)),
       );
       this.definition.selection = GqlBuilder.utils.selections.astToStr(merged);
     }
@@ -193,7 +193,7 @@ class Definition {
         const rtn = _.reduceRight(
           paths.slice(0, -1),
           (nodeDefAcc, currLevel, index) => {
-            const nextNodeSelection = nodeDefAcc.nextNodeSelection;
+            const { nextNodeSelection } = nodeDefAcc;
             const nextNodeConfig = nodeDefAcc.nodeConfig;
             const nextNodeModel = nodeDefAcc.nodeModel;
 
@@ -221,45 +221,44 @@ class Definition {
                 nodeConfig: { usePlanSync: true },
                 nextNodeSelection: currNodeSelection,
               };
-            } else {
-              const currNodeDef = {
-                name: currLevel,
-                ...(isField(nextNodeModel)
-                  ? {
-                      schema: { [nextLevel]: nextNodeModel },
-                      nodes: [],
-                    }
-                  : {
-                      schema: {},
-                      nodes: [[nextLevel, nextNodeModel, nextNodeConfig]],
-                    }),
-                key: '',
-                baseQuery: '',
-                selection: currNodeSelection,
-
-                GQL_ACTIONS: {
-                  GET: currLevel,
-                },
-                getClient: this.definition.getClient,
-              };
-
-              class ImNodeModel extends BaseModel {
-                static DEFINITION = Definition.create(currNodeDef);
-              }
-
-              cacheImNodeMap.set(currPathsKey, ImNodeModel);
-              return {
-                nodeModel: ImNodeModel,
-                nodeConfig: { usePlanSync: true },
-                nextNodeSelection: currNodeSelection,
-              };
             }
+            const currNodeDef = {
+              name: currLevel,
+              ...(isField(nextNodeModel)
+                ? {
+                  schema: { [nextLevel]: nextNodeModel },
+                  nodes: [],
+                }
+                : {
+                  schema: {},
+                  nodes: [[nextLevel, nextNodeModel, nextNodeConfig]],
+                }),
+              key: '',
+              baseQuery: '',
+              selection: currNodeSelection,
+
+              GQL_ACTIONS: {
+                GET: currLevel,
+              },
+              getClient: this.definition.getClient,
+            };
+
+            class ImNodeModel extends BaseModel {
+                static DEFINITION = Definition.create(currNodeDef);
+            }
+
+            cacheImNodeMap.set(currPathsKey, ImNodeModel);
+            return {
+              nodeModel: ImNodeModel,
+              nodeConfig: { usePlanSync: true },
+              nextNodeSelection: currNodeSelection,
+            };
           },
           {
             nodeModel,
             nodeConfig,
             nextNodeSelection,
-          }
+          },
         );
         return [paths[0], rtn.nodeModel, rtn.nodeConfig];
       }
@@ -267,7 +266,7 @@ class Definition {
       return nodeDef;
     };
 
-    const rtn = _.castArray(this.definition.nodes || []).map((nodeDef) => createImNodeModel(nodeDef));
+    const rtn = _.castArray(this.definition.nodes || []).map(nodeDef => createImNodeModel(nodeDef));
 
     // remove duplicate nodes by name (index0)
     deDuplicateNode(rtn);

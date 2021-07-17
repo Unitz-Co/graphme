@@ -43,7 +43,7 @@ class BaseModel extends StreamableAndQueriable {
                 return node.node;
               },
             })
-            .toString()
+            .toString(),
         );
       const data = _.get(rtn, 'item');
       if (data) {
@@ -232,7 +232,7 @@ class BaseModel extends StreamableAndQueriable {
       const nodeName = this.getContext().get('nodeName');
       if (parentMode && !_.has(parentMode.toObject(), nodeName)) {
         // try to ask parent to sync data
-        parentMode.updateSelections((selection) => `${selection ? selection : ''} ${nodeName} ${this.getSelection()}`);
+        parentMode.updateSelections(selection => `${selection || ''} ${nodeName} ${this.getSelection()}`);
         await parentMode.sync();
         // apply data
         this.set(_.get(parentMode.toObject(), nodeName));
@@ -241,7 +241,7 @@ class BaseModel extends StreamableAndQueriable {
       const rtn = await this.getDefinition()
         .getClient()
         .request(select.toString());
-      const selectionPath = select.selectionPath;
+      const { selectionPath } = select;
       this.set(_.get(rtn, selectionPath));
       // remove thenable
       this.then = null;
@@ -260,9 +260,8 @@ class BaseModel extends StreamableAndQueriable {
     // check for parentNode
     const parentMode = this.getContext().getFromParent('@model');
     let syncQuery;
-    const usePlanSync =
-      !!parentMode &&
-      (() => {
+    const usePlanSync = !!parentMode
+      && (() => {
         const nodeName = this.getContext().get('nodeName');
         const parentDef = parentMode.getDefinition();
 
@@ -291,7 +290,7 @@ class BaseModel extends StreamableAndQueriable {
           definition.getKey && definition.getKey(),
           // keys from getKeys method
           ..._.castArray(definition.getKeys && definition.getKeys()),
-        ])
+        ]),
       );
 
       if (keys.length) {
@@ -344,7 +343,7 @@ class BaseModel extends StreamableAndQueriable {
             val = subSelection;
             subSelection = '';
           }
-          const isValidLevel = (level) => _.isLength(level) || (level && _.isString(level));
+          const isValidLevel = level => _.isLength(level) || (level && _.isString(level));
           const updatePath = _.filter([..._.toPath(selectionPath), ..._.toPath(subSelection)], isValidLevel).join('.');
           query.update(updatePath, {
             selections: ({ node }) => node.merge(val),
@@ -369,7 +368,7 @@ class BaseModel extends StreamableAndQueriable {
             val = subSelection;
             subSelection = '';
           }
-          const isValidLevel = (level) => _.isLength(level) || (level && _.isString(level));
+          const isValidLevel = level => _.isLength(level) || (level && _.isString(level));
           const updatePath = _.filter([..._.toPath(selectionPath), ..._.toPath(subSelection)], isValidLevel).join('.');
           query.update(updatePath, {
             arguments: ({ node }) => node.merge(val),
@@ -413,10 +412,9 @@ class BaseModel extends StreamableAndQueriable {
       if (await this.isExists()) {
         // query for the item before
         return this.update();
-      } else {
-        // new item, call the insert mutation instead
-        return this.insert();
       }
+      // new item, call the insert mutation instead
+      return this.insert();
     } catch (err) {
       throw err;
     }
@@ -442,11 +440,10 @@ class BaseModel extends StreamableAndQueriable {
         }
         // no update apply
         return this;
-      } else {
-        // new item, call the insert mutation instead
-        // check if can batch insert item
-        return this.insert();
       }
+      // new item, call the insert mutation instead
+      // check if can batch insert item
+      return this.insert();
     } catch (err) {
       throw err;
     }
@@ -461,22 +458,21 @@ class BaseModel extends StreamableAndQueriable {
     if (this.getDefinition().GQL_ACTIONS.UPDATE_MANY && this.constructor.updateMany) {
       const [res] = this.constructor.updateMany([pk_columns, object]);
       return res;
-    } else {
-      const query = this.getDefinition().getBaseQuery();
-      const mutation = query.setOperation('mutation').update({
-        alias: 'item',
-        name: this.getDefinition().GQL_ACTIONS.UPDATE,
-        arguments: {
-          pk_columns: { [this.getKey()]: this.getId() },
-          _set: object,
-        },
-      });
-      await this.getDefinition()
-        .getClient()
-        .request(mutation.toString());
-      // need to update the returned data?
-      return this;
     }
+    const query = this.getDefinition().getBaseQuery();
+    const mutation = query.setOperation('mutation').update({
+      alias: 'item',
+      name: this.getDefinition().GQL_ACTIONS.UPDATE,
+      arguments: {
+        pk_columns: { [this.getKey()]: this.getId() },
+        _set: object,
+      },
+    });
+    await this.getDefinition()
+      .getClient()
+      .request(mutation.toString());
+    // need to update the returned data?
+    return this;
   }
 
   async insert() {
@@ -490,8 +486,8 @@ class BaseModel extends StreamableAndQueriable {
         if (_.difference(fKeys, Object.keys(fValues)).length) {
           throw Error(
             `Inserting new model requires foreign keys: [${fKeys.join()}], receiving only [${Object.keys(
-              fValues
-            ).join()}]`
+              fValues,
+            ).join()}]`,
           );
         }
         return fValues;
@@ -505,22 +501,21 @@ class BaseModel extends StreamableAndQueriable {
         this.set(rtnData);
       }
       return this;
-    } else {
-      const query = this.getDefinition().getBaseQuery();
-      const mutation = query.setOperation('mutation').update({
-        alias: 'item',
-        name: this.getDefinition().GQL_ACTIONS.INSERT,
-        arguments: { object },
-      });
-      const rtn = await this.getDefinition()
-        .getClient()
-        .request(mutation.toString());
-      const rtnData = _.get(rtn, 'item');
-      if (rtnData) {
-        this.set(rtnData);
-      }
-      return this;
     }
+    const query = this.getDefinition().getBaseQuery();
+    const mutation = query.setOperation('mutation').update({
+      alias: 'item',
+      name: this.getDefinition().GQL_ACTIONS.INSERT,
+      arguments: { object },
+    });
+    const rtn = await this.getDefinition()
+      .getClient()
+      .request(mutation.toString());
+    const rtnData = _.get(rtn, 'item');
+    if (rtnData) {
+      this.set(rtnData);
+    }
+    return this;
   }
 
   async delete() {
@@ -528,17 +523,16 @@ class BaseModel extends StreamableAndQueriable {
       if (this.getDefinition().GQL_ACTIONS.DELETE_MANY && this.constructor.deleteMany) {
         const [res] = this.constructor.deleteMany(this.getId());
         return res;
-      } else {
-        const query = this.getDefinition().getBaseQuery();
-        const mutation = query.setOperation('mutation').update({
-          name: this.getDefinition().GQL_ACTIONS.DELETE,
-          arguments: { [this.getKey()]: this.getId() },
-        });
-        await this.getDefinition()
-          .getClient()
-          .request(mutation.toString());
-        return this;
       }
+      const query = this.getDefinition().getBaseQuery();
+      const mutation = query.setOperation('mutation').update({
+        name: this.getDefinition().GQL_ACTIONS.DELETE,
+        arguments: { [this.getKey()]: this.getId() },
+      });
+      await this.getDefinition()
+        .getClient()
+        .request(mutation.toString());
+      return this;
     } catch (err) {
       throw err;
     }
@@ -563,7 +557,7 @@ class BaseModel extends StreamableAndQueriable {
           val = subSelection;
           subSelection = '';
         }
-        const isValidLevel = (level) => _.isLength(level) || (level && _.isString(level));
+        const isValidLevel = level => _.isLength(level) || (level && _.isString(level));
         const updatePath = _.filter([..._.toPath(selectionPath), ..._.toPath(subSelection)], isValidLevel).join('.');
         query.update(updatePath, {
           arguments: ({ node }) => node.merge(val),
@@ -648,7 +642,7 @@ class BaseModel extends StreamableAndQueriable {
           if (ids[id]) {
             const rtn = _.get(rtnData, index);
             const res = ids[id][1];
-            const resData = { ...object, ...(rtn ? rtn : {}) };
+            const resData = { ...object, ...(rtn || {}) };
             res && res(resData);
             delete ids[id];
           }
@@ -674,7 +668,7 @@ class BaseModel extends StreamableAndQueriable {
 
     try {
       const objects = _.flatten(args);
-      return objects.map((obj) => insertManyRunner.queue(obj));
+      return objects.map(obj => insertManyRunner.queue(obj));
     } catch (err) {
       throw err;
     }
@@ -749,7 +743,7 @@ class BaseModel extends StreamableAndQueriable {
     });
 
     try {
-      return ids.map((id) => deleteManyRunner.queue(id));
+      return ids.map(id => deleteManyRunner.queue(id));
     } catch (err) {
       throw err;
     }
@@ -780,7 +774,7 @@ class BaseModel extends StreamableAndQueriable {
           'change',
           _.debounce(() => {
             subsMan.scan();
-          })
+          }),
         );
 
         const ref = {
@@ -808,7 +802,7 @@ class BaseModel extends StreamableAndQueriable {
 
       const select = this.getSyncQuery(buildSelectionFieldForSubscription(ref.fields));
       select.setOperation('subscription');
-      const selectionPath = select.selectionPath;
+      const { selectionPath } = select;
 
       // merge query
       const queryStr = select.toString();

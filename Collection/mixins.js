@@ -13,7 +13,7 @@ class CollectionMixins extends Streamable {
     const getType = () => Type;
     // caching castType by item id
     const cacheInstance = new CacheMan({
-      initer: (item) => new Type(item, this.getContext()),
+      initer: item => new Type(item, this.getContext()),
       getId: (item) => {
         const keyName = Type.getDefinition().getKey();
         if (keyName && _.has(item, keyName)) {
@@ -74,7 +74,7 @@ class CollectionMixins extends Streamable {
     };
 
     // create context chain
-    let container = {
+    const container = {
       context: new Context(ctx, { data: { type: 'Collection' } }),
     };
     this.setContext = (ctx) => {
@@ -151,7 +151,7 @@ class CollectionMixins extends Streamable {
         } catch (err) {
           // console.log(err);
         }
-      })
+      }),
     );
     return this.target;
   }
@@ -168,8 +168,8 @@ class CollectionMixins extends Streamable {
       await parentModel.sync(
         _.castArray(fields || []).concat(
           [`${nodeName}${argsStr} ${NodeModel.getSelection()}`],
-          selectionsStr ? [`${nodeName}${argsStr} { ${selectionsStr} }`] : []
-        )
+          selectionsStr ? [`${nodeName}${argsStr} { ${selectionsStr} }`] : [],
+        ),
       );
       // update collection node after syncing
       const arrData = parentModel.getRef(nodeName);
@@ -177,11 +177,11 @@ class CollectionMixins extends Streamable {
       // remove thenable
       this.then = null;
       return this.target;
-    } else {
-      // self call query
-      this.then = undefined;
-      return this.target;
     }
+    // self call query
+    this.then = undefined;
+    return this.target;
+
 
     // return this.target;
   }
@@ -194,7 +194,7 @@ class CollectionMixins extends Streamable {
         const subsMan = new SubscriptionMan(this);
         this.on(
           'change',
-          _.debounce(() => subsMan.scan())
+          _.debounce(() => subsMan.scan()),
         );
 
         const ref = {
@@ -237,7 +237,7 @@ class CollectionMixins extends Streamable {
           if (!prevObs || prevQuery !== currQuery) {
             ref.currObs = observer.subscribe({
               next: (res) => {
-                const selectionPath = select.selectionPath;
+                const { selectionPath } = select;
                 const { data } = res;
                 if (data) {
                   const rtnData = _.get(data, selectionPath);

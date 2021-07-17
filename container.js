@@ -24,10 +24,10 @@ function Container() {
     resolveDefinition(name) {
       if (_.isString(name)) {
         return _.get(modelDefs, name);
-      } else if (modelConstDefs.has(name)) {
+      } if (modelConstDefs.has(name)) {
         // use model constructor as name
         return modelConstDefs.get(name);
-      } else if (_.has(name, 'DEFINITION')) {
+      } if (_.has(name, 'DEFINITION')) {
         return _.get(name, 'DEFINITION');
       }
       return name;

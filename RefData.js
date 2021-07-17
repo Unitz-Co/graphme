@@ -25,6 +25,7 @@ class RefData {
     const [key, def] = args;
     return _.get(this.getTarget(), key, def);
   }
+
   set(...args) {
     // root not setter
     if (args.length === 1) {
@@ -35,6 +36,7 @@ class RefData {
     const [key, val] = args;
     return _.set(this.getTarget(), key, val);
   }
+
   has(key) {
     return _.has(this.getTarget(), key);
   }
@@ -51,7 +53,7 @@ class RefData {
           if (['get', 'set'].includes(prop)) {
             const mixins = ref.mixins();
             return mixins[prop].bind(obj);
-          } else if (prop === 'getTarget') {
+          } if (prop === 'getTarget') {
             return null;
           }
           return obj[prop];
@@ -60,7 +62,7 @@ class RefData {
           const mixins = ref.mixins();
           if (['get', 'set'].includes(prop)) {
             return null;
-          } else if (prop === 'getTarget') {
+          } if (prop === 'getTarget') {
             return null;
           }
           mixins.set(prop, val);
