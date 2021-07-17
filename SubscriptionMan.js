@@ -58,6 +58,7 @@ class SubscriptionMan {
               if (cb && _.isFunction(cb)) {
                 cb(curValue);
               }
+              return cb;
             });
             // update prevValue
             _.set(data.prevValuesByPath, path, _.cloneDeep(curValue));

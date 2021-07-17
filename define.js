@@ -25,6 +25,7 @@ const define = (instance) => {
         },
         // enumerable: true,
       });
+      return fieldName;
     });
   });
 
@@ -94,6 +95,7 @@ const define = (instance) => {
         },
         // enumerable: true,
       });
+      return item;
     });
   });
 };

@@ -5,7 +5,7 @@ const Streamable = require('./Streamable');
 const container = require('../container');
 const define = require('../define');
 const hooks = require('../hooks');
-const Context = require('../context');
+// const Context = require('../context');
 const SubscriptionMan = require('../SubscriptionMan');
 const utils = require('../utils');
 
@@ -72,7 +72,9 @@ class BaseModel extends StreamableAndQueriable {
           object,
         },
       });
-      const rtn = await this.getDefinition().getClient().request(mutation.toString());
+      const rtn = await this.getDefinition()
+        .getClient()
+        .request(mutation.toString());
       const rtnData = _.get(rtn, 'item');
       if (rtnData) {
         return this.fromData(rtnData);
@@ -236,7 +238,9 @@ class BaseModel extends StreamableAndQueriable {
         this.set(_.get(parentMode.toObject(), nodeName));
       }
       const select = this.getSyncQuery(fields);
-      const rtn = await this.getDefinition().getClient().request(select.toString());
+      const rtn = await this.getDefinition()
+        .getClient()
+        .request(select.toString());
       const selectionPath = select.selectionPath;
       this.set(_.get(rtn, selectionPath));
       // remove thenable
@@ -296,6 +300,7 @@ class BaseModel extends StreamableAndQueriable {
             args[key] = this.get(key);
             hasArgs = true;
           }
+          return key;
         });
       }
       if (hasArgs) {
@@ -349,6 +354,7 @@ class BaseModel extends StreamableAndQueriable {
             selections: ({ node }) => node.merge(item),
           });
         }
+        return item;
       });
     }
 
@@ -373,6 +379,7 @@ class BaseModel extends StreamableAndQueriable {
             arguments: ({ node }) => node.merge(item),
           });
         }
+        return item;
       });
     }
   }
@@ -427,7 +434,7 @@ class BaseModel extends StreamableAndQueriable {
    */
   async saveIfDirty() {
     try {
-      const query = this.getDefinition().getBaseQuery();
+      // const query = this.getDefinition().getBaseQuery();
       const id = this.getId();
       if (id) {
         if (this.isDirty()) {
@@ -464,7 +471,9 @@ class BaseModel extends StreamableAndQueriable {
           _set: object,
         },
       });
-      await this.getDefinition().getClient().request(mutation.toString());
+      await this.getDefinition()
+        .getClient()
+        .request(mutation.toString());
       // need to update the returned data?
       return this;
     }
@@ -503,7 +512,9 @@ class BaseModel extends StreamableAndQueriable {
         name: this.getDefinition().GQL_ACTIONS.INSERT,
         arguments: { object },
       });
-      const rtn = await this.getDefinition().getClient().request(mutation.toString());
+      const rtn = await this.getDefinition()
+        .getClient()
+        .request(mutation.toString());
       const rtnData = _.get(rtn, 'item');
       if (rtnData) {
         this.set(rtnData);
@@ -523,7 +534,9 @@ class BaseModel extends StreamableAndQueriable {
           name: this.getDefinition().GQL_ACTIONS.DELETE,
           arguments: { [this.getKey()]: this.getId() },
         });
-        await this.getDefinition().getClient().request(mutation.toString());
+        await this.getDefinition()
+          .getClient()
+          .request(mutation.toString());
         return this;
       }
     } catch (err) {
@@ -560,6 +573,7 @@ class BaseModel extends StreamableAndQueriable {
           arguments: ({ node }) => node.merge(item),
         });
       }
+      return item;
     });
     if (selections) {
       query.update({
@@ -574,7 +588,9 @@ class BaseModel extends StreamableAndQueriable {
     try {
       if (this.getDefinition().GQL_ACTIONS.FIND && this.Collection) {
         const query = this.getFindQuery(args, selections);
-        const rtn = await this.getDefinition().getClient().request(query.toString());
+        const rtn = await this.getDefinition()
+          .getClient()
+          .request(query.toString());
         const queryName = this.getDefinition().GQL_ACTIONS.FIND;
         const rtnData = _.get(rtn, queryName, []);
         // return a collection
@@ -620,7 +636,9 @@ class BaseModel extends StreamableAndQueriable {
           arguments: { objects: _.map(batchObjects, ({ object }) => object) },
           selections: `returning {${keyName}}`,
         });
-        const rtn = await this.getDefinition().getClient().request(mutation.toString());
+        const rtn = await this.getDefinition()
+          .getClient()
+          .request(mutation.toString());
         const rtnData = _.get(rtn, 'item.returning', []);
 
         // map rtn to promise/resovle
@@ -634,6 +652,7 @@ class BaseModel extends StreamableAndQueriable {
             res && res(resData);
             delete ids[id];
           }
+          return item;
         });
       });
 
@@ -696,7 +715,9 @@ class BaseModel extends StreamableAndQueriable {
           arguments: { where: { [keyName]: { _in: batchIds } } },
           selections: `returning {${keyName}}`,
         });
-        const rtn = await this.getDefinition().getClient().request(mutation.toString());
+        const rtn = await this.getDefinition()
+          .getClient()
+          .request(mutation.toString());
         const rtnData = _.get(rtn, 'item.returning');
 
         // map rtn to promise/resovle
@@ -708,6 +729,7 @@ class BaseModel extends StreamableAndQueriable {
             res && res(rtn);
             delete ids[id];
           }
+          return id;
         });
       });
 

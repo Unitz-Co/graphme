@@ -94,6 +94,7 @@ class StreamableAndQueriable extends Streamable {
           rtn[key] = this.get(key);
         }
       }
+      return prop;
     });
     return rtn;
   }
@@ -173,6 +174,7 @@ class StreamableAndQueriable extends Streamable {
           rtn[key] = this.getState(key);
         }
       }
+      return prop;
     });
     return rtn;
   }

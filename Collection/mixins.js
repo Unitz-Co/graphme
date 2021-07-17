@@ -190,7 +190,7 @@ class CollectionMixins extends Streamable {
     const NodeModel = this.getType();
     // build plan query for this object
     try {
-      const [subsMan, ref] = hooks.useMemo.call(this, 'subsMan', () => {
+      const [subsMan] = hooks.useMemo.call(this, 'subsMan', () => {
         const subsMan = new SubscriptionMan(this);
         this.on(
           'change',
@@ -210,8 +210,8 @@ class CollectionMixins extends Streamable {
 
         if (instance) {
           const nodeName = this.getContext().get('nodeName');
-          let argsStr = this.getArgs();
-          argsStr = argsStr ? `(${argsStr})` : '';
+          // let argsStr = this.getArgs();
+          // argsStr = argsStr ? `(${argsStr})` : '';
 
           const observer = instance.observe(`${nodeName}`);
 
