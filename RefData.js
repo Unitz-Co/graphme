@@ -4,7 +4,7 @@ const utils = require('./utils');
 
 const privateRefData = utils.privateDataWrapper({
   container: () => ({}),
-  path: () => '',
+  path: () => ''
 });
 
 class RefData {
@@ -72,8 +72,8 @@ class RefData {
         has(obj, key) {
           const mixins = ref.mixins();
           return mixins.has(key);
-        },
-      })),
+        }
+      }))
     };
     return ref.target();
   }

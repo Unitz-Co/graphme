@@ -11,7 +11,7 @@ class AdvisorProfileModel extends graphme.BaseModel {
       id: String,
       display_name: String,
       ref_ctf_eid: String,
-      advisor_id: String,
+      advisor_id: String
     },
     foreignKeys: ['advisor_id'],
     key: 'id',
@@ -21,8 +21,8 @@ class AdvisorProfileModel extends graphme.BaseModel {
       GET: 'advisor_profile_by_pk',
       INSERT: 'insert_advisor_profile_one',
       UPDATE: 'update_advisor_profile_by_pk',
-      DELETE: 'delete_advisor_profile_by_pk',
-    },
+      DELETE: 'delete_advisor_profile_by_pk'
+    }
   });
 }
 

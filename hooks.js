@@ -18,7 +18,7 @@ const hooks = {
     }
     return hooks[name];
   },
-  useCallback(name, cb, deps) {},
+  useCallback(name, cb, deps) {}
 };
 
 module.exports = hooks;

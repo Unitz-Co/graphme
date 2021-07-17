@@ -36,7 +36,7 @@ test('nested collection getter from find', async () => {
       user_id
       session_id
     }
-  `,
+  `
   );
   console.snapshot('instances', instances);
   const instance = _.first(instances);
@@ -71,27 +71,27 @@ test('nested collection mutations', async () => {
   const user_id = await firstTran.user_id;
   transactions.push({
     user_id,
-    session_id: 'session_1',
+    session_id: 'session_1'
   });
 
   transactions.push({
     user_id,
-    session_id: 'session_1',
+    session_id: 'session_1'
   });
 
   transactions.push({
     user_id,
-    session_id: 'session_1',
+    session_id: 'session_1'
   });
 
   transactions.push({
     user_id,
-    session_id: 'session_last',
+    session_id: 'session_last'
   });
 
   await instance.applyByPath('transactions.push', {
     user_id,
-    session_id: 'session_last',
+    session_id: 'session_last'
   });
 
   await transactions.save();
@@ -105,7 +105,7 @@ test('nested collection mutations', async () => {
 
   console.snapshot('removedTrans.len', removedTrans.len);
 
-  await Promise.all(removedTrans.map(item => item.delete()));
+  await Promise.all(removedTrans.map((item) => item.delete()));
 });
 
 test('indirect nested model property getter', async () => {

@@ -47,8 +47,8 @@ function Collection(Type, ...args) {
           return castedVal;
         }
         return obj[prop];
-      },
-    })),
+      }
+    }))
   };
   return ref.target();
 }

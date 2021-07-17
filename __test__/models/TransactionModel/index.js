@@ -14,11 +14,11 @@ class TransactionModel extends graphme.BaseModel {
       id: String,
       advisor_id: String,
       user_id: String,
-      session_id: String,
+      session_id: String
     },
     nodes: [
       ['advisor', 'AdvisorModel', { column_mapping: { advisor_id: 'id' } }],
-      ['user', 'UserModel', { column_mapping: { user_id: 'id' } }],
+      ['user', 'UserModel', { column_mapping: { user_id: 'id' } }]
     ],
     key: 'id',
 
@@ -26,7 +26,7 @@ class TransactionModel extends graphme.BaseModel {
 
     foreignKeysMapping: {
       advisor_id: ['Advisor', 'id'],
-      user_id: ['user', 'id'],
+      user_id: ['user', 'id']
     },
 
     baseQuery: 'GetTransaction',
@@ -38,9 +38,9 @@ class TransactionModel extends graphme.BaseModel {
         INSERT_MANY: 'insert_transaction',
         UPDATE: 'update_transaction_by_pk',
         DELETE: 'delete_transaction_by_pk',
-        DELETE_MANY: 'delete_transaction',
+        DELETE_MANY: 'delete_transaction'
       };
-    })(),
+    })()
   });
 }
 

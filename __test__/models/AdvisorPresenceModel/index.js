@@ -10,7 +10,7 @@ class AdvisorPresenceModel extends graphme.BaseModel {
     schema: {
       id: String,
       status: String,
-      advisor_id: String,
+      advisor_id: String
     },
     foreignKeys: ['advisor_id'],
     key: 'id',
@@ -20,8 +20,8 @@ class AdvisorPresenceModel extends graphme.BaseModel {
       GET: 'advisor_presence_by_pk',
       INSERT: 'insert_advisor_presence_one',
       UPDATE: 'update_advisor_presence_by_pk',
-      DELETE: 'delete_advisor_presence_by_pk',
-    },
+      DELETE: 'delete_advisor_presence_by_pk'
+    }
   });
 }
 

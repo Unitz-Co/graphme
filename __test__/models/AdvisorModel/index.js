@@ -11,7 +11,7 @@ class AdvisorModel extends graphme.BaseModel {
     schema: {
       id: String,
       is_active: Boolean,
-      created_at: Date,
+      created_at: Date
     },
     nodes: [
       ['profile', 'AdvisorProfileModel', { column_mapping: { id: 'advisor_id' } }],
@@ -20,8 +20,8 @@ class AdvisorModel extends graphme.BaseModel {
       [
         'transactions_aggregate',
         'TransactionAggregateModel',
-        { column_mapping: { id: 'advisor_id' }, usePlanSync: true },
-      ],
+        { column_mapping: { id: 'advisor_id' }, usePlanSync: true }
+      ]
     ],
     key: 'id',
 
@@ -32,8 +32,8 @@ class AdvisorModel extends graphme.BaseModel {
       GET: 'advisor_by_pk',
       INSERT: 'insert_advisor_one',
       UPDATE: 'update_advisor_by_pk',
-      DELETE: 'delete_advisor_by_pk',
-    },
+      DELETE: 'delete_advisor_by_pk'
+    }
   });
 }
 

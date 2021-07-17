@@ -7,7 +7,7 @@ const RefData = require('../RefData');
 
 const privateData = utils.privateDataWrapper({
   props: () => ({}),
-  state: () => ({}),
+  state: () => ({})
 });
 
 class StreamableAndQueriable extends Streamable {

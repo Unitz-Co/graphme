@@ -8,18 +8,18 @@ class TransactionAggregateCount extends graphme.BaseModel {
   static DEFINITION = Definition.create({
     name: 'TransactionAggregateCount',
     schema: {
-      count: Number,
+      count: Number
     },
     nodes: [
       ['min', 'TransactionModel'],
-      ['max', 'TransactionModel'],
+      ['max', 'TransactionModel']
     ],
     baseQuery: GetTransactionAggregate,
     selection: '{ count }',
 
     GQL_ACTIONS: {
-      GET: 'aggregate',
-    },
+      GET: 'aggregate'
+    }
   });
 }
 
@@ -46,7 +46,7 @@ class TransactionAggregateModel extends graphme.BaseModel {
       // }],
     },
     nodes: [
-      ['nodes', 'TransactionModel.Collection', { usePlanSync: true }],
+      ['nodes', 'TransactionModel.Collection', { usePlanSync: true }]
       // ['aggregate', 'TransactionAggregateCount', { usePlanSync: true }],
     ],
     key: '',
@@ -58,8 +58,8 @@ class TransactionAggregateModel extends graphme.BaseModel {
     }`,
 
     GQL_ACTIONS: {
-      GET: 'transaction_aggregate',
-    },
+      GET: 'transaction_aggregate'
+    }
   });
 }
 

@@ -12,13 +12,13 @@ class UserModel extends graphme.BaseModel {
     name: 'User',
     schema: {
       id: String,
-      is_active: Boolean,
+      is_active: Boolean
     },
     nodes: [
       ['profile', 'UserProfileModel', { column_mapping: { id: 'user_id' } }],
       ['presence', 'UserPresenceModel', { column_mapping: { id: 'user_id' } }],
       ['transactions', 'TransactionModel.Collection', { column_mapping: { id: 'user_id' } }],
-      ['transactions_aggregate', 'TransactionAggregateModel', { column_mapping: { id: 'user_id' }, usePlanSync: true }],
+      ['transactions_aggregate', 'TransactionAggregateModel', { column_mapping: { id: 'user_id' }, usePlanSync: true }]
     ],
     key: 'id',
 
@@ -29,8 +29,8 @@ class UserModel extends graphme.BaseModel {
       GET: 'user_by_pk',
       INSERT: 'insert_user_one',
       UPDATE: 'update_user_by_pk',
-      DELETE: 'delete_user_by_pk',
-    },
+      DELETE: 'delete_user_by_pk'
+    }
   });
 }
 

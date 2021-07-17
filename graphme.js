@@ -55,7 +55,7 @@ function GraphMe() {
     BaseModel,
     Collection,
     Definition,
-    GqlBuilder,
+    GqlBuilder
   };
   return instance;
 }

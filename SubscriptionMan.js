@@ -1,11 +1,11 @@
 const _ = require('lodash');
 
 const ensureArray = (container, path) => {
-  _.update(container, path, curr => (curr || []));
+  _.update(container, path, (curr) => (curr || []));
   return _.get(container, path);
 };
 
-const isRootPath = val => val !== 0 && !val;
+const isRootPath = (val) => val !== 0 && !val;
 
 const resolveTargetVal = (target) => {
   if (target && _.isFunction(target.toObject)) {
@@ -19,7 +19,7 @@ class SubscriptionMan {
     const data = {
       listenersByPath: {},
       prevValuesByPath: {},
-      susbcriptionsByPath: {},
+      susbcriptionsByPath: {}
     };
 
     const methods = {
@@ -37,9 +37,9 @@ class SubscriptionMan {
                     if (foundIndex >= 0) {
                       listeners.splice(foundIndex, 1);
                     }
-                  },
+                  }
                 };
-              },
+              }
             };
             return subscription;
           }
@@ -64,7 +64,7 @@ class SubscriptionMan {
             _.set(data.prevValuesByPath, path, _.cloneDeep(curValue));
           }
         });
-      }, 10),
+      }, 10)
     };
     _.assign(this, methods);
   }

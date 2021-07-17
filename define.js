@@ -21,7 +21,7 @@ const define = (instance) => {
           // mark model as dirty
           instance.setState({ dirty: true });
           return instance.set(fieldName, value);
-        },
+        }
         // enumerable: true,
       });
       return fieldName;
@@ -88,7 +88,7 @@ const define = (instance) => {
           }
           nodesMap[nodeName] = value;
           return nodesMap[nodeName];
-        },
+        }
         // enumerable: true,
       });
       return item;

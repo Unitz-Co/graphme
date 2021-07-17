@@ -153,7 +153,7 @@ test('subscribe to collection', async () => {
   const iTrans = await instance.transactions;
   iTrans.push({
     user_id,
-    session_id: 'new_session',
+    session_id: 'new_session'
   });
 
   await iTrans.save();
@@ -191,7 +191,7 @@ test('nested model props subscription', async () => {
 
   iTrans.push({
     user_id,
-    session_id: 'new_session',
+    session_id: 'new_session'
   });
 
   await iTrans.save();
@@ -228,7 +228,7 @@ test('nested model props subscription', async () => {
 
   iTrans.push({
     user_id,
-    session_id: 'new_session',
+    session_id: 'new_session'
   });
 
   await iTrans.save();

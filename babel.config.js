@@ -8,33 +8,33 @@ const config = {
       {
         modules: false,
         targets: {
-          browsers: 'ie >= 11',
-        },
-      },
-    ],
+          browsers: 'ie >= 11'
+        }
+      }
+    ]
   ],
   plugins: [
     'macros',
     [
       'import-graphql',
       {
-        nodePath: path.resolve(process.cwd(), '../../modules'),
-      },
+        nodePath: path.resolve(process.cwd(), '../../modules')
+      }
     ],
     [
       '@babel/plugin-transform-runtime',
       {
-        regenerator: true,
-      },
+        regenerator: true
+      }
     ],
     '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-object-rest-spread',
+    '@babel/plugin-proposal-object-rest-spread'
   ],
   env: {
     test: {
-      presets: [['@babel/preset-env']],
-    },
-  },
+      presets: [['@babel/preset-env']]
+    }
+  }
 };
 
 module.exports = config;

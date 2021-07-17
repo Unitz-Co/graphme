@@ -28,7 +28,7 @@ class Definition {
   name = '';
 
   schema = {
-    count: Number,
+    count: Number
   };
 
   GQL_ACTIONS = {};
@@ -165,7 +165,7 @@ class Definition {
     if (currSelection) {
       const merged = GqlBuilder.utils.selections.merge(
         GqlBuilder.utils.selections.toAst(escapseSelection(currSelection)),
-        GqlBuilder.utils.selections.toAst(escapseSelection(selection)),
+        GqlBuilder.utils.selections.toAst(escapseSelection(selection))
       );
       this.definition.selection = GqlBuilder.utils.selections.astToStr(merged);
     }
@@ -219,7 +219,7 @@ class Definition {
               return {
                 nodeModel: ImNodeModel,
                 nodeConfig: { usePlanSync: true },
-                nextNodeSelection: currNodeSelection,
+                nextNodeSelection: currNodeSelection
               };
             }
             const currNodeDef = {
@@ -227,20 +227,20 @@ class Definition {
               ...(isField(nextNodeModel)
                 ? {
                   schema: { [nextLevel]: nextNodeModel },
-                  nodes: [],
+                  nodes: []
                 }
                 : {
                   schema: {},
-                  nodes: [[nextLevel, nextNodeModel, nextNodeConfig]],
+                  nodes: [[nextLevel, nextNodeModel, nextNodeConfig]]
                 }),
               key: '',
               baseQuery: '',
               selection: currNodeSelection,
 
               GQL_ACTIONS: {
-                GET: currLevel,
+                GET: currLevel
               },
-              getClient: this.definition.getClient,
+              getClient: this.definition.getClient
             };
 
             class ImNodeModel extends BaseModel {
@@ -251,14 +251,14 @@ class Definition {
             return {
               nodeModel: ImNodeModel,
               nodeConfig: { usePlanSync: true },
-              nextNodeSelection: currNodeSelection,
+              nextNodeSelection: currNodeSelection
             };
           },
           {
             nodeModel,
             nodeConfig,
-            nextNodeSelection,
-          },
+            nextNodeSelection
+          }
         );
         return [paths[0], rtn.nodeModel, rtn.nodeConfig];
       }
@@ -266,7 +266,7 @@ class Definition {
       return nodeDef;
     };
 
-    const rtn = _.castArray(this.definition.nodes || []).map(nodeDef => createImNodeModel(nodeDef));
+    const rtn = _.castArray(this.definition.nodes || []).map((nodeDef) => createImNodeModel(nodeDef));
 
     // remove duplicate nodes by name (index0)
     deDuplicateNode(rtn);

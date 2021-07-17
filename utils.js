@@ -98,8 +98,8 @@ utils.deThenableProxy = (inst) => {
           return undefined;
         }
         return obj[prop];
-      },
-    })),
+      }
+    }))
   };
   return ref.target();
 };
@@ -138,7 +138,7 @@ utils.privateDataWrapper = (options) => {
     has: (target, key) => {
       const data = ensureTargetData(target, key);
       return _.has(data, key);
-    },
+    }
   };
 };
 

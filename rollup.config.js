@@ -17,17 +17,17 @@ export default [
       exports: 'named',
       globals: { lodash: '_' },
       file: pkg.browser,
-      format: 'umd',
+      format: 'umd'
     },
     plugins: [
       autoExternal({
         builtins: true,
         dependencies: true,
         // packagePath: path.resolve('../../package.json'),
-        peerDependencies: false,
+        peerDependencies: false
       }),
       visualizer({
-        filename: 'stats_viz.html',
+        filename: 'stats_viz.html'
       }),
       filesize(),
       nodeResolve({
@@ -36,9 +36,9 @@ export default [
       commonjs(),
       babel({
         exclude: 'node_modules/**',
-        babelHelpers: 'runtime',
-      }),
-    ],
+        babelHelpers: 'runtime'
+      })
+    ]
   },
 
   // and ES module (for bundlers) build.
@@ -48,17 +48,17 @@ export default [
     output: {
       name: 'graphme',
       file: pkg.module,
-      format: 'es',
+      format: 'es'
     },
     plugins: [
       autoExternal({
         builtins: true,
         dependencies: true,
         // packagePath: path.resolve('../../package.json'),
-        peerDependencies: false,
+        peerDependencies: false
       }),
       visualizer({
-        filename: 'stats_viz.html',
+        filename: 'stats_viz.html'
       }),
       filesize(),
       nodeResolve({
@@ -66,9 +66,9 @@ export default [
       }),
       babel({
         exclude: 'node_modules/**',
-        babelHelpers: 'runtime',
-      }),
-    ],
+        babelHelpers: 'runtime'
+      })
+    ]
   },
 
   // CommonJS (for Node)
@@ -79,17 +79,17 @@ export default [
       name: 'graphme',
       exports: 'named',
       file: pkg.main,
-      format: 'cjs',
+      format: 'cjs'
     },
     plugins: [
       autoExternal({
         builtins: true,
         dependencies: true,
         // packagePath: path.resolve('../../package.json'),
-        peerDependencies: false,
+        peerDependencies: false
       }),
       visualizer({
-        filename: 'stats_viz.html',
+        filename: 'stats_viz.html'
       }),
       filesize(),
       nodeResolve({
@@ -98,8 +98,8 @@ export default [
       commonjs(),
       babel({
         exclude: 'node_modules/**',
-        babelHelpers: 'runtime',
-      }),
-    ],
-  },
+        babelHelpers: 'runtime'
+      })
+    ]
+  }
 ];

@@ -31,7 +31,7 @@ function Container() {
         return _.get(name, 'DEFINITION');
       }
       return name;
-    },
+    }
   };
   return container;
 }

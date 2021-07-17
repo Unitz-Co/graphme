@@ -10,7 +10,7 @@ class UserPresenceModel extends graphme.BaseModel {
     schema: {
       id: String,
       status: String,
-      user_id: String,
+      user_id: String
     },
     foreignKeys: ['user_id'],
     key: 'id',
@@ -20,8 +20,8 @@ class UserPresenceModel extends graphme.BaseModel {
       GET: 'user_presence_by_pk',
       INSERT: 'insert_user_presence_one',
       UPDATE: 'update_user_presence_by_pk',
-      DELETE: 'delete_user_presence_by_pk',
-    },
+      DELETE: 'delete_user_presence_by_pk'
+    }
   });
 }
 

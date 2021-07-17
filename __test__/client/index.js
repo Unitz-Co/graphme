@@ -13,7 +13,7 @@ const getOptions = _.memoize(() => {
   const options = {
     endpoint: process.env.HASURA_GRAPHQL_ENDPOINT,
     adminSecret: process.env.HASURA_GRAPHQL_ADMIN_SECRET,
-    debug: true,
+    debug: true
   };
   return options;
 });
@@ -35,9 +35,9 @@ const getClientSubs = _.memoize((endpoint, opts = {}) => {
     },
     connectionParams: {
       headers: {
-        'x-hasura-admin-secret': adminSecret,
-      },
-    },
+        'x-hasura-admin-secret': adminSecret
+      }
+    }
   });
   getClientSubs.client = client;
   return client;
@@ -53,8 +53,8 @@ exports.getClient = _.memoize((endpoint, opts = {}) => {
 
   const client = new GraphQLClient(endpoint, {
     headers: {
-      'x-hasura-admin-secret': adminSecret,
-    },
+      'x-hasura-admin-secret': adminSecret
+    }
   });
   // check for debug mode
   if (_.get(options, 'debug', true)) {
@@ -73,7 +73,7 @@ exports.getClient = _.memoize((endpoint, opts = {}) => {
             return getClientSubs().request({ query });
           };
         }
-      },
+      }
     });
   }
   return client;
